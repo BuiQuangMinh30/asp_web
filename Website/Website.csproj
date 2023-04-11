@@ -169,6 +169,7 @@
       <DependentUpon>signUp.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.Master" />

@@ -16,11 +16,11 @@ namespace Website
             {
                 string username = Session["username"].ToString();
 
-                login_status_desktop.InnerHtml = "<li>Hi " + username + "</li>" +
+                login_status_desktop.InnerHtml = "<li>Xin chào " + username + "</li>" +
                                                  "<span>|</span>" +
                                                  "<li><a href='signOut.aspx'>Sign Out</a></li>";
 
-                login_status_mobile.InnerHtml = "<li>Hi " + username + "</li>" +
+                login_status_mobile.InnerHtml = "<li>Xin chào " + username + "</li>" +
                                                 "<li class='signOut-mobile'><a href='signOut.aspx'><img src='./Images/Icons/LogOut.svg' alt=''></a></li>";
             }
         }

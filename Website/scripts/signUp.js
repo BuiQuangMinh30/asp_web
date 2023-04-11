@@ -50,6 +50,46 @@ const fullnameValidate = () => {
     }
 };
 
+const addressValidate = () => {
+    const addressContainer = document.querySelector(".sign-up-address");
+    const addressInputBox = document.querySelector(".input-address");
+    const addressMessage = document.querySelector(".address-message");
+    let address = addressInputBox.value.trim();
+
+    if (address === "") {
+        showErrorStyles(addressContainer, addressInputBox);
+        addressMessage.innerHTML = "Hãy điền địa chỉ";
+    }
+    else {
+        removeErrorStyles(addressContainer, addressInputBox);
+        addressMessage.innerHTML = "";
+    }
+}
+
+const phoneValidate = () => {
+    const phoneContainer = document.querySelector(".sign-up-phone");
+    const phoneInputBox = document.querySelector(".input-phone");
+    const phoneMessage = document.querySelector(".phone-message");
+    let phone = phoneInputBox.value.trim();
+
+    var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+    if (phone != "") {
+        if (vnf_regex.test(phone) == false) {
+            showErrorStyles(phoneContainer, phoneInputBox);
+            phoneMessage.innerHTML = "Số điện thoại không hợp lệ";
+        }
+        else {
+            removeErrorStyles(phoneContainer, phoneInputBox);
+            phoneMessage.innerHTML = "";
+        }
+    }
+    else {
+        showErrorStyles(phoneContainer, phoneInputBox);
+        phoneMessage.innerHTML = "Hãy điền số điện thoại";
+    }
+}
+
+
 const usernameValidate = () => {
     const usernameContainer = document.querySelector(".sign-up-username");
     const usernameInputBox = document.querySelector(".input-username");
@@ -177,6 +217,7 @@ const repasswordValidate = () => {
     }
 }
 
+
 const showPassword = showPasswordButton => {
     const passwordInputBox = document.querySelector(".input-password");
     const repasswordInputBox = document.querySelector(".input-repassword");
@@ -197,20 +238,27 @@ const addEvent = (() => {
     const inputBoxes = document.querySelectorAll("[class*='input-']");
     const showPasswordButton = document.getElementById("show-psw-btn");
     const submitButton = document.querySelector(".submit-button");
+    console.log(inputBoxes);
 
     inputBoxes[0].addEventListener("blur", () => {
         fullnameValidate();
     });
+    //inputBoxes[1].addEventListener("blur", () => {
+    //    usernameValidate();
+    //});
     inputBoxes[1].addEventListener("blur", () => {
-        usernameValidate();
+        addressValidate();
     });
     inputBoxes[2].addEventListener("blur", () => {
-        emailValidate();
+        phoneValidate();
     });
     inputBoxes[3].addEventListener("blur", () => {
-        passwordValidate();
+        emailValidate();
     });
     inputBoxes[4].addEventListener("blur", () => {
+        passwordValidate();
+    });
+    inputBoxes[5].addEventListener("blur", () => {
         repasswordValidate();
     });
 

@@ -94,9 +94,9 @@
                             <!-- Copy from above, inherited all the styles -->
                             <div class="header__menu-mobile">
                                 <ul>
-                                    <li><a href="all_products.aspx?type=nike">Chó</a></li>
-                                    <li><a href="all_products.aspx?type=adidas">Mèo</a></li>
-                                    <li><a href="all_products.aspx?type=puma">Khác</a></li>
+                                    <li><a href="All_ProductsDefault.aspx?type=nike">Chó</a></li>
+                                    <li><a href="All_ProductsDefault.aspx.aspx?type=adidas">Mèo</a></li>
+                                    <li><a href="All_ProductsDefault.aspx.aspx?type=puma">Khác</a></li>
                                 </ul>
                             </div>
                             <div class="header__icons-mobile">
@@ -120,9 +120,17 @@
                             <input type="text" name="input-fullname" class="input-fullname" placeholder="Họ và tên*">
                             <p class="message fullname-message" runat="server" id="fullname_message"></p>
                         </div>
-                         <div class="sign-up-username">
+                         <%--<div class="sign-up-username">
                             <input type="text" name="input-username" class="input-username" placeholder="Tài Khoản*">
                             <p class="message username-message" runat="server" id="username_message"></p>
+                        </div>--%>
+                        <div class="sign-up-address">
+                            <input type="text" name="input-address" class="input-address" placeholder="Địa chỉ*">
+                            <p class="message address-message" runat="server" id="address_message"></p>
+                        </div>
+                        <div class="sign-up-phone">
+                            <input type="text" name="input-phone" class="input-phone" placeholder="Số điện thoại*">
+                            <p class="message phone-message" runat="server" id="phone_message"></p>
                         </div>
                         <div class="sign-up-email">
                             <input type="text" name="input-email" class="input-email" placeholder="Email*">
@@ -145,7 +153,8 @@
                         </div>
                         <div class="sign-up-submit">
                             <p class="sign-up-status" runat="server" id="sign_up_status"></p>
-                            <button type="submit" class="submit-button">Đăng ký</button>
+                           <%-- <button type="submit" class="submit-button">Đăng ký</button>--%>
+                            <asp:Button ID="btndangky" CssClass="submit-button" runat="server" Text="Đăng ký" OnClick="btndangky_Click"/>
                         </div>
                     </div>
                 </div>

@@ -87,13 +87,22 @@ namespace Website
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl fullname_message;
 
         /// <summary>
-        /// username_message control.
+        /// address_message control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl username_message;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl address_message;
+
+        /// <summary>
+        /// phone_message control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl phone_message;
 
         /// <summary>
         /// email_message control.
@@ -130,5 +139,14 @@ namespace Website
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl sign_up_status;
+
+        /// <summary>
+        /// btndangky control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btndangky;
     }
 }

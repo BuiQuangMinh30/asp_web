@@ -32,6 +32,9 @@ CREATE TABLE tblKhachHang (
 alter table tblKhachHang
 add sRole nvarchar(15)
 
+alter table tblKhachHang
+alter column sDiaChi nvarchar(255)
+
 CREATE TABLE tblDonHang (
    iDonHangId INT PRIMARY KEY IDENTITY(1,1),
    iKhachHangId INT NOT NULL,
@@ -104,6 +107,8 @@ SET IDENTITY_INSERT tblKhachHang OFF
 delete tblKhachHang where iKhachHangId=1 or iKhachHangId=2 or iKhachHangId=3
 select * from tblKhachHang
 
+update tblKhachHang set sRole= N'1' where sMatKhau = '123456'
+
 
 /*-----------------Thêm dữ liệu cho bảng đơn hàng--------------*/
 GO
@@ -161,3 +166,38 @@ begin
 	select * from tblDanhMuc
 end
 exec sp_getAll_Category 
+
+
+/*----------------------Proc_DangNhap-------------------------*/
+GO
+create proc sp_dangNhap 
+(
+	@sEmail nvarchar(255),
+	@sMatKhau nvarchar(255)
+)
+as
+begin
+	select * from tblKhachHang where sEmail=@sEmail and sMatKhau = @sMatKhau 
+end
+exec sp_dangNhap @sEmail=N'manhhung@gmail.com', @sMatKhau = N'123456'
+
+
+----------------------------Proc_DangKy--------------------------
+GO
+create proc sp_dangKy 
+(
+	@sHoTen nvarchar(50),
+	@sEmail nvarchar(255),
+	@sMatKhau nvarchar(20),
+	@sDiaChi nvarchar(255),
+	@sDienThoai nvarchar(20)
+)
+as
+begin
+	 INSERT INTO tblKhachHang(sHoTen, sEmail, sDiaChi, sMatKhau, sDienThoai)
+	VALUES (@sHoTen, @sEmail, @sMatKhau, @sDiaChi, @sDienThoai)
+end
+
+exec sp_dangKy  @sHoTen=N'Hungdz', @sEmail='hi123456@gmail.com', @sDiaChi=N'Hà Nội', @sMatKhau='12345678', @sDienThoai=N'123456'
+
+select * from tblKhachHang where sEmail = N'hi123456@gmail.com'

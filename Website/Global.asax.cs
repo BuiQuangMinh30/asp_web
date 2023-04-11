@@ -105,7 +105,12 @@ namespace Website
 
         protected void Session_Start(object sender, EventArgs e)
         {
-            Session["login"] = 0;
+            Session["login"] = "0";
+            Session["role"] = "3";    /*0: admin; 1: khấch hàng*/
+            Session["username"] = ""; /*Ten dang nhap*/
+            Session["id"] = "0";      /*ID user*/
+
+            Session["pass"] = "";
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

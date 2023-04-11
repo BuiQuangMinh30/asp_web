@@ -78,6 +78,15 @@ namespace Website
         protected global::System.Web.UI.HtmlControls.HtmlButton search_button_mobile;
 
         /// <summary>
+        /// txtTaiKhoan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTaiKhoan;
+
+        /// <summary>
         /// username_message control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace Website
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl username_message;
+
+        /// <summary>
+        /// txtMatKhau control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtMatKhau;
 
         /// <summary>
         /// password_message control.
@@ -103,5 +121,14 @@ namespace Website
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl sign_in_status;
+
+        /// <summary>
+        /// btndangnhap control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btndangnhap;
     }
 }

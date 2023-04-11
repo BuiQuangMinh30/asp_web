@@ -51,9 +51,9 @@
                         </div>
                         <div class="header__menu">
                             <ul>
-                                <li><a href="all_products.aspx?type=dog">Chó</a></li>
-                                <li><a href="all_products.aspx?type=cat">Mèo</a></li>
-                                <li><a href="all_products.aspx?type=diff">Khác</a></li>
+                                <li><a href="All_ProductsDefault?type=dog">Chó</a></li>
+                                <li><a href="All_ProductsDefault?type=cat">Mèo</a></li>
+                                <li><a href="All_ProductsDefault?type=diff">Khác</a></li>
                             </ul>
                         </div>
 
@@ -94,9 +94,9 @@
                                 <!-- Copy from above, inherited all the styles -->
                                 <div class="header__menu-mobile">
                                     <ul>
-                                        <li><a href="all_products.aspx?type=nike">Nike</a></li>
-                                        <li><a href="all_products.aspx?type=adidas">Adidas</a></li>
-                                        <li><a href="all_products.aspx?type=puma">Puma</a></li>
+                                        <li><a href="All_ProductsDefault?type=nike">Nike</a></li>
+                                        <li><a href="All_ProductsDefault?type=adidas">Adidas</a></li>
+                                        <li><a href="All_ProductsDefault?type=puma">Puma</a></li>
                                     </ul>
                                 </div>
                                 <div class="header__icons-mobile">
@@ -117,12 +117,11 @@
                         <h1>Đăng nhập</h1>
                         <div class="form">
                             <div class="sign-in-username">
-                                <input type="text" name="input-username" class="input-username" placeholder="Tài Khoản*">
+                                <input type="text" name="input-username" class="input-username" runat="server" id="txtTaiKhoan" placeholder="Tài Khoản*">
                                 <p class="message username-message" runat="server" id="username_message"></p>
                             </div>
                             <div class="sign-in-password">
-                                <input type="password" name="input-password" class="input-password"
-                                    placeholder="Password*">
+                                <input type="password" name="input-password" class="input-password" runat="server" id="txtMatKhau" placeholder="Password*">
                                 <p class="message password-message" runat="server" id="password_message"></p>
                             </div>
                             <div class="show-password">
@@ -137,7 +136,8 @@
                             </div>--%>
                             <div class="sign-in-submit">
                                 <p class="sign-in-status" runat="server" id="sign_in_status"></p>
-                                <button type="submit" class="submit-button">Đăng nhập</button>
+                               <%-- <button type="submit" class="submit-button">Đăng Nhập</button>--%>
+                                <asp:Button ID="btndangnhap" CssClass="submit-button" runat="server" Text="Đăng nhập" OnClick="btndangnhap_Click" />
                             </div>
                         </div>
                     </div>
