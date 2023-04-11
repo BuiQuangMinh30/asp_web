@@ -184,7 +184,7 @@ exec sp_dangNhap @sEmail=N'manhhung@gmail.com', @sMatKhau = N'123456'
 
 ----------------------------Proc_DangKy--------------------------
 GO
-create proc sp_dangKy 
+alter proc sp_dangKy 
 (
 	@sHoTen nvarchar(50),
 	@sEmail nvarchar(255),
@@ -194,10 +194,12 @@ create proc sp_dangKy
 )
 as
 begin
-	 INSERT INTO tblKhachHang(sHoTen, sEmail, sDiaChi, sMatKhau, sDienThoai)
-	VALUES (@sHoTen, @sEmail, @sMatKhau, @sDiaChi, @sDienThoai)
+	 INSERT INTO tblKhachHang(sHoTen, sEmail, sMatKhau, sDiaChi, sDienThoai, sRole)
+	 VALUES (@sHoTen, @sEmail, @sMatKhau, @sDiaChi, @sDienThoai, '1')
 end
 
-exec sp_dangKy  @sHoTen=N'Hungdz', @sEmail='hi123456@gmail.com', @sDiaChi=N'Hà Nội', @sMatKhau='12345678', @sDienThoai=N'123456'
+exec sp_dangKy  @sHoTen=N'Hungdz', @sEmail='hi123456@gmail.com', @sMatKhau='12345678', @sDiaChi= N'Hà Nội', @sDienThoai=N'123456'
 
-select * from tblKhachHang where sEmail = N'hi123456@gmail.com'
+select * from tblKhachHang
+
+delete tblKhachHang where iKhachHangId=18

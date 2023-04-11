@@ -89,30 +89,29 @@ const phoneValidate = () => {
     }
 }
 
+//const usernameValidate = () => {
+//    const usernameContainer = document.querySelector(".sign-up-username");
+//    const usernameInputBox = document.querySelector(".input-username");
+//    const usernameMessage = document.querySelector(".username-message");
+//    let username = usernameInputBox.value;
 
-const usernameValidate = () => {
-    const usernameContainer = document.querySelector(".sign-up-username");
-    const usernameInputBox = document.querySelector(".input-username");
-    const usernameMessage = document.querySelector(".username-message");
-    let username = usernameInputBox.value;
+//    /*Remove white space*/
+//    username = username.replaceAll(" ", "");
 
-    /*Remove white space*/
-    username = username.replaceAll(" ", "");
-
-    if (username === "") {
-        showErrorStyles(usernameContainer, usernameInputBox);
-        usernameMessage.innerHTML = "Hãy điền tên tài khoản";
-    }
-    else if (username.length < 8 || username.length > 12) {
-        showErrorStyles(usernameContainer, usernameInputBox);
-        usernameMessage.innerHTML = "Tài khoản chỉ chứa 8 đến 12 ký tự";
-    }
-    else {
-        removeErrorStyles(usernameContainer, usernameInputBox);
-        usernameMessage.innerHTML = "";
-        //}
-    }
-}
+//    if (username === "") {
+//        showErrorStyles(usernameContainer, usernameInputBox);
+//        usernameMessage.innerHTML = "Hãy điền tên tài khoản";
+//    }
+//    else if (username.length < 8 || username.length > 12) {
+//        showErrorStyles(usernameContainer, usernameInputBox);
+//        usernameMessage.innerHTML = "Tài khoản chỉ chứa 8 đến 12 ký tự";
+//    }
+//    else {
+//        removeErrorStyles(usernameContainer, usernameInputBox);
+//        usernameMessage.innerHTML = "";
+//        //}
+//    }
+//}
 
 const emailValidate = () => {
     const emailContainer = document.querySelector(".sign-up-email");
@@ -268,13 +267,17 @@ const addEvent = (() => {
 
     submitButton.addEventListener("click", e => {
         fullnameValidate();
-        usernameValidate();
+        /*  usernameValidate();*/
+        addressValidate();
+        phoneValidate();
         emailValidate();
         passwordValidate();
         repasswordValidate();
         const errorMessage = document.querySelector("input.error");
+        console.log(errorMessage)
         if (errorMessage) {
             e.preventDefault();
         }
     });
 })();
+

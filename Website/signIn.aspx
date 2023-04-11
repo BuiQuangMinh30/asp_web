@@ -136,8 +136,8 @@
                             </div>--%>
                             <div class="sign-in-submit">
                                 <p class="sign-in-status" runat="server" id="sign_in_status"></p>
-                               <%-- <button type="submit" class="submit-button">Đăng Nhập</button>--%>
-                                <asp:Button ID="btndangnhap" CssClass="submit-button" runat="server" Text="Đăng nhập" OnClick="btndangnhap_Click" />
+                              <%-- <button type="submit" class="submit-button">Đăng Nhập</button>--%>
+                              <asp:Button ID="btndangnhap" CssClass="submit-button" runat="server" Text="Đăng nhập" OnClick="btndangnhap_Click" />
                             </div>
                         </div>
                     </div>

@@ -24,14 +24,9 @@ const usernameValidate = () => {
         showErrorStyles(usernameContainer, usernameInputBox);
         usernameMessage.innerHTML = "Hãy điền tên tài khoản";
     }
-    else if (username.length < 8 || username.length > 12) {
-        showErrorStyles(usernameContainer, usernameInputBox);
-        usernameMessage.innerHTML = "Tài khoản chỉ chứa 8 đến 12 ký tự";
-    }
     else {
         removeErrorStyles(usernameContainer, usernameInputBox);
         usernameMessage.innerHTML = "";
-        //}
     }
 }
 
@@ -52,7 +47,7 @@ const passwordValidate = () => {
     else {
         removeErrorStyles(passwordContainer, passwordInputBox);
         passwordMessage.innerHTML = "";
-    //}
+    }
 }
 
 const showPassword = showPasswordButton => {
@@ -95,6 +90,7 @@ const addEvent = (() => {
         }
     });
 })();
+
 
     //var today = new Date();
     //var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();

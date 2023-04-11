@@ -208,17 +208,17 @@ namespace Website
             displayUserInformation();
             displayCartNumber();
 
-            if (IsPostBack)
-            {
-                string fullname = Request.Form.Get("input-fullname");
-                string address = Request.Form.Get("input-address");
-                string phone = Request.Form.Get("input-phone");
-                string email = Request.Form.Get("input-email");
-                string password = Request.Form.Get("input-password");
-                string repassword = Request.Form.Get("input-repassword");
+            //if (IsPostBack)
+            //{
+            //    string fullname = Request.Form.Get("input-fullname");
+            //    string address = Request.Form.Get("input-address");
+            //    string phone = Request.Form.Get("input-phone");
+            //    string email = Request.Form.Get("input-email");
+            //    string password = Request.Form.Get("input-password");
+            //    string repassword = Request.Form.Get("input-repassword");
 
-                isValid(fullname, address, phone, email, password, repassword);
-            }
+            //    isValid(fullname, address, phone, email, password, repassword);
+            //}
         }
         protected void SearchButton_Click(object sender, EventArgs e)
         {
@@ -245,31 +245,31 @@ namespace Website
             string password = Request.Form.Get("input-password");
             string repassword = Request.Form.Get("input-repassword");
 
-            if(isValid(fullname, address, phone, email, password, repassword))
+            //if(isValid(fullname, address, phone, email, password, repassword))
+            //{
+            using (SqlConnection cnn = new SqlConnection(con))
             {
-                using (SqlConnection cnn = new SqlConnection(con))
+                using (SqlCommand cmd = cnn.CreateCommand())
                 {
-                    using(SqlCommand cmd = cnn.CreateCommand())
-                    {
-                        cmd.Connection = cnn;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandText = "sp_dangKy";
-                        cmd.Parameters.Add("@sHoTen", fullname);
-                        cmd.Parameters.Add("@sEmail", email);
-                        cmd.Parameters.Add("@sMatKhau", password);
-                        cmd.Parameters.Add("@sDiaChi", address);
-                        cmd.Parameters.Add("@sDienThoai", phone);
+                    cmd.Connection = cnn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "sp_dangKy";
+                    cmd.Parameters.Add("@sHoTen", fullname);
+                    cmd.Parameters.Add("@sEmail", email);
+                    cmd.Parameters.Add("@sMatKhau", password);
+                    cmd.Parameters.Add("@sDiaChi", address);
+                    cmd.Parameters.Add("@sDienThoai", phone);
 
-                        cnn.Open();
-                        int kq = cmd.ExecuteNonQuery();
-                        if (kq > 0)
-                        {
-                            sign_up_status.InnerHtml = "Đăng kí thành công";
-                            //Response.Redirect("signIn.aspx");
-                        }
+                    cnn.Open();
+                    int kq = cmd.ExecuteNonQuery();
+                    if (kq > 0)
+                    {
+                        sign_up_status.InnerHtml = "Đăng kí thành công";
+                        //Response.Redirect("signIn.aspx");
                     }
                 }
             }
+            //}
         }
     }
 }
