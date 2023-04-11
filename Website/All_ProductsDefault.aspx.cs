@@ -7,40 +7,8 @@ using System.Web.UI.WebControls;
 
 namespace Website
 {
-    public partial class all_products : System.Web.UI.Page
+    public partial class All_ProductsDefault : System.Web.UI.Page
     {
-        protected void displayUserInformation()
-        {
-            //Display user information
-            if (Session["login"].ToString() == "1")
-            {
-                string username = Session["username"].ToString();
-
-                login_status_desktop.InnerHtml = "<li>Hi " + username + "</li>" +
-                                                 "<span>|</span>" +
-                                                 "<li><a href='signOut.aspx'>Sign Out</a></li>";
-
-                login_status_mobile.InnerHtml = "<li>Hi " + username + "</li>" +
-                                                "<li class='signOut-mobile'><a href='signOut.aspx'><img src='./Images/Icons/LogOut.svg' alt=''></a></li>";
-            }
-        }
-        protected void displayCartNumber()
-        {
-            //Display cart number
-            if (Request.Cookies["cart"] != null)
-            {
-                string[] cartProductsID = Request.Cookies["cart"].Value.Split(',');
-                // -1 empty string after last ,
-                Cart_Total_Products.InnerText = (cartProductsID.Length - 1).ToString();
-                Cart_Total_Products_Mobile.InnerText = (cartProductsID.Length - 1).ToString();
-            }
-            else
-            {
-                Cart_Total_Products.InnerText = "0";
-                Cart_Total_Products_Mobile.InnerText = "0";
-            }   
-        }
-
         protected void getProductsListByTypeAndFilter(string type, int begin, int end, List<ProductsList> productsListsByTypeAndFilter, List<ProductsList> productsLists)
         {
             foreach (ProductsList product in productsLists)
@@ -58,7 +26,7 @@ namespace Website
         {
             foreach (ProductsList product in productsLists)
             {
-                if (product.name.ToLower().IndexOf(search) != - 1 && Int32.Parse(product.price) >= begin && Int32.Parse(product.price) <= end)
+                if (product.name.ToLower().IndexOf(search) != -1 && Int32.Parse(product.price) >= begin && Int32.Parse(product.price) <= end)
                 {
                     productsListsBySearchAndFilter.Add(product);
                 }
@@ -82,10 +50,8 @@ namespace Website
 
             if (type != null || search != null)
             {
-                displayUserInformation();
-                displayCartNumber();
                 List<ProductsList> productsLists = (List<ProductsList>)Application["productsList"];
-                
+
 
                 if (type != null)
                 {
@@ -125,16 +91,17 @@ namespace Website
                             getProductsListByTypeAndFilter(type, 0, 999999999, productsListByTypeAndFilter, productsLists);
                             all_products_brand_name.InnerText = $"{type} ({totalProducts(productsListByTypeAndFilter)})";
                         }
-                    }                  
+                    }
                 }
-                else if(search != null) {
+                else if (search != null)
+                {
                     //======Display Page Content
                     //Display Products
                     search = search.ToLower();
 
                     //Change page title
                     Page.Title = "Tìm kiếm";
-                    
+
                     //Create Products List
                     List<ProductsList> productsListBySearchAndFilter = new List<ProductsList>();
 
@@ -164,12 +131,12 @@ namespace Website
                         all_products_brand_name.InnerText = $"Kết quả tìm kiếm cho '{search}' ({totalProducts(productsListBySearchAndFilter)})";
                     }
                 }
-                  
+
 
                 //Add filter href
                 string currentUrl = Request.Url.ToString();
                 int andSignPosition = currentUrl.IndexOf('&');
-                if(andSignPosition != -1)
+                if (andSignPosition != -1)
                 {
                     //Avoid multiple filter if already having a filter, ex: example.aspx?type=nike&filter=01&filter=02,...
                     string currentUrlWithOutFilter = currentUrl.Substring(0, andSignPosition);
@@ -186,21 +153,6 @@ namespace Website
             }
             else
                 Response.Redirect("index.aspx");
-        }
-        protected void SearchButton_Click(object sender, EventArgs e)
-        {
-            //string searchText = "";
-
-            //if (search_text.Value != "")
-            //{
-            //    searchText = search_text.Value.ToLower();
-            //}
-            //else if (search_text_mobile.Value != "")
-            //{
-            //    searchText = search_text_mobile.Value.ToLower();
-            //}
-
-            //Response.Redirect($"all_products.aspx?search={searchText}");
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Website
 {
-    public partial class Delete_Cart : System.Web.UI.Page
+    public partial class DeleteCartDefault : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,7 +19,7 @@ namespace Website
 
             Response.Cookies["cart"].Value = newCookiesAfterDeletedProduct;
             Response.Cookies["cart"].Expires = DateTime.Now.AddDays(12);
-            Response.Redirect("Cart.aspx");
+            Response.Redirect("CartDefault.aspx");
         }
     }
 }

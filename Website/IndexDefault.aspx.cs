@@ -7,53 +7,21 @@ using System.Web.UI.WebControls;
 
 namespace Website
 {
-    public partial class index : System.Web.UI.Page
+    public partial class IndexDefault : System.Web.UI.Page
     {
-        protected void displayUserInformation()
-        {
-            //Display user information
-            if (Session["login"].ToString() == "1")
-            {
-                string username = Session["username"].ToString();
-
-                login_status_desktop.InnerHtml = "<li>Hi " + username + "</li>" +
-                                                 "<span>|</span>" +
-                                                 "<li><a href='signOut.aspx'>Sign Out</a></li>";
-
-                login_status_mobile.InnerHtml = "<li>Hi " + username + "</li>" +
-                                                "<li class='signOut-mobile'><a href='signOut.aspx'><img src='./Images/Icons/LogOut.svg' alt=''></a></li>";
-            }
-        }
-        protected void displayCartNumber()
-        {
-            //Display cart number
-            if (Request.Cookies["cart"] != null)
-            {
-                string[] cartProductsID = Request.Cookies["cart"].Value.Split(',');
-                // -1 empty string after last ,
-                Cart_Total_Products.InnerText = (cartProductsID.Length - 1).ToString();
-                Cart_Total_Products_Mobile.InnerText = (cartProductsID.Length - 1).ToString();
-            }
-            else
-            {
-                Cart_Total_Products.InnerText = "0";
-                Cart_Total_Products_Mobile.InnerText = "0";
-            }  
-        }
+       
         protected void Page_Load(object sender, EventArgs e)
         {
-            displayUserInformation();
-            displayCartNumber();
 
             //Display slide products
             List<ProductsList> productsLists = (List<ProductsList>)Application["productsList"];
             List<ProductsList> nikeSlideProducts = new List<ProductsList>();
             List<ProductsList> adidasSlideProducts = new List<ProductsList>();
             List<ProductsList> pumaSlideProducts = new List<ProductsList>();
-            foreach(ProductsList product in productsLists)
+            foreach (ProductsList product in productsLists)
             {
                 string id = product.id;
-                if(id == "1.1" || id == "2.1" || id == "3.1" || id == "4.1" || id == "5.1" || id == "6.1" || id == "7.1")
+                if (id == "1.1" || id == "2.1" || id == "3.1" || id == "4.1" || id == "5.1" || id == "6.1" || id == "7.1")
                 {
                     nikeSlideProducts.Add(product);
                 }
