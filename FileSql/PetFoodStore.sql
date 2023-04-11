@@ -202,4 +202,4 @@ exec sp_dangKy  @sHoTen=N'Hungdz', @sEmail='hi123456@gmail.com', @sMatKhau='1234
 
 select * from tblKhachHang
 
-delete tblKhachHang where iKhachHangId=18
+delete tblKhachHang where iKhachHangId=20
