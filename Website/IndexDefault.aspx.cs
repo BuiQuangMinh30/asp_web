@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,9 +12,11 @@ namespace Website
 {
     public partial class IndexDefault : System.Web.UI.Page
     {
-       
+        public static string strconn = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD
 
             //Display slide products
             List<ProductsList> productsLists = (List<ProductsList>)Application["productsList"];
@@ -46,6 +51,14 @@ namespace Website
 
             //ListViewPumaSlideProducts.DataSource = pumaSlideProducts;
             //ListViewPumaSlideProducts.DataBind();
+=======
+          
+            SqlDataAdapter sda = new SqlDataAdapter("Select *from tblSanPham", strconn);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            ListView2.DataSource = dt;
+            ListView2.DataBind();
+>>>>>>> 6e44c421985e1c8c62190b443f3641f11f8c2175
 
         }
 
