@@ -44,17 +44,17 @@
                 </div>
                 <div class="header__main">
                     <div class="header__logo">
-                        <a class="logo" href="index.aspx"><img src="./Images/Logo.png" alt=""></a>
-                        <a class="brand" href="index.aspx">
+                        <a class="logo" href="IndexDefault.aspx"><img src="./Images/Logo.png" alt=""></a>
+                        <a class="brand" href="IndexDefault.aspx">
                             PETSHOP
                         </a>
                     </div>
                    <div class="header__menu">
-                        <ul>
-                            <li><a href="all_products.aspx?type=dog">Chó</a></li>
-                            <li><a href="all_products.aspx?type=cat">Mèo</a></li>
-                            <li><a href="all_products.aspx?type=diff">Khác</a></li>
-                        </ul>
+                       <ul>
+                                    <li><a href="All_ProductsDefault.aspx?type=nike">Chó</a></li>
+                                    <li><a href="All_ProductsDefault.aspx.aspx?type=adidas">Mèo</a></li>
+                                    <li><a href="All_ProductsDefault.aspx.aspx?type=puma">Khác</a></li>
+                                </ul>
                     </div>
 
                     <div class="header__icons">

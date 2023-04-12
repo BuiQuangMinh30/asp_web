@@ -72,6 +72,7 @@
     <Content Include="CartDefault.aspx" />
     <Content Include="DeleteCartDefault.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="ErrorDefault.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IndexDefault.aspx" />
     <Content Include="Product_InformationDefault.aspx" />
@@ -127,6 +128,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorDefault.aspx.cs">
+      <DependentUpon>ErrorDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorDefault.aspx.designer.cs">
+      <DependentUpon>ErrorDefault.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

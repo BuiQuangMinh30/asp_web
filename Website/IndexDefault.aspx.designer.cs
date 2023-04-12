@@ -15,30 +15,21 @@ namespace Website
     {
 
         /// <summary>
-        /// ListViewNikeSlideProducts control.
+        /// H1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewNikeSlideProducts;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl H1;
 
         /// <summary>
-        /// ListViewAdidasSlideProducts control.
+        /// ListView2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewAdidasSlideProducts;
-
-        /// <summary>
-        /// ListViewPumaSlideProducts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewPumaSlideProducts;
+        protected global::System.Web.UI.WebControls.ListView ListView2;
     }
 }

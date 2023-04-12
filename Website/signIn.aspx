@@ -44,8 +44,8 @@
                     </div>
                     <div class="header__main">
                         <div class="header__logo">
-                            <a class="logo" href="index.aspx"><img src="./Images/Logo.png" alt=""></a>
-                            <a class="brand" href="index.aspx">
+                            <a class="logo" href="IndexDefault.aspx"><img src="./Images/Logo.png" alt=""></a>
+                            <a class="brand" href="IndexDefault.aspx">
                                 PETSHOP
                             </a>
                         </div>

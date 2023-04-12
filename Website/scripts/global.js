@@ -16,7 +16,7 @@ const changeProductsImages = (() => {
     const whiteColor = document.querySelectorAll(".products__color--white");
     const blackColor = document.querySelectorAll(".products__color--black");
     const redColor = document.querySelectorAll(".products__color--red");
-    const productsImageElement = document.querySelectorAll(".products__image");
+    //const productsImageElement = document.querySelectorAll(".products__image");
     let defaultImagesSource = [];
     let imagesSourceHyphenPosition = [];
     let imagesSourceBeforeHyphen = [];
