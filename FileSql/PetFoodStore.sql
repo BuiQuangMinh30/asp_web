@@ -141,7 +141,25 @@ exec sp_getAll_Product
 
 ----------------------Select với nhiều điều kiện nhập vào--------------------
 GO
-create PROCEDURE sp_get_Product
+Alter PROCEDURE sp_get_Product
+	@iDanhMucId int = NULL,
+    @sTenSanPham NVARCHAR(50) = NULL,
+	@fDonGia float = NULL
+AS
+BEGIN
+    SELECT *
+    FROM tblSanPham
+    WHERE (ISNULL(@sTenSanPham, '') = '' OR sTenSanPham LIKE '%' + @sTenSanPham + '%')
+        AND (@iDanhMucId IS NULL OR iDanhMucId = @iDanhMucId)
+        AND (@fDonGia IS NULL OR fDonGia >= @fDonGia)
+END
+
+exec sp_get_Product @sTenSanPham='', @iDanhMucId=3, @fDonGia=100000
+select * from tblSanPham
+select * from tblDanhMuc as a, tblSanPham as b where a.iDanhMucId = b.iDanhMucId 
+-------------------------------proc_get_ChiTietSanPham------------------------
+GO
+create PROCEDURE sp_get_ChiTietSP
 	@iSanPhamId int = NULL,
     @sTenSanPham NVARCHAR(50) = NULL,
 	@fDonGia float = NULL
@@ -154,9 +172,7 @@ BEGIN
         AND (@fDonGia IS NULL OR fDonGia >= @fDonGia)
 END
 
-exec sp_get_Product @sTenSanPham='', @iSanPhamId=3, @fDonGia=100000
-
-select * from tblDanhMuc as a, tblSanPham as b where a.iDanhMucId = b.iDanhMucId 
+exec sp_get_ChiTietSP @iSanPhamId='1'
 
 -------------------------------Category----------------------------------------
 GO
@@ -198,8 +214,22 @@ begin
 	 VALUES (@sHoTen, @sEmail, @sMatKhau, @sDiaChi, @sDienThoai, '1')
 end
 
-exec sp_dangKy  @sHoTen=N'Hungdz', @sEmail='hi123456@gmail.com', @sMatKhau='12345678', @sDiaChi= N'Hà Nội', @sDienThoai=N'123456'
+exec sp_dangKy  @sHoTen=N'Admin', @sEmail='Admin', @sMatKhau='123456', @sDiaChi= N'Hà Nội', @sDienThoai=N'123456'
+
+INSERT INTO tblKhachHang(sHoTen, sEmail, sMatKhau, sDienThoai, sRole)
+	 VALUES ('Admin', 'Admin', '123456', '0862210801', '0')
+Update tblKhachHang set iKhachHangId=4 where tblKhachHang.iKhachHangId = 22
 
 select * from tblKhachHang
 
 delete tblKhachHang where iKhachHangId=20
+
+----------------------Proc_getAll_DanhMuc-----------------
+GO
+create proc sp_getAll_DanhMuc
+as
+begin
+	select * from tblDanhMuc
+end
+
+exec sp_getAll_DanhMuc

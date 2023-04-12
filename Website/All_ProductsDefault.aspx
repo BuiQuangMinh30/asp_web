@@ -20,18 +20,18 @@
                     <asp:ListView ID="ListViewAllProducts" runat="server">
                         <ItemTemplate>
                             <div class="products__wrapper">
-                                <a href="Product_InformationDefault.aspx?id=<%# Eval("id") %>">
-                                    <img class="products__image" src="<%# Eval("img") %>" alt="">
+                                <a href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">
+                                    <img class="products__image" src="<%# Eval("sAnh") %>" alt="">
                                 </a>
                                 <div class="products__content">
-                                    <h3 class="products__name"><%# Eval("name") %></h3>
+                                    <h3 class="products__name"><%# Eval("sTenSanPham") %></h3>
                                     <%--<div class="products__colors">
                                         <div class="products__color--white"></div>
                                         <div class="products__color--black"></div>
                                         <div class="products__color--red"></div>
                                     </div>--%>
-                                    <p class="products__price">Giá: <%# Eval("price") %><span class="products__price-unit">đ</span></p>
-                                    <a class="products__button" href="Product_InformationDefault.aspx?id=<%# Eval("id") %>">Chi tiết</a>
+                                    <p class="products__price">Giá: <%# Convert.ToDecimal(Eval("fDonGia")).ToString("N0").Replace(",", ".") %><span class="products__price-unit">VNĐ</span></p>
+                                    <a class="products__button" href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">Chi tiết</a>
                                 </div>
                             </div>   
                         </ItemTemplate>

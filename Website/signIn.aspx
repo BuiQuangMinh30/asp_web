@@ -25,17 +25,17 @@
                         <div class="header__user-menu">
                             <ul class="header__user-menu-desktop" runat="server" id="login_status_desktop">
                                 <!-- If not logged in -->
-                                <li><a href="signIn.aspx">Sign In</a></li>
+                                <li><a href="signIn.aspx">Đăng nhập</a></li>
                                 <span>|</span>
                                 <!-- If logged in change signIn to username and signUp to Log Out  -->
-                                <li><a href="signUp.aspx">Sign Up</a></li>
+                                <li><a href="signUp.aspx">Đăng xuất</a></li>
                             </ul>
 
                             <ul class="header__user-menu-mobile" runat="server" id="login_status_mobile">
                                 <!-- If not logged in -->
-                                <li><a href="signIn.aspx">Sign In</a></li>
+                                <li><a href="signIn.aspx">Đăng nhập</a></li>
                                 <span>|</span>
-                                <li><a href="signUp.aspx">Sign Up</a></li>
+                                <li><a href="signUp.aspx">Đăng xuất</a></li>
                                 <!-- If logged in change signIn to username, signUp to icon, delete span -->
                                 <!-- Display in server side aspx -->
                                 <!-- <li class="signOut-mobile"><a href="signOut.aspx"><img src="./Images/Icons/LogOut.svg" alt=""></a></li> -->
@@ -131,7 +131,7 @@
                                 <button type="button" id="show-psw-btn">Hiển thị password</button>
                             </div>
                             <%--<div style="color:red;">
-                                <p>Date</p>
+                                <p>date</p>
                                 <p id="hvn" </p>
                             </div>--%>
                             <div class="sign-in-submit">

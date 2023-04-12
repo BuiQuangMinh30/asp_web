@@ -38,14 +38,14 @@ namespace Website
 
             }
 
-            ListViewNikeSlideProducts.DataSource = nikeSlideProducts;
-            ListViewNikeSlideProducts.DataBind();
+            //ListViewNikeSlideProducts.DataSource = nikeSlideProducts;
+            //ListViewNikeSlideProducts.DataBind();
 
-            ListViewAdidasSlideProducts.DataSource = adidasSlideProducts;
-            ListViewAdidasSlideProducts.DataBind();
+            //ListViewAdidasSlideProducts.DataSource = adidasSlideProducts;
+            //ListViewAdidasSlideProducts.DataBind();
 
-            ListViewPumaSlideProducts.DataSource = pumaSlideProducts;
-            ListViewPumaSlideProducts.DataBind();
+            //ListViewPumaSlideProducts.DataSource = pumaSlideProducts;
+            //ListViewPumaSlideProducts.DataBind();
 
         }
 

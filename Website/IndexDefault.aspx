@@ -6,7 +6,7 @@
                     <div class="slider">
                         <div class="slider__wrapper">
                             <div class="slider__images-container">
-                                <img src="./Images/Nike/anhbanner.jpg" alt="" style="width:1350px;">
+                                <img src="./Images/Nike/anhbanner.jpg" alt="" style="width:100vw;">
                                 <%--<img src="./Images/Adidas/anhbannermeo.jpg" alt="">--%>
                                 <%--<img src="./Images/Puma/anhbannerchim.jpg" alt="">--%>
                             </div>
