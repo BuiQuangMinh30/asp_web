@@ -7,7 +7,7 @@
                     <div class="slider">
                         <div class="slider__wrapper">
                             <div class="slider__images-container">
-                                <img src="./Images/Nike/anhbanner.jpg" alt="" style="width:100vw;">
+                                <img src="./Images/ImgCho/anhbanner.jpg" alt="" style="width:100vw;">
                                 <%--<img src="./Images/Adidas/anhbannermeo.jpg" alt="">--%>
                                 <%--<img src="./Images/Puma/anhbannerchim.jpg" alt="">--%>
                             </div>
@@ -39,7 +39,7 @@
                                                     <img class="products__image" src="<%# Eval("sAnh") %>" alt="">
                                                 </a>
                                                 <div class="products__content">
-                                                    <h3 class="products__name"><%# Eval("sTenSanPham") %></h3>
+                                                    <h4 class="products__name"><%# Eval("sTenSanPham") %></h4>
                                                     <%--<div class="products__colors">
                                                         <div class="products__color--white"></div>
                                                         <div class="products__color--black"></div>

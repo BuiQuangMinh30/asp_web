@@ -18,7 +18,8 @@ CREATE TABLE tblSanPham (
    dThoiGianTao DATETIME NOT NULL DEFAULT GETDATE(),
    FOREIGN KEY (iDanhMucId) REFERENCES tblDanhMuc(iDanhMucId)
 );
-
+alter table tblSanPham
+alter column sMoTa nvarchar(600)
 
 CREATE TABLE tblKhachHang (
    iKhachHangId INT PRIMARY KEY IDENTITY(1,1),
@@ -85,11 +86,24 @@ INSERT INTO tblSanPham (iSanPhamId,sTenSanPham, fDonGia, iDanhMucId, sMoTa)
 VALUES (1, N'Thức ăn đóng hộp Royal Canin', 530000, 1, N'Thực phẩm ướt chất lượng cao trong hộp'),
        (2, N'Thức ăn khô Pedigree', 410000, 2, N'Thức ăn khô dành cho mèo trưởng thành'),
        (3, N'Món ăn từ xương sữa cho chó', 1000000, 1, N'Món ăn ngon cho chó với nhiều hương vị khác nhau');
+INSERT INTO tblSanPham (iSanPhamId,sTenSanPham, fDonGia, iDanhMucId, sMoTa, sAnh)
+VALUES (9, N'Thức ăn cho chó con cỡ nhỏ ROYAL CANIN Mini Puppy', 215000, 1, N'Thức ăn cho chó con cỡ nhỏ ROYAL CANIN Mini Puppy dành cho các giống chó con dưới 10 tháng tuổi. Với công thức đặc chế riêng cho nhu cầu dinh dưỡng của chó con thuộc các giống cỡ nhỏ. Thức ăn cho chó con (các giống chó cỡ nhỏ) được nghiên cứu để cung cấp dinh dưỡng theo nhu cầu thực tế của chó con.Duy trì sức đề kháng cho chó con: chất chống oxy hóa CELT. Hỗ trợ hệ tiêu hóa hoạt động ổn định: L.I.P, đường FOS. Cung cấp dinh dưỡng toàn diện cho chó: chế biến theo công thức cung cấp năng lượng cao.', N'./Images/ImgCho/thuc-an-cho-cho-con-co-nho-royal-canin-mini-puppy1.jpg'),
+       (4, N'Thức ăn cho chó Poodle con ROYAL CANIN Poodle Puppy', 175000, 1, N'Thức ăn cho chó Poodle con ROYAL CANIN Poodle Puppy dành riêng cho tất cả các giống chó Teacup, Tiny Poodle, Toy Poodle, Standard Poodle dưới 10 tháng tuổi.', N'./Images/ImgCho/thuc-an-cho-cho-poodle-con-royal-canin-poodle-puppy1.jpg'),
+       (5, N'Thức ăn cho chó Poodle MKB All Life Stages Formula Nutrition', 315000 , 1, N'Thức ăn cho chó Poodle MKB All Life Stages Formula Nutrition, dành riêng cho chó Poodle, bao gồm tất cả các giai đoạn phát triển.', N'./Images/ImgCho/thuc-an-cho-cho-poodle-mkb-all-life-stages-formula-nutrition.jpg'),
+	   (6, N'Thức ăn cho chó con hạt mềm ZENITH Puppy Chicken Potato', 220000, 1, N'Thức ăn cho chó con hạt mềm ZENITH Puppy Chicken Potato được chế biến từ thịt cừu tươi, thịt nạc gà rút xương, gạo lứt, yến mạch và dầu cá hồi. Với các thành phần tươi sạch, giàu dinh dưỡng, Zenith Puppy hạt mềm, cung cấp độ ẩm cao và lượng muối thấp, thơm ngon, dễ nhai, dễ tiêu hóa và tốt cho sức khỏe chó con.', N'./Images/ImgCho/zenith-puppy-chicken-potato-400x400.jpg'),
+       (7, N'Thức ăn cho chó trưởng thành cỡ nhỏ ROYAL CANIN Mini Adult', 180000 , 1, N'Thức ăn cho chó ROYAL CANIN Mini Adult từ 10 tháng tuổi trở lên. Với công thức đặc chế riêng cho nhu cầu dinh dưỡng của chó trưởng thành thuộc các giống cỡ nhỏ.
+ROYAL CANIN Mini Adult được nghiên cứu để cung cấp dinh dưỡng theo nhu cầu thực tế của chó. Cung cấp năng lượng theo nhu cầu dinh dưỡng của chó. Duy trì da và lông khỏe mạnh: EPA, DHA. Kiểm soát cân nặng lý tưởng cho chó: L-Carnitine', N'./Images/ImgCho/thuc-an-cho-cho-truong-thanh-co-nho-royal-canin-mini-adult1.jpg'),
+       (8, N'Thức ăn cho chó trưởng thành cỡ lớn ROYAL CANIN Maxi Adult', 165000, 1, N'Thức ăn cho chó trưởng thành cỡ lớn ROYAL CANIN Maxi Adult từ 15 tháng tuổi trở lên. Thường được dùng cho các giống chó có kích thước lớn như: Alaskan Malamute, Husky, Samoyed, Becgie GSD, Golden Retriever, Labrado, Akita, Beauceron, Rottweiler…
+Với công thức đặc chế riêng cho nhu cầu dinh dưỡng của chó trưởng thành.', N'./Images/ImgCho/thuc-an-cho-cho-truong-thanh-royal-canin-maxi-adult1.jpg');
 GO
+delete tblSanPham where iSanPhamId = 1
+update tblSanPham set sTenSanPham = N'Thức ăn cho chó con cỡ nhỏ ROYAL CANIN Mini Puppy' where iSanPhamId = 3
+
+select * from tblSanPham
 /*id tự tăng*/
 SET IDENTITY_INSERT tblSanPham OFF
 
-Update tblSanPham set sAnh = './Images/Nike/Nike_1-Red.svg' where iSanPhamId = 3
+Update tblSanPham set sMoTa = 'Thực phẩm ướt chất lượng cao trong hộp' where iSanPhamId = 3
 Delete tblSanPham where iSanPhamId = 3 or iSanPhamId = 2 or iSanPhamId = 1
 select * from tblSanPham
 
@@ -138,6 +152,7 @@ begin
 	select * from tblSanPham
 end
 exec sp_getAll_Product 
+Update tblSanPham set sAnh = N'./Images/ImgMeo/meo1.png' where iSanPhamId=2
 
 ----------------------Select với nhiều điều kiện nhập vào--------------------
 GO

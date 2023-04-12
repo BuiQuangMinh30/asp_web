@@ -24,7 +24,7 @@
                                     <img class="products__image" src="<%# Eval("sAnh") %>" alt="">
                                 </a>
                                 <div class="products__content">
-                                    <h3 class="products__name"><%# Eval("sTenSanPham") %></h3>
+                                    <h4 class="products__name"><%# Eval("sTenSanPham") %></h4>
                                     <%--<div class="products__colors">
                                         <div class="products__color--white"></div>
                                         <div class="products__color--black"></div>
