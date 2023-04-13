@@ -68,6 +68,25 @@ namespace Website
             }
         }
 
+        //Lay ra all product
+        public DataTable getAll_SanPham()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_get_Product";
+                using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
+                {
+                    using (DataTable dt = new DataTable())
+                    {
+                        ad.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
+
         //Lấy ra thông tin sản phẩm
         public DataTable get_ChiTiet_SanPham(string id)
         {

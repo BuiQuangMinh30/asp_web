@@ -11,11 +11,11 @@
                             <ItemTemplate>
                                 <div class="cart__product-wrapper">
                                     <div class="cart__product-image-wrapper">
-                                        <img class="cart__product-image" src="<%# Eval("img") %>" alt="">
+                                        <img class="cart__product-image" src="<%# Eval("sAnh") %>" alt="">
                                     </div>
                                     <div class="cart__product-information">
                                         <p class="cart__product-name">
-                                            <%# Eval("name") %>
+                                            <%# Eval("sTenSanPham") %>
                                         </p>
                                        <%-- <p>Giày thể thao</p>--%>
                                         <%--<p>Màu: <span>
@@ -23,13 +23,13 @@
                                             </span></p>--%>
                                         <p class="cart__product-quantity">Số lượng: 1</p>
                                         <div class="cart__buttons--left">
-                                            <a class="delete-button cart__button" href="DeleteCartDefault.aspx?id=<%# Eval("id") %>">Xoá khỏi giỏ hàng</a>
-                                            <a class="information-button cart__button" href="Product_InformationDefault.aspx?id=<%# Eval("id") %>">Chi tiết</a>
+                                            <a class="delete-button cart__button" href="DeleteCartDefault.aspx?id=<%# Eval("idSanPham") %>">Xoá khỏi giỏ hàng</a>
+                                            <a class="information-button cart__button" href="Product_InformationDefault.aspx?id=<%# Eval("idSanPham") %>">Chi tiết</a>
                                         </div>
                                     </div>
                                     <div class="cart__product-price-wrapper">
                                         <p class="cart__product-price">
-                                            <%# Eval("price") %> <span class="cart__product-price-unit">đ</span>
+                                            <%# Eval("fDonGia") %> <span class="cart__product-price-unit">đ</span>
                                         </p>
                                     </div>
                                 </div>

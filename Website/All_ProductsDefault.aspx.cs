@@ -10,10 +10,11 @@ namespace Website
 {
     public partial class All_ProductsDefault : System.Web.UI.Page
     {
-        protected void getProductsListByTypeAndFilter(string idDanhMuc)
+        protected void getProductsListByTypeAndFilter(string idDanhMuc, string Type)
         {
             Utility utility = new Utility();
             DataTable dt = utility.get_SanPham(idDanhMuc);
+            Page.Title = "Đồ ăn dành cho " + Type;
             ListViewAllProducts.DataSource = dt;
             ListViewAllProducts.DataBind();
         }
@@ -22,7 +23,7 @@ namespace Website
         {
             foreach (ProductsList product in productsLists)
             {
-                if (product.name.ToLower().IndexOf(search) != -1 && Int32.Parse(product.price) >= begin && Int32.Parse(product.price) <= end)
+                if (product.sTenSanPham.ToLower().IndexOf(search) != -1 && product.fDonGia >= begin && product.fDonGia <= end)
                 {
                     productsListsBySearchAndFilter.Add(product);
                 }
@@ -41,13 +42,14 @@ namespace Website
         protected void Page_Load(object sender, EventArgs e)
         {
             string idDanhMuc = Request.QueryString.Get("idDanhMuc");
+            string sTenDanhMuc = Request.QueryString.Get("type");
             //string search = Request.QueryString.Get("search");
             //string filter = Request.QueryString.Get("filter");
 
 
             if(idDanhMuc != null)
             {
-                getProductsListByTypeAndFilter(idDanhMuc);
+                getProductsListByTypeAndFilter(idDanhMuc, sTenDanhMuc);
             }
             else
             {

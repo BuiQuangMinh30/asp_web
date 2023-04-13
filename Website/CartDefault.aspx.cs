@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,34 +12,53 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Utility utility = new Utility();
 
-            //========= Display page content
+            //========= Display page content==============
+            List<ProductsList> productsLists = new List<ProductsList>();
+            DataTable dataTable = utility.getAll_SanPham();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                ProductsList product = new ProductsList();
+                product.idSanPham = (int)row["iSanPhamId"];
+                product.sTenSanPham = row["sTenSanPham"].ToString();
+                product.sMoTa = row["sMoTa"].ToString();
+                product.sAnh = row["sAnh"].ToString();
+                product.fDonGia = (float)Convert.ToDouble(row["fDonGia"]);
+                product.dThoiGianTao = (DateTime)row["dThoiGianTao"];
+                product.idDanhmuc = (int)row["iDanhMucId"];
+                productsLists.Add(product);
+            }
+
+
 
             //Display products
             if (Request.Cookies["cart"] != null)
             {
                 List<ProductsList> cartList = new List<ProductsList>();
-                List<ProductsList> productsLists = (List<ProductsList>)Application["productsList"];
+                //List<ProductsList> productsLists = (List<ProductsList>)Application["productsList"];
+
+               
                 string[] productsID = Request.Cookies["cart"].Value.Split(',');
                 foreach (string productID in productsID)
                 {
                     foreach (ProductsList product in productsLists)
                     {
-                        if (product.id == productID)
+                        if (product.idSanPham.ToString() == productID)
                         {
                             cartList.Add(product);
                         }
                     }
                 }
-
                 ListViewCart.DataSource = cartList;
                 ListViewCart.DataBind();
 
                 //Display total products
 
                 //Display products price
-                int productsPrice = 0;
-                foreach (ProductsList product in cartList) productsPrice += Int32.Parse(product.price);
+                float productsPrice = 0;
+                foreach (ProductsList product1 in cartList) productsPrice += product1.fDonGia;
                 products_price.InnerHtml = $"{productsPrice} <span class='cart__product-price-unit'>đ</span>";
 
                 //Display delivery price
@@ -46,7 +66,7 @@ namespace Website
                 delivery_price.InnerHtml = $"{DELIVERY} <span class='cart__product-price-unit'>đ</span>";
 
                 //Display order total price
-                int orderTotal = productsPrice + DELIVERY;
+                float orderTotal = productsPrice + DELIVERY;
                 order_total_price.InnerHtml = $"{orderTotal} <span class='cart__product-price-unit'>đ</span>";
             }
         }

@@ -61,7 +61,7 @@
                             <ul>
                                  <asp:ListView ID="listDanhMuc" runat="server">
                                     <ItemTemplate>
-                                        <li><a href="All_ProductsDefault.aspx?idDanhMuc=<%# Eval("iDanhMucId") %>"><%# Eval("sTenDanhMuc") %></a></li>
+                                        <li><a href="All_ProductsDefault.aspx?idDanhMuc=<%# Eval("iDanhMucId") %>&type=<%# Eval("sTenDanhMuc") %>"><%# Eval("sTenDanhMuc") %></a></li>
                                     </ItemTemplate>
                                 </asp:ListView>
                             </ul>

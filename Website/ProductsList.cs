@@ -7,28 +7,26 @@ namespace Website
 {
     public class ProductsList
     {
-        public string id { get; set; }
-        public string img { get; set; }
-        public string name { get; set; }
-        public string price { get; set; }
-        public string detail_heading { get; set; }
-        public string detail { get; set; }
-        public string type { get; set; }
-        public string color { get; set; }
+        public int idSanPham { get; set; }
+        public string sAnh { get; set; }
+        public string sTenSanPham { get; set; }
+        public float fDonGia { get; set; }
+        public string sMoTa { get; set; }
+        public int idDanhmuc { get; set; }
+        public DateTime dThoiGianTao { get; set; }
         public ProductsList()
         {
 
         }
-        public ProductsList(string id, string img, string name, string price, string detail_heading, string detail, string type, string color)
+        public ProductsList(int idSanPham, string sAnh, string sTenSanPham, float fDonGia, string sMoTa, int idDanhmuc, DateTime dThoiGianTao)
         {
-            this.id = id;
-            this.img = img;
-            this.name = name;
-            this.price = price;
-            this.detail_heading = detail_heading;
-            this.detail = detail;
-            this.type = type;
-            this.color = color;
+            this.idSanPham = idSanPham;
+            this.sAnh = sAnh;
+            this.sTenSanPham = sTenSanPham;
+            this.fDonGia = fDonGia;
+            this.sMoTa = sMoTa;
+            this.idDanhmuc = idDanhmuc;
+            this.dThoiGianTao = dThoiGianTao;
         }
     }
 }
