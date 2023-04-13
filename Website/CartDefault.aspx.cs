@@ -12,8 +12,26 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Utility utility = new Utility();
 
-            //========= Display page content
+            //========= Display page content==============
+            List<ProductsList> productsLists = new List<ProductsList>();
+            DataTable dataTable = utility.getAll_SanPham();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                ProductsList product = new ProductsList();
+                product.idSanPham = (int)row["iSanPhamId"];
+                product.sTenSanPham = row["sTenSanPham"].ToString();
+                product.sMoTa = row["sMoTa"].ToString();
+                product.sAnh = row["sAnh"].ToString();
+                product.fDonGia = (float)Convert.ToDouble(row["fDonGia"]);
+                product.dThoiGianTao = (DateTime)row["dThoiGianTao"];
+                product.idDanhmuc = (int)row["iDanhMucId"];
+                productsLists.Add(product);
+            }
+
+
 
             //Display products
             if (Request.Cookies["cart"] != null)
@@ -63,17 +81,17 @@ namespace Website
                 //Display total products
 
                 //Display products price
-                //int productsPrice = 0;
-                //foreach (ProductsList product in cartList) productsPrice += Int32.Parse(product.price);
-                //products_price.InnerHtml = $"{productsPrice} <span class='cart__product-price-unit'>đ</span>";
+                float productsPrice = 0;
+                foreach (ProductsList product1 in cartList) productsPrice += product1.fDonGia;
+                products_price.InnerHtml = $"{productsPrice} <span class='cart__product-price-unit'>đ</span>";
 
                 ////Display delivery price
                 //const int DELIVERY = 50000;
                 //delivery_price.InnerHtml = $"{DELIVERY} <span class='cart__product-price-unit'>đ</span>";
 
-                ////Display order total price
-                //int orderTotal = productsPrice + DELIVERY;
-                //order_total_price.InnerHtml = $"{orderTotal} <span class='cart__product-price-unit'>đ</span>";
+                //Display order total price
+                float orderTotal = productsPrice + DELIVERY;
+                order_total_price.InnerHtml = $"{orderTotal} <span class='cart__product-price-unit'>đ</span>";
             }
         }
     }

@@ -15,6 +15,7 @@ namespace Website
             string deletedProductIDInCookies = deletedProductID + ",";
             string cartCookies = Request.Cookies["cart"].Value;
             int deletedProductIDPositionInCookies = cartCookies.IndexOf(deletedProductID);
+            //Xóa đi theo vị trí, và id xóa
             string newCookiesAfterDeletedProduct = cartCookies.Remove(deletedProductIDPositionInCookies, deletedProductIDInCookies.Length);
 
             Response.Cookies["cart"].Value = newCookiesAfterDeletedProduct;

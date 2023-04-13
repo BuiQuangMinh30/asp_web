@@ -97,13 +97,13 @@ ROYAL CANIN Mini Adult được nghiên cứu để cung cấp dinh dưỡng the
 Với công thức đặc chế riêng cho nhu cầu dinh dưỡng của chó trưởng thành.', N'./Images/ImgCho/thuc-an-cho-cho-truong-thanh-royal-canin-maxi-adult1.jpg');
 GO
 delete tblSanPham where iSanPhamId = 1
-update tblSanPham set sTenSanPham = N'Thức ăn cho chó con cỡ nhỏ ROYAL CANIN Mini Puppy' where iSanPhamId = 3
+update tblSanPham set sTenSanPham = N'Thức ăn khô dành cho mèo trưởng thành' where iSanPhamId = 2
 
 select * from tblSanPham
 /*id tự tăng*/
 SET IDENTITY_INSERT tblSanPham OFF
 
-Update tblSanPham set sMoTa = 'Thực phẩm ướt chất lượng cao trong hộp' where iSanPhamId = 3
+Update tblSanPham set sMoTa = N'Thức ăn khô Pedigree' where iSanPhamId = 2
 Delete tblSanPham where iSanPhamId = 3 or iSanPhamId = 2 or iSanPhamId = 1
 select * from tblSanPham
 
