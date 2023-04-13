@@ -3,6 +3,11 @@
     <link rel="stylesheet" href="./styles/all_products.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <%--<div class="header__search">
+        <img src="./Images/Icons/Search.png" alt="">
+        <input type="text" name="search" placeholder="Search" runat="server" id="search_text">
+        <button type="button" runat="server" id="search_button">Tìm</button>
+    </div>--%>
     <div class="all-products-page-content">
             <div class="filter">
                 <h3 class="filter__heading">Bộ lọc</h3>
@@ -23,7 +28,7 @@
                                 <a href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">
                                     <img class="products__image" src="<%# Eval("sAnh") %>" alt="">
                                 </a>
-                                <div class="products__content">
+                                &nbsp;<div class="products__content">
                                     <h4 class="products__name"><%# Eval("sTenSanPham") %></h4>
                                     <%--<div class="products__colors">
                                         <div class="products__color--white"></div>

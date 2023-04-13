@@ -177,3 +177,34 @@
         margin-bottom: 10px;
     }
 }
+.cart__product-quantity-wrapper{
+    position: relative;
+}
+.cart__product-quantity-wrapper label {
+    pointer-events: none;
+    height: auto;
+    line-height: 1em;
+    font-size: 0.6rem;
+    padding: 7px 0 0 10px;
+    display: block;
+    font-weight: 400;
+    text-transform: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    margin: 0;
+    color: #999;
+    text-align: left;
+}
+.cart__product-quantity {
+    border: 1px solid #999; 
+    border-radius: 0.4rem;
+    padding: 1.1rem 0.5rem 0.3rem 0.4rem;
+    width: 40%;
+    font-size: 16px;
+    height: auto;
+    outline: none;
+    font-weight: 600;
+}

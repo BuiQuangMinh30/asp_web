@@ -12,6 +12,7 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             Utility utility = new Utility();
 
             //========= Display page content==============
@@ -55,9 +56,22 @@ namespace Website
                 ListViewCart.DataBind();
 
                 //Display total products
+                if (Request.Cookies["cart"] != null)
+                {
+                    string[] cartProductsID = Request.Cookies["cart"].Value.Split(',');
+                    // -1 empty string after last ,
+                    total_products.InnerText = (cartProductsID.Length - 1).ToString();
+                }
+                else
+                {
+                    total_products.InnerText = "0";
+                }
 
                 //Display products price
                 float productsPrice = 0;
+                //DropDownList ddlQuantity = (DropDownList)ListViewCart.FindControl("ddlQuantity") as DropDownList;
+                //string selectedQuantity = ddlQuantity.SelectedValue;
+
                 foreach (ProductsList product1 in cartList) productsPrice += product1.fDonGia;
                 products_price.InnerHtml = $"{productsPrice} <span class='cart__product-price-unit'>đ</span>";
 

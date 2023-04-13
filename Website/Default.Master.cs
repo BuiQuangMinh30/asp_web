@@ -25,7 +25,7 @@ namespace Website
                                                 "<li class='signOut-mobile'><a href='signOut.aspx'><img src='./Images/Icons/LogOut.svg' alt=''></a></li>";
             }
         }
-        protected void displayCartNumber()
+        public void displayCartNumber()
         {
             //Display cart number
             if (Request.Cookies["cart"] != null)
@@ -45,8 +45,12 @@ namespace Website
         {
             Utility utility = new Utility();
             DataTable tb = utility.getAll_DanhMuc();
+            //Deskop
             listDanhMuc.DataSource = tb;
             listDanhMuc.DataBind();
+            //Mobile
+            ListView1.DataSource = tb;
+            ListView1.DataBind();
         }
         protected void Page_Load(object sender, EventArgs e)
         {

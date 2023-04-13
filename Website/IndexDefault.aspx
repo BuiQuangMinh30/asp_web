@@ -35,9 +35,14 @@
                                         <ItemTemplate>
 
                                             <div class="products__wrapper">
-                                                <a href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">
+                                                <div>
+                                                    <a href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">
                                                     <img class="products__image" src="<%# Eval("sAnh") %>" alt="">
                                                 </a>
+                                                </div>
+                                                <%--<a href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">
+                                                    <img class="products__image" src="<%# Eval("sAnh") %>" alt="">
+                                                </a>--%>
                                                 <div class="products__content">
                                                     <h4 class="products__name"><%# Eval("sTenSanPham") %></h4>
                                                     <%--<div class="products__colors">
