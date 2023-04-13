@@ -154,8 +154,8 @@ namespace Website
         }
         //protected void date(object sender, EventArgs e)
         //{
-        //    string date = DateTime.UtcNow.ToString("d");
-        //    Console.WriteLine("Thoi gian hien tai la {0}", date);
+        //    //string date = DateTime.UtcNow.ToString("d");
+        //    //Console.WriteLine("Thoi gian hien tai la {0}", date);
         //}
     }
 }

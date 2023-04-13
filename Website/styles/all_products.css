@@ -72,8 +72,10 @@
 /* Override */
 .products__wrapper{
     width: 250px;
-    height: 325px;
+    min-height: 350px;
 }
+
+
 
 .products__image{
     max-width: 140px;

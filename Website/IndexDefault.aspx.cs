@@ -16,13 +16,12 @@ namespace Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+         
             SqlDataAdapter sda = new SqlDataAdapter("Select *from tblSanPham", strconn);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             ListView2.DataSource = dt;
             ListView2.DataBind();
-
         }
 
         protected void SearchButton_Click(object sender, EventArgs e)

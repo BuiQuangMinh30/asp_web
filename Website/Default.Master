@@ -12,7 +12,7 @@
             <link rel="preconnect" href="https://fonts.gstatic.com" />
             <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
             <title>Trang Chủ</title>
-        </head>
+     </head>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -53,10 +53,17 @@
                             </a>
                         </div>
                         <div class="header__menu">
-                            <ul>
+                           <%-- <ul>
                                 <li><a href="All_ProductsDefault.aspx?type=dog">Chó</a></li>
                                 <li><a href="All_ProductsDefault.aspx?type=cat">Mèo</a></li>
                                 <li><a href="All_ProductsDefault.aspx?type=diff">Khác</a></li>
+                            </ul>--%>
+                            <ul>
+                                 <asp:ListView ID="listDanhMuc" runat="server">
+                                    <ItemTemplate>
+                                        <li><a href="All_ProductsDefault.aspx?idDanhMuc=<%# Eval("iDanhMucId") %>"><%# Eval("sTenDanhMuc") %></a></li>
+                                    </ItemTemplate>
+                                </asp:ListView>
                             </ul>
                         </div>
 
@@ -97,9 +104,11 @@
                                 <!-- Copy from above, inherited all the styles -->
                                 <div class="header__menu-mobile">
                                     <ul>
-                                        <li><a href="All_ProductsDefault.aspx?type=dog">Chó</a></li>
-                                        <li><a href="All_ProductsDefault.aspx?type=cat">Mèo</a></li>
-                                        <li><a href="All_ProductsDefault.aspx?type=diff">Khác</a></li>
+                                        <asp:ListView ID="ListView1" runat="server">
+                                            <ItemTemplate>
+                                                <li><a href="All_ProductsDefault.aspx?idDanhMuc=<%# Eval("iDanhMucId") %>"><%# Eval("sTenDanhMuc") %></a></li>
+                                            </ItemTemplate>
+                                        </asp:ListView>
                                     </ul>
                                 </div>
                                 <div class="header__icons-mobile">
@@ -134,10 +143,10 @@
                         <a href="#"><img src="./Images/Social/Twitter.svg" alt=""></a>
                         <a href="#"><img src="./Images/Social/Instagram.svg" alt=""></a>
                     </div>
-                </div>
+        </div>
 
-                <script src="./scripts/global.js"></script>
-                <script src="./scripts/index.js"></script>
+        <script src="./scripts/global.js"></script>
+        <script src="./scripts/index.js"></script>
     </form>
 </body>
 </html>

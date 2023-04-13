@@ -21,9 +21,11 @@
 
 .products__image {
     max-width: 150px;
+    width: 100%;
     margin-bottom: 1em;
     transition: transform 200ms linear;
-    height: 80px;
+    height: 130px;
+    border-radius: 10px;
 }
 
     .products__image:hover {

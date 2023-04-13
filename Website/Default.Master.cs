@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,7 +19,7 @@ namespace Website
 
                 login_status_desktop.InnerHtml = "<li>Xin chào " + username + "</li>" +
                                                  "<span>|</span>" +
-                                                 "<li><a href='signOut.aspx'>Sign Out</a></li>";
+                                                 "<li><a href='signOut.aspx'>Đăng xuất</a></li>";
 
                 login_status_mobile.InnerHtml = "<li>Xin chào " + username + "</li>" +
                                                 "<li class='signOut-mobile'><a href='signOut.aspx'><img src='./Images/Icons/LogOut.svg' alt=''></a></li>";
@@ -40,11 +41,18 @@ namespace Website
                 Cart_Total_Products_Mobile.InnerText = "0";
             }
         }
+        protected void getAll_DanhMuc()
+        {
+            Utility utility = new Utility();
+            DataTable tb = utility.getAll_DanhMuc();
+            listDanhMuc.DataSource = tb;
+            listDanhMuc.DataBind();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             displayUserInformation();
+            getAll_DanhMuc();
             displayCartNumber();
-
         }
     }
 }
