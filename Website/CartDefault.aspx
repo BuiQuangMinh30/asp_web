@@ -23,8 +23,13 @@
                                             </span></p>--%>
                                         <p class="cart__product-quantity">Số lượng: 1</p>
                                         <div class="cart__buttons--left">
+<<<<<<< HEAD
+                                            <a class="delete-button cart__button" href="DeleteCartDefault.aspx?id=<%# Eval("iSanPhamId") %>">Xoá khỏi giỏ hàng</a>
+                                            <a class="information-button cart__button" href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">Chi tiết</a>
+=======
                                             <a class="delete-button cart__button" href="DeleteCartDefault.aspx?id=<%# Eval("idSanPham") %>">Xoá khỏi giỏ hàng</a>
                                             <a class="information-button cart__button" href="Product_InformationDefault.aspx?id=<%# Eval("idSanPham") %>">Chi tiết</a>
+>>>>>>> NhanhCuaHung
                                         </div>
                                     </div>
                                     <div class="cart__product-price-wrapper">

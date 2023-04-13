@@ -36,23 +36,47 @@ namespace Website
             //Display products
             if (Request.Cookies["cart"] != null)
             {
-                List<ProductsList> cartList = new List<ProductsList>();
+                Utility utility = new Utility();
+                //List<ProductsList> cartList = new List<ProductsList>();
                 //List<ProductsList> productsLists = (List<ProductsList>)Application["productsList"];
+                //string[] productsID = Request.Cookies["cart"].Value.Split(',');
+                //foreach (string productID in productsID)
+                //{
+                //    foreach (ProductsList product in productsLists)
+                //    {
+                //        if (product.id == productID)
+                //        {
+                //            cartList.Add(product);
+                //        }
+                //    }
+                //}
 
-               
+                //Display product information
+                List<ProductsList> cartList = new List<ProductsList>();
+                List<ProductsList> productLists = new List<ProductsList>();
+
+
                 string[] productsID = Request.Cookies["cart"].Value.Split(',');
+                
+                
                 foreach (string productID in productsID)
                 {
-                    foreach (ProductsList product in productsLists)
-                    {
-                        if (product.idSanPham.ToString() == productID)
-                        {
-                            cartList.Add(product);
-                        }
-                    }
+                    string idSanPham = Request.QueryString.Get(productID);
+                    DataTable dt = utility.get_ChiTiet_SanPham(productID);
+                  
+                    ListViewCart.DataSource = dt;
+                    ListViewCart.DataBind();
+                    //foreach (ProductsList product in dt)
+                    //{
+                    //    if (product.id == productID)
+                    //    {
+                    //        cartList.Add(product);
+                    //    }
+                    //}
                 }
-                ListViewCart.DataSource = cartList;
-                ListViewCart.DataBind();
+               
+
+               
 
                 //Display total products
 
@@ -61,9 +85,9 @@ namespace Website
                 foreach (ProductsList product1 in cartList) productsPrice += product1.fDonGia;
                 products_price.InnerHtml = $"{productsPrice} <span class='cart__product-price-unit'>đ</span>";
 
-                //Display delivery price
-                const int DELIVERY = 50000;
-                delivery_price.InnerHtml = $"{DELIVERY} <span class='cart__product-price-unit'>đ</span>";
+                ////Display delivery price
+                //const int DELIVERY = 50000;
+                //delivery_price.InnerHtml = $"{DELIVERY} <span class='cart__product-price-unit'>đ</span>";
 
                 //Display order total price
                 float orderTotal = productsPrice + DELIVERY;
