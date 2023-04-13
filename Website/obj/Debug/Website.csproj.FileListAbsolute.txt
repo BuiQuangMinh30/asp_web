@@ -351,4 +351,3 @@ G:\ASP.NET\asp_web\Website\obj\Debug\Website.csproj.CoreCompileInputs.cache
 G:\ASP.NET\asp_web\Website\obj\Debug\Website.csproj.CopyComplete
 G:\ASP.NET\asp_web\Website\obj\Debug\Website.dll
 G:\ASP.NET\asp_web\Website\obj\Debug\Website.pdb
-G:\ASP.NET\asp_web\Website\obj\Debug\Website.csprojAssemblyReference.cache

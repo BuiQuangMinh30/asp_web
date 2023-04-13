@@ -68,13 +68,8 @@ namespace Website
             }
         }
 
-<<<<<<< HEAD
-        //Lấy ra sản phẩm all
-        public DataTable get_All_SanPham()
-=======
         //Lay ra all product
         public DataTable getAll_SanPham()
->>>>>>> NhanhCuaHung
         {
             using (SqlCommand cmd = new SqlCommand())
             {
