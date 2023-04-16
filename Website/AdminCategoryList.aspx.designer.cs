@@ -11,16 +11,16 @@ namespace Website
 {
 
 
-    public partial class CategoryAdmin
+    public partial class AdminCategoryList
     {
 
         /// <summary>
-        /// Add_button control.
+        /// listDanhMuc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton Add_button;
+        protected global::System.Web.UI.WebControls.ListView listDanhMuc;
     }
 }

@@ -68,15 +68,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminCategoryList.aspx" />
     <Content Include="All_ProductsDefault.aspx" />
     <Content Include="CartDefault.aspx" />
-    <Content Include="CategoryAdmin.aspx" />
+    <Content Include="AdminCategory.aspx" />
     <Content Include="DeleteCartDefault.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="ErrorDefault.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IndexDefault.aspx" />
     <Content Include="Product_InformationDefault.aspx" />
+    <Content Include="scripts\adminCategory.js" />
     <Content Include="scripts\global.js" />
     <Content Include="scripts\index.js" />
     <Content Include="scripts\product_information.js" />
@@ -85,6 +87,7 @@
     <Content Include="signOut.aspx" />
     <Content Include="signIn.aspx" />
     <Content Include="signUp.aspx" />
+    <Content Include="styles\admin.css" />
     <Content Include="styles\all_products.css" />
     <Content Include="styles\cart.css" />
     <Content Include="styles\global.css" />
@@ -102,6 +105,13 @@
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
+    <Compile Include="AdminCategoryList.aspx.cs">
+      <DependentUpon>AdminCategoryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminCategoryList.aspx.designer.cs">
+      <DependentUpon>AdminCategoryList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="All_ProductsDefault.aspx.cs">
       <DependentUpon>All_ProductsDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -116,12 +126,12 @@
     <Compile Include="CartDefault.aspx.designer.cs">
       <DependentUpon>CartDefault.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CategoryAdmin.aspx.cs">
-      <DependentUpon>CategoryAdmin.aspx</DependentUpon>
+    <Compile Include="AdminCategory.aspx.cs">
+      <DependentUpon>AdminCategory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CategoryAdmin.aspx.designer.cs">
-      <DependentUpon>CategoryAdmin.aspx</DependentUpon>
+    <Compile Include="AdminCategory.aspx.designer.cs">
+      <DependentUpon>AdminCategory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.Master.cs">
       <DependentUpon>Default.Master</DependentUpon>

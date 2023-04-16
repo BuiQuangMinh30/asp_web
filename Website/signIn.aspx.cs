@@ -138,7 +138,7 @@ namespace Website
                         cnn.Close();
                         if (Convert.ToInt32(Session["role"]) == 0)
                         {
-                            //Response.Redirect("Admin.aspx");
+                            Response.Redirect("AdminCategory.aspx");
                         }
                         else
                         {
