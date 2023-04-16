@@ -51,9 +51,11 @@
                         </div>
                         <div class="header__menu">
                             <ul>
-                                <li><a href="All_ProductsDefault?type=dog">Chó</a></li>
-                                <li><a href="All_ProductsDefault?type=cat">Mèo</a></li>
-                                <li><a href="All_ProductsDefault?type=diff">Khác</a></li>
+                                <asp:ListView ID="listDanhMuc" runat="server">
+                                    <ItemTemplate>
+                                        <li><a href="All_ProductsDefault.aspx?idDanhMuc=<%# Eval("iDanhMucId") %>&type=<%# Eval("sTenDanhMuc") %>"><%# Eval("sTenDanhMuc") %></a></li>
+                                    </ItemTemplate>
+                                </asp:ListView>
                             </ul>
                         </div>
 

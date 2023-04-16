@@ -11,7 +11,7 @@ namespace Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            check_role();
+            //check_role();
             string username = Session["username"].ToString();
             lblTenDangNhap.Text = username;
         }

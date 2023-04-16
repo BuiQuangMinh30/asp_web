@@ -145,48 +145,70 @@ select * from tblChiTietDonHang
 delete tblChiTietDonHang where iDonHangId=2
 
 -------------------------------Proceduces----------------------------------------
+
+
+/*---------------------------------Category-------------------------------------*/
+-------Proc_getAll_DanhMuc----
 GO
-create proc sp_getAll_Product 
+create proc sp_getAll_DanhMuc
 as
 begin
-	select * from tblSanPham
+	select * from tblDanhMuc
 end
-exec sp_getAll_Product 
+exec sp_getAll_DanhMuc
+
+-------Proc_addCategory------
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER proc [dbo].[sp_add_Category]
+(
+@sTenDanhMuc nvarchar(50),
+@sMota nvarchar(500),
+@id_TD int output
+)
+as
+begin
+	insert tblDanhMuc(sTenDanhMuc,sMoTa)
+	values (@sTenDanhMuc,@sMota)
+
+	set @id_TD = SCOPE_IDENTITY();
+end
+
+/*-------------------------------Product-----------------------------------------*/
+
+-------Danh sách sản phẩm lấy ra tên danh mục-------------
+GO
+create proc sp_listProduct 
+as
+begin
+	select b.sTenDanhMuc, a.*   from tblSanPham as a,tblDanhMuc as b where a.iDanhMucId = b.iDanhMucId
+end
+exec sp_listProduct 
 Update tblSanPham set sAnh = N'./Images/ImgMeo/meo1.png' where iSanPhamId=2
 
-----------------------Select với nhiều điều kiện nhập vào--------------------
-GO
-Alter PROCEDURE sp_get_Product
-	@iDanhMucId int = NULL,
-    @sTenSanPham NVARCHAR(50) = NULL,
-	@fDonGia float = NULL
-AS
-BEGIN
-    SELECT *
-    FROM tblSanPham
-    WHERE (ISNULL(@sTenSanPham, '') = '' OR sTenSanPham LIKE '%' + @sTenSanPham + '%')
-        AND (@iDanhMucId IS NULL OR iDanhMucId = @iDanhMucId)
-        AND (@fDonGia IS NULL OR fDonGia >= @fDonGia)
-END
-----------------------Get detail product--------------------
-GO
-Alter PROCEDURE sp_get_Product
-	@iDanhMucId int = NULL,
-    @sTenSanPham NVARCHAR(50) = NULL,
-	@fDonGia float = NULL
-AS
-BEGIN
-    SELECT *
-    FROM tblSanPham
-    WHERE (ISNULL(@sTenSanPham, '') = '' OR sTenSanPham LIKE '%' + @sTenSanPham + '%')
-        AND (@iDanhMucId IS NULL OR iDanhMucId = @iDanhMucId)
-        AND (@fDonGia IS NULL OR fDonGia >= @fDonGia)
-END
 
+
+--------Select product với nhiều điều kiện nhập vào-------
+GO
+Alter PROCEDURE sp_get_Product
+	@iDanhMucId int = NULL,
+    @sTenSanPham NVARCHAR(50) = NULL,
+	@fDonGia float = NULL
+AS
+BEGIN
+    SELECT *
+    FROM tblSanPham
+    WHERE (ISNULL(@sTenSanPham, '') = '' OR sTenSanPham LIKE '%' + @sTenSanPham + '%')
+        AND (@iDanhMucId IS NULL OR iDanhMucId = @iDanhMucId)
+        AND (@fDonGia IS NULL OR fDonGia >= @fDonGia)
+END
 exec sp_get_Product @sTenSanPham='', @iDanhMucId=3, @fDonGia=100000
 select * from tblSanPham
 select * from tblDanhMuc as a, tblSanPham as b where a.iDanhMucId = b.iDanhMucId 
--------------------------------proc_get_ChiTietSanPham------------------------
+
+-------------proc ChiTietSanPham----------
 GO
 create PROCEDURE sp_get_ChiTietSP
 	@iSanPhamId int = NULL,
@@ -201,19 +223,26 @@ BEGIN
         AND (@fDonGia IS NULL OR fDonGia >= @fDonGia)
 END
 
-
-
--------------------------------Category----------------------------------------
+----proc_insertProduct-----
 GO
-create proc sp_getAll_Category 
+create proc sp_addProduct
+(
+	@sTenSanPham nvarchar(255),
+	@iDanhMucId int,
+	@fDonGia float,
+	@sMoTa nvarchar(500),
+	@sAnh nvarchar(255)
+)
 as
 begin
-	select * from tblDanhMuc
+	insert tblSanPham(sTenSanPham,iDanhMucId, fDonGia, sMoTa, sAnh)
+	values (@sTenSanPham,@iDanhMucId,@fDonGia,@sMota,@sAnh)
 end
-exec sp_getAll_Category 
 
+select * from tblSanPham
 
-/*----------------------Proc_DangNhap-------------------------*/
+/*----------------------------SignIn, SignUp -------------------------------------------*/
+---Proc_DangNhap---
 GO
 create proc sp_dangNhap 
 (
@@ -227,7 +256,7 @@ end
 exec sp_dangNhap @sEmail=N'manhhung@gmail.com', @sMatKhau = N'123456'
 
 
-----------------------------Proc_DangKy--------------------------
+------Proc_DangKy-----
 GO
 alter proc sp_dangKy 
 (
@@ -253,12 +282,6 @@ select * from tblKhachHang
 
 delete tblKhachHang where iKhachHangId=20
 
-----------------------Proc_getAll_DanhMuc-----------------
-GO
-create proc sp_getAll_DanhMuc
-as
-begin
-	select * from tblDanhMuc
-end
 
-exec sp_getAll_DanhMuc
+
+

@@ -42,6 +42,15 @@ namespace Website
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl login_status_mobile;
 
         /// <summary>
+        /// listDanhMuc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView listDanhMuc;
+
+        /// <summary>
         /// Cart_Total_Products control.
         /// </summary>
         /// <remarks>

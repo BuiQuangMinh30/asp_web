@@ -49,10 +49,19 @@ namespace Website
                 Cart_Total_Products_Mobile.InnerText = "0";
             }
         }
+
+        protected void getAll_DanhMuc()
+        {
+            Utility utility = new Utility();
+            DataTable tb = utility.getAll_DanhMuc();
+            listDanhMuc.DataSource = tb;
+            listDanhMuc.DataBind();
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             redirectIfLoggedIn();
             displayUserInformation();
+            getAll_DanhMuc();
             displayCartNumber();
 
             if (IsPostBack)
