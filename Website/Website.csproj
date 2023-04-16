@@ -70,6 +70,7 @@
   <ItemGroup>
     <Content Include="All_ProductsDefault.aspx" />
     <Content Include="CartDefault.aspx" />
+    <Content Include="CategoryAdmin.aspx" />
     <Content Include="DeleteCartDefault.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="ErrorDefault.aspx" />
@@ -94,6 +95,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
     <Compile Include="All_ProductsDefault.aspx.cs">
       <DependentUpon>All_ProductsDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -107,6 +115,13 @@
     </Compile>
     <Compile Include="CartDefault.aspx.designer.cs">
       <DependentUpon>CartDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryAdmin.aspx.cs">
+      <DependentUpon>CategoryAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoryAdmin.aspx.designer.cs">
+      <DependentUpon>CategoryAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.Master.cs">
       <DependentUpon>Default.Master</DependentUpon>
@@ -181,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.Master" />
+    <Content Include="Admin.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
