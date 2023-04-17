@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
+using Newtonsoft.Json;
 
 namespace Website
 {
@@ -15,13 +16,17 @@ namespace Website
 		string con = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			
+			int id = Convert.ToInt32(Request.QueryString["id"]);
 			getAll_DanhMuc();
-			if (Request.HttpMethod == "POST")
-			{
-				int id = int.Parse(Request.QueryString["id"]);
+			//if (Request.HttpMethod == "POST")
+			//{
+			//  //Khi phân trang cũng sẽ post nên sẽ chạy vào đây
+			//	xoaDanhMuc(id);
+			//}
+			if (Request["id"] != null)
+            {
 				xoaDanhMuc(id);
-			}
+            }
 		}
 
 		private void xoaDanhMuc(int id)

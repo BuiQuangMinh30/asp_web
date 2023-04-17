@@ -34,6 +34,15 @@
                         </tr>
                     </ItemTemplate>
               </asp:ListView>
+            </table>
+            <div class="pager">
+                 <asp:DataPager ID="DataPager1" runat="server" PagedControlID="listProduct" PageSize="9">
+                    <Fields>
+                        <asp:NumericPagerField ButtonType="Link"/>
+                        <asp:NextPreviousPagerField NextPageText="Tiếp" PreviousPageText="Trước" LastPageText="Cuối" ShowLastPageButton="True" ShowFirstPageButton="True" FirstPageText="Đầu"/>
+                    </Fields>
+                 </asp:DataPager>
+            </div>
         </div>
     </div>
     <script>

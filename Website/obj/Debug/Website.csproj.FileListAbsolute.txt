@@ -410,3 +410,5 @@ E:\Thực hành web nâng cao\BTL_Web-NC\asp_web\Website\obj\Debug\Website.cspro
 E:\Thực hành web nâng cao\BTL_Web-NC\asp_web\Website\obj\Debug\Website.csproj.CopyComplete
 E:\Thực hành web nâng cao\BTL_Web-NC\asp_web\Website\obj\Debug\Website.dll
 E:\Thực hành web nâng cao\BTL_Web-NC\asp_web\Website\obj\Debug\Website.pdb
+E:\Thực hành web nâng cao\BTL_Web-NC\asp_web\Website\bin\Newtonsoft.Json.dll
+E:\Thực hành web nâng cao\BTL_Web-NC\asp_web\Website\bin\Newtonsoft.Json.xml
