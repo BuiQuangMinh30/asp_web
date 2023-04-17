@@ -16,6 +16,13 @@ namespace Website
         protected void Page_Load(object sender, EventArgs e)
         {
             get_ListProduct();
+            if (Request["id"] != null)
+            {
+                Response.Clear();
+                btnXoa(Convert.ToInt32(Request.QueryString["id"]));
+                Response.Flush();
+                Response.End();
+            }
         }
 
         protected void get_ListProduct()
@@ -36,6 +43,23 @@ namespace Website
                             listProduct.DataBind();
                         }
                     }
+                }
+            }
+        }
+
+        private void btnXoa(int id)
+        {
+            using (SqlConnection cnn = new SqlConnection(con))
+            {
+                using(SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = cnn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "sp_deleteProduct";
+                    cmd.Parameters.Add("@iSanPhamId", id);
+                    cnn.Open();
+                    cmd.ExecuteNonQuery();
+                    cnn.Close();
                 }
             }
         }

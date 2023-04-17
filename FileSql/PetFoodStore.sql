@@ -176,11 +176,23 @@ begin
 	set @id_TD = SCOPE_IDENTITY();
 end
 
+
+---proc_deleteCategory----
+GO
+create proc sp_deleteCategory
+@iDanhMucId int
+as
+begin
+	Delete tblDanhMuc where tblDanhMuc.iDanhMucId = @iDanhMucId;
+end
+
+select * from tblDanhMuc
+
 /*-------------------------------Product-----------------------------------------*/
 
 -------Danh sách sản phẩm lấy ra tên danh mục-------------
 GO
-create proc sp_listProduct 
+alter proc sp_listProduct 
 as
 begin
 	select b.sTenDanhMuc, a.*   from tblSanPham as a,tblDanhMuc as b where a.iDanhMucId = b.iDanhMucId
@@ -237,6 +249,14 @@ as
 begin
 	insert tblSanPham(sTenSanPham,iDanhMucId, fDonGia, sMoTa, sAnh)
 	values (@sTenSanPham,@iDanhMucId,@fDonGia,@sMota,@sAnh)
+end
+---proc_deleteProduct----
+GO
+create proc sp_deleteProduct
+@iSanPhamId int
+as
+begin
+	Delete tblSanPham where tblSanPham.iSanPhamId = @iSanPhamId;
 end
 
 select * from tblSanPham

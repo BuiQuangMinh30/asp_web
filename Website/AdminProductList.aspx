@@ -20,7 +20,7 @@
                 </tr>
                 <asp:ListView ID="listProduct" runat="server">
                     <ItemTemplate>
-                         <tr>
+                         <tr data-id="<%# Eval("iSanPhamId") %>">
                             <td><%# Eval("iSanPhamId") %></td>
                             <td><%# Eval("sTenDanhMuc") %></td>
                             <td><%# Eval("sTenSanPham") %></td>
@@ -29,10 +29,37 @@
                             <%--<td><%# Eval("sAnh") %></td>--%>
                             <td><image width="70px" height="70px" src="<%# Eval("sAnh") %>" alt="" /></td>
                             <td><%# Eval("dThoiGianTao", "{0:dd/MM/yyyy}") %></td>
-                            <td><a href="#">Sửa</a>|<a href="#">Xóa</a></td>
+                          <%--  <td><a href="#">Sửa</a>|<a href="#">Xóa</a></td>--%>
+                            <td><button id="btnXoa_<%# Eval("iSanPhamId") %>" onclick="btnXoa(this, <%# Eval("iSanPhamId") %>, event)">Xóa</button></td>
                         </tr>
                     </ItemTemplate>
               </asp:ListView>
         </div>
     </div>
+    <script>
+        function btnXoa(obj, id, e) {
+            e.preventDefault();
+            console.log(obj);
+            if (confirm("Bạn có chắc muốn xóa?")) {
+                const url = "AdminProductList.aspx?id=" + id + "";
+
+                const xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log(this.responseText);
+                        // Xóa hàng chứa sản phẩm khỏi bảng hiển thị
+                        var tr = obj.parentNode.parentNode; // Thẻ <tr> cha của button
+                        var idSanPham = tr.getAttribute("data-id"); // Lấy giá trị của thuộc tính data-id
+                        var tbody = tr.parentNode; // Thẻ <tbody> cha của <tr>
+                        tbody.removeChild(tr); // Xóa <tr> khỏi <tbody>
+                    }
+                }
+                xhttp.open("get", url);
+                xhttp.send();
+            }
+            else {
+                // Không xóa
+            } 
+        }
+    </script>
 </asp:Content>
