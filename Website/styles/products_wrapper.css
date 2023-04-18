@@ -25,6 +25,11 @@
     margin-bottom: 1em;
     height: 130px;
     border-radius: 10px;
+    transition: transform 200ms linear;
+}
+
+.products__image:hover {
+    transform: rotate(-20deg);
 }
 
 .products__name,
@@ -48,9 +53,9 @@
     font-size: .9rem;
 }
 
-    .products__button:hover {
-        background: var(--orange);
-    }
+.products__button:hover {
+    background: var(--orange);
+}
 
 .products__colors {
     display: flex;
@@ -58,12 +63,12 @@
     margin: 15px 0;
 }
 
-    .products__colors [class*="products__color--"] {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        cursor: pointer;
-    }
+.products__colors [class*="products__color--"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
 .products__color--white {
     background: #fff;

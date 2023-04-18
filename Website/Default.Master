@@ -61,7 +61,7 @@
                             <ul>
                                  <asp:ListView ID="listDanhMuc" runat="server">
                                     <ItemTemplate>
-                                        <li><a href="All_ProductsDefault.aspx?idDanhMuc=<%# Eval("iDanhMucId") %>&type=<%# Eval("sTenDanhMuc") %>"><%# Eval("sTenDanhMuc") %></a></li>
+                                        <li><a href="All_ProductsDefault.aspx?idDanhMuc=<%# Eval("iDanhMucId") %>&type=<%# Eval("sTenDanhMuc") %>"> <%# Eval("sTenDanhMuc") %> </a></li>
                                     </ItemTemplate>
                                 </asp:ListView>
                             </ul>
@@ -73,7 +73,8 @@
                                 <input type="text" name="search" placeholder="Search" runat="server" id="search_text">
                                 <button type="button" runat="server" id="search_button" onserverclick="SearchButton_Click">Tìm</button>
                             </div> --%>
-                          
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolderSearch" runat="server">
+                            </asp:ContentPlaceHolder>
                             <div class="header__cart">
                                 <div class="cart__status">
                                     <p class="cart__number" runat="server" id="Cart_Total_Products"></p>

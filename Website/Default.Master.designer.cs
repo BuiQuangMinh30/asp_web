@@ -60,6 +60,15 @@ namespace Website
         protected global::System.Web.UI.WebControls.ListView listDanhMuc;
 
         /// <summary>
+        /// ContentPlaceHolderSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolderSearch;
+
+        /// <summary>
         /// Cart_Total_Products control.
         /// </summary>
         /// <remarks>

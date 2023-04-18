@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -47,13 +48,14 @@ namespace Website
         {
             string idDanhMuc = Request.QueryString.Get("idDanhMuc");
             string sTenDanhMuc = Request.QueryString.Get("type");
-            string value = Request.QueryString.Get("searchText");
+            string search = Request.QueryString.Get("searchText");
 
-            if (idDanhMuc != null && value == null)
+            if (idDanhMuc != null)
             {
                 getProductsListByTypeAndFilter(idDanhMuc, sTenDanhMuc);
             }
-            else if (idDanhMuc == null && value == null)
+
+            if (idDanhMuc == null && search == null)
             {
                 Utility utility = new Utility();
                 DataTable dt = utility.getAll_SanPham();
@@ -61,16 +63,20 @@ namespace Website
                 ListViewAllProducts.DataBind();
             }
 
-            if (value != null)
+            if (search != null)
             {
-                ListViewAllProducts.DataSource = GetFilteredData(value);
-                ListViewAllProducts.DataBind();
+                string searchText = Request.QueryString["searchText"];
+                DataTable dt = GetFilteredData(searchText); // Hàm lấy danh sách sản phẩm từ cơ sở dữ liệu
+                string jsonString = ConvertDataTableToJson(dt);  // Hàm chuyển đổi DataTable sang đối tượng JSON
+                Response.Clear();
+                Response.ContentType = "application/json; charset=utf-8";
+                Response.Write(jsonString);
+                Response.End();
             }
 
         }
-        private List<Item> GetFilteredData(string searchText)
+        public DataTable GetFilteredData(string searchText)
         {
-            List<Item> items = new List<Item>();
             string connString = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -78,39 +84,25 @@ namespace Website
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@searchText", searchText);
-                    conn.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using(SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd))
                     {
-                        while (reader.Read())
+                        using(DataTable dt = new DataTable())
                         {
-                            Item item = new Item();
-                            item.iSanPhamId = Convert.ToInt32(reader["iSanPhamId"]);
-                            item.sTenSanPham = Convert.ToString(reader["sTenSanPham"]);
-                            items.Add(item);
+                            dataAdapter.Fill(dt);
+                            return dt;
                         }
                     }
+                   
                 }
             }
-            return items;
         }
 
-        public class Item
+
+
+        private string ConvertDataTableToJson(DataTable dt)
         {
-            public int iSanPhamId { get; set; }
-            public string sTenSanPham { get; set; }
+            string jsonString = JsonConvert.SerializeObject(dt);
+            return jsonString;
         }
-
-
-        //private List<ProductsList> GetFilteredData(string searchText)
-        //{
-        //    // TODO: Implement your data access logic here
-        //    List<ProductsList> items = new List<ProductsList>();
-        //    // Filter the data based on the search text
-        //    items = GetItems().Where(x => x.ItemName.Contains(searchText)).ToList();
-        //    return items;
-        //}
-        
-
-
     }
 }
