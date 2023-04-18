@@ -15,13 +15,13 @@ namespace Website
     {
 
         /// <summary>
-        /// txtFilter control.
+        /// search_button control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFilter;
+        protected global::System.Web.UI.HtmlControls.HtmlButton search_button;
 
         /// <summary>
         /// all_products_brand_name control.
@@ -40,14 +40,5 @@ namespace Website
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView ListViewAllProducts;
-
-        /// <summary>
-        /// SqlDataSourcee control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourcee;
     }
 }

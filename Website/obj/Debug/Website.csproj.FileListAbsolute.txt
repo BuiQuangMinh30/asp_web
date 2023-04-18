@@ -415,3 +415,5 @@ E:\Thực hành web nâng cao\BTL_Web-NC\asp_web\Website\bin\Newtonsoft.Json.xml
 G:\ASP.NET\asp_web\Website\bin\Newtonsoft.Json.dll
 G:\ASP.NET\asp_web\Website\bin\Newtonsoft.Json.xml
 G:\ASP.NET\asp_web\Website\obj\Debug\Website.csprojAssemblyReference.cache
+E:\Thực hành web nâng cao\BTL_WebNC\asp_web\Website\bin\Newtonsoft.Json.dll
+E:\Thực hành web nâng cao\BTL_WebNC\asp_web\Website\bin\Newtonsoft.Json.xml
