@@ -8,6 +8,9 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
+using System.IO;
+using System.Web.Script.Serialization;
+using System.Web.Services;
 
 namespace Website
 {
@@ -27,8 +30,27 @@ namespace Website
             {
 				xoaDanhMuc(id);
             }
-		}
+        }
 
+		[WebMethod]
+		//Dùng webservice
+		public static string suaDanhMuc(string id, string name, string description)
+        {
+            try
+            {	
+				Utility utility = new Utility();
+				utility.update_DanhMuc(Convert.ToInt32(id), name, description);
+				return "Cập nhập thành công";   
+				
+			}
+            catch (Exception ex)
+            {
+				return "Lỗi: " + ex.Message;
+            }
+        }
+
+
+		//Dùng Http Post thông thường
 		private void xoaDanhMuc(int id)
         {
 			//Kiểm tra danh mục có tồn tại trong bảng sản phẩm chưa
