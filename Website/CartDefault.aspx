@@ -38,6 +38,7 @@
                             </ItemTemplate>
                         </asp:ListView>
                     </div>
+                    
                 </div>
                 <div class="cart--right">
                     <h2 class="cart__title--right">Đơn hàng</h2>
@@ -56,7 +57,8 @@
                     </div>
                     <hr>
                     <div class="cart__buttons--right">
-                        <button class="purchase-button" type="button">Thanh toán</button>
+                        <asp:Button class="purchase-button" ID="Button1" runat="server" Text="Thanh toán" OnClick="Button1_Click" />
+                        <%--<button  type="button">Thanh toán</button>--%>
                     </div>
                 </div>
             </div>

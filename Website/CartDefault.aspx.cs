@@ -66,5 +66,10 @@ namespace Website
                 order_total_price.InnerHtml = $"{orderTotal} <span class='cart__product-price-unit'>đ</span>";
             }
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
