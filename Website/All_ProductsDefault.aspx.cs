@@ -63,13 +63,43 @@ namespace Website
 
             if (value != null)
             {
-                Utility utility = new Utility();
-                DataTable dt = utility.get_select_SanPham(value);
-                ListViewAllProducts.DataSource = dt;
+                ListViewAllProducts.DataSource = GetFilteredData(value);
                 ListViewAllProducts.DataBind();
             }
 
         }
+        private List<Item> GetFilteredData(string searchText)
+        {
+            List<Item> items = new List<Item>();
+            string connString = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "SELECT * FROM tblSanPham WHERE sTenSanPham LIKE '%' + @searchText + '%'";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@searchText", searchText);
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Item item = new Item();
+                            item.iSanPhamId = Convert.ToInt32(reader["iSanPhamId"]);
+                            item.sTenSanPham = Convert.ToString(reader["sTenSanPham"]);
+                            items.Add(item);
+                        }
+                    }
+                }
+            }
+            return items;
+        }
+
+        public class Item
+        {
+            public int iSanPhamId { get; set; }
+            public string sTenSanPham { get; set; }
+        }
+
 
         //private List<ProductsList> GetFilteredData(string searchText)
         //{
@@ -79,7 +109,8 @@ namespace Website
         //    items = GetItems().Where(x => x.ItemName.Contains(searchText)).ToList();
         //    return items;
         //}
+        
 
-       
+
     }
 }
