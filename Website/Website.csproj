@@ -74,6 +74,7 @@
     <Content Include="All_ProductsDefault.aspx" />
     <Content Include="CartDefault.aspx" />
     <Content Include="AdminCategory.aspx" />
+    <Content Include="CartForm.aspx" />
     <Content Include="DeleteCartDefault.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="ErrorDefault.aspx" />
@@ -92,6 +93,7 @@
     <Content Include="styles\admin.css" />
     <Content Include="styles\all_products.css" />
     <Content Include="styles\cart.css" />
+    <Content Include="styles\form-cart.css" />
     <Content Include="styles\global.css" />
     <Content Include="styles\index.css" />
     <Content Include="styles\products_wrapper.css" />
@@ -148,6 +150,13 @@
     </Compile>
     <Compile Include="AdminCategory.aspx.designer.cs">
       <DependentUpon>AdminCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CartForm.aspx.cs">
+      <DependentUpon>CartForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CartForm.aspx.designer.cs">
+      <DependentUpon>CartForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.Master.cs">
       <DependentUpon>Default.Master</DependentUpon>

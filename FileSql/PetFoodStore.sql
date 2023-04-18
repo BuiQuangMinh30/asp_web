@@ -47,7 +47,7 @@ CREATE TABLE tblDonHang (
 );
 /*Sửa cột*/
 ALTER TABLE tblDonHang
-ALTER COLUMN mTotalAmount FLOAT not null;
+Add iTrangThai INT null;
 /*Đổi tên cột*/
 EXEC sp_rename 'Orders.mTotalAmount', 'fTotalAmount', 'COLUMN';
 
@@ -162,7 +162,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER proc [dbo].[sp_add_Category]
+create proc [dbo].[sp_add_Category]
 (
 @sTenDanhMuc nvarchar(50),
 @sMota nvarchar(500),
@@ -220,6 +220,17 @@ exec sp_get_Product @sTenSanPham='', @iDanhMucId=3, @fDonGia=100000
 select * from tblSanPham
 select * from tblDanhMuc as a, tblSanPham as b where a.iDanhMucId = b.iDanhMucId 
 
+-------------select search product-----------------
+GO
+Create PROCEDURE sp_search_Product
+    @sTenSanPham NVARCHAR(50) = NULL
+AS
+BEGIN
+    SELECT *
+    FROM tblSanPham
+    WHERE sTenSanPham LIKE '%' + @sTenSanPham + '%'
+END
+exec sp_search_Product @sTenSanPham="rùa"
 -------------proc ChiTietSanPham----------
 GO
 create PROCEDURE sp_get_ChiTietSP
@@ -303,5 +314,25 @@ select * from tblKhachHang
 delete tblKhachHang where iKhachHangId=20
 
 
+-----------------------------Cart-------------
+GO
+alter proc sp_order_Cart 
+(
+	@iDonHangId int output,
+	@iKhachHangId int,
+	@sTenKhachHang nvarchar(255),
+	@sEmail nvarchar(20),
+	@sPhuongThucThanhToan nvarchar(255),
+	@sPhone nvarchar(20),
+	@sDiaChiGiao nvarchar(255),
+	@dNgayDat datetime,
+	@fTongTien float,
+	@iTrangThai int
+)
+as
+begin
+	 INSERT INTO tblDonHang(iKhachHangId, sTenKhachHang, sEmail, sPhuongThucThanhToan, sPhone, sDiaChiGiao,dNgayDat,fTongTien, iTrangThai)
+	 VALUES (@iKhachHangId, @sTenKhachHang, @sEmail, @sPhuongThucThanhToan, @sPhone, @sDiaChiGiao,@dNgayDat,@fTongTien,@iTrangThai)
 
-
+	 set @iDonHangId = SCOPE_IDENTITY();
+end

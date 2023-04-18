@@ -11,7 +11,13 @@
                     <li class="filter__item"><a href="#" runat="server" id="Filter_02">1 - 3 triệu</a></li>
                     <li class="filter__item"><a href="#" runat="server" id="Filter_03">&ge; 3 triệu</a></li>
                 </ul>
+                <asp:TextBox ID="txtSearch" runat="server" onkeyup="filterListView();"/>
+              
+                <br />
+               <%--<input id="Text1" type="text" style="height: 42px" onkeyup="showProduct(this.value)"/>
+                <asp:Button ID="Button1" runat="server" Text="Button" />--%>
             </div>
+        <span id="txtHint"></span>
             <div class="all-products">
                 <div class="all-products_heading">
                     <h2 class="all-products_brand-name" runat="server" id="all_products_brand_name"></h2>
@@ -23,7 +29,7 @@
                                 <a href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">
                                     <img class="products__image" src="<%# Eval("sAnh") %>" alt="">
                                 </a>
-                                <div class="products__content">
+                                &nbsp;&nbsp;<div class="products__content">
                                     <h4 class="products__name"><%# Eval("sTenSanPham") %></h4>
                                     <%--<div class="products__colors">
                                         <div class="products__color--white"></div>
@@ -39,4 +45,22 @@
                 </div>
             </div>
         </div>
+
+    <script>
+        function filterListView() {
+            var searchText = document.getElementById('<%= txtSearch.ClientID %>').value;
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var lvItems = document.getElementById('<%= ListViewAllProducts.ClientID %>');
+                    if (lvItems != null) {
+                        lvItems.innerHTML = this.responseText;
+                    }
+                }
+            };
+            xmlhttp.open("GET", "All_ProductsDefault.aspx?searchText=" + searchText, true);
+            xmlhttp.send();
+        }
+    </script>
 </asp:Content>

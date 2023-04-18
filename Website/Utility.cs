@@ -68,6 +68,26 @@ namespace Website
             }
         }
 
+        //Lấy ra sản phẩm theo danh mục, ten, giat ien
+        public DataTable get_select_SanPham(string id)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_search_Product";
+                cmd.Parameters.Add("@sTenSanPham", id);
+                using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
+                {
+                    using (DataTable dt = new DataTable())
+                    {
+                        ad.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
+
         //Lay ra all product
         public DataTable getAll_SanPham()
         {
