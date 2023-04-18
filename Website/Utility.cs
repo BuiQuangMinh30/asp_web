@@ -48,6 +48,24 @@ namespace Website
             } 
         }
 
+        //Update danh mục
+        public void update_DanhMuc(int id, string sTenDanhMuc, string sMoTa)
+        {
+            con.Open();
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_updateCategory";
+                cmd.Parameters.Add("@sTenDanhMuc", sTenDanhMuc);
+                cmd.Parameters.Add("@sMoTa", sMoTa);
+                cmd.Parameters.Add("@id", id);
+                cmd.ExecuteNonQuery();
+                
+            }
+            con.Close();
+        }
+
         //Lấy ra sản phẩm theo danh mục
         public DataTable get_SanPham(string id)
         {

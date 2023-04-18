@@ -7,6 +7,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
+using Newtonsoft.Json;
+using System.IO;
+using System.Web.Script.Serialization;
+using System.Web.Services;
 
 namespace Website
 {
@@ -15,15 +19,38 @@ namespace Website
 		string con = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			
+			int id = Convert.ToInt32(Request.QueryString["id"]);
 			getAll_DanhMuc();
-			if (Request.HttpMethod == "POST")
-			{
-				int id = int.Parse(Request.QueryString["id"]);
+			//if (Request.HttpMethod == "POST")
+			//{
+			//  //Khi phân trang cũng sẽ post nên sẽ chạy vào đây
+			//	xoaDanhMuc(id);
+			//}
+			if (Request["id"] != null)
+            {
 				xoaDanhMuc(id);
-			}
-		}
+            }
+        }
 
+		[WebMethod]
+		//Dùng webservice
+		public static string suaDanhMuc(string id, string name, string description)
+        {
+            try
+            {	
+				Utility utility = new Utility();
+				utility.update_DanhMuc(Convert.ToInt32(id), name, description);
+				return "Cập nhập thành công";   
+				
+			}
+            catch (Exception ex)
+            {
+				return "Lỗi: " + ex.Message;
+            }
+        }
+
+
+		//Dùng Http Post thông thường
 		private void xoaDanhMuc(int id)
         {
 			//Kiểm tra danh mục có tồn tại trong bảng sản phẩm chưa

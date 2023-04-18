@@ -176,7 +176,22 @@ begin
 	set @id_TD = SCOPE_IDENTITY();
 end
 
+---proc_UpdateCategory----
+GO
+alter proc sp_updateCategory
+@sTenDanhMuc nvarchar(50),
+@sMoTa nvarchar(255),
+@id int
+as
+begin
+	update tblDanhMuc 
+	set sTenDanhMuc=@sTenDanhMuc, 
+		sMoTa=@sMoTa, 
+		dThoiGianTao = GETDATE() 
+		where iDanhMucId=@id
+end
 
+select * from tblDanhMuc
 ---proc_deleteCategory----
 GO
 create proc sp_deleteCategory

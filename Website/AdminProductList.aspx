@@ -30,10 +30,19 @@
                             <td><image width="70px" height="70px" src="<%# Eval("sAnh") %>" alt="" /></td>
                             <td><%# Eval("dThoiGianTao", "{0:dd/MM/yyyy}") %></td>
                           <%--  <td><a href="#">Sửa</a>|<a href="#">Xóa</a></td>--%>
-                            <td><button id="btnXoa_<%# Eval("iSanPhamId") %>" onclick="btnXoa(this, <%# Eval("iSanPhamId") %>, event)">Xóa</button></td>
+                            <td><button class="admin-delete-button"  id="btnXoa_<%# Eval("iSanPhamId") %>" onclick="btnXoa(this, <%# Eval("iSanPhamId") %>, event)">Xóa</button></td>
                         </tr>
                     </ItemTemplate>
               </asp:ListView>
+            </table>
+            <div class="pager">
+                 <asp:DataPager ID="DataPager1" runat="server" PagedControlID="listProduct" PageSize="5">
+                    <Fields>
+                        <asp:NumericPagerField ButtonType="Link"/>
+                        <asp:NextPreviousPagerField NextPageText="Tiếp" PreviousPageText="Trước" LastPageText="Cuối" ShowLastPageButton="True" ShowFirstPageButton="True" FirstPageText="Đầu"/>
+                    </Fields>
+                 </asp:DataPager>
+            </div>
         </div>
     </div>
     <script>

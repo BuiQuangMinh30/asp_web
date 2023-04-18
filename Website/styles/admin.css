@@ -6,6 +6,21 @@
     outline: none;
 }
 
+h1 {
+    font-size: 30px;
+    color: #000;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/*Tiêu đề trang admin*/
+.admin-header {
+    font-size: 24px;
+    color: #0074D9;
+    font-weight: bold;
+    text-align: center;
+}
+
 a {
     text-decoration: none;
 }
@@ -26,11 +41,21 @@ header {
     display: flex;
 }
 
-.admin-content-left {
-    background-color: #dddddd;
+/*Phần slidebar bên trái*/
+.sidebar {
     width: 20%;
-    height: 100vh;
+/*    height: 100vh;*/
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 18px;
+    border: 1px solid #ccc;
     padding: 30px 0 0 12px;
+    margin-right: 20px;
+    transition: all 0.3s ease;
+}
+.sidebar:hover {
+    transform: translateX(-5px);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .admin-content-left > ul > li > a {
@@ -45,9 +70,10 @@ header {
     padding-left: 20px;
 }
 
+/*Phần nội dung bên phải*/
 .admin-content-right {
     width: 80%;
-    padding: 30px 0 0 12px;
+    padding: 30px 0 0 0px;
 }
 
 .admin-content-right-cartegory_add input, textarea {
@@ -82,26 +108,41 @@ header {
     background-color: brown;
     border: none;
     color: white;
+    padding: 0px;
 }
 
-.admin-content-right-cartegory_add button:hover {
+.admin-content-right-cartegory_add .btn_submit:hover {
     background-color: transparent;
     border: 1px solid brown;
     color: brown;
     transition: 0.3s;
 }
-/*-----------------categorylist.html------------*/
-.admin-content-right-cartegory_list table {
+/*-----------------Css Table------------*/
+table {
     width: 100%;
     text-align: center;
     margin-top: 20px;
     border-collapse: collapse;
 }
 
-    .admin-content-right-cartegory_list table tr th, td {
-        border: 1px solid #dddddd;
-        height: 30px;
-    }
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table td, th {
+    color: #333;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-right: 20px;
+    transition: all 0.1s ease-in;
+}
+
+table td:hover {
+    transform: translateX(-5px);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
 /*------------------productadd.html----------------*/
 .admin-content-right-product_add h1 {
     margin-bottom: 20px;
@@ -146,7 +187,7 @@ header {
     padding: 0px;
 }
 
-.admin-content-right-product_add button:hover {
+.admin-content-right-product_add .btn_submit:hover {
     background-color: transparent;
     border: 1px solid brown;
     color: brown;
@@ -156,3 +197,133 @@ header {
 #cke_editor1 {
     margin-bottom: 12px;
 }
+
+/* CSS cho phân trang */
+/* Lớp chứa phân trang */
+.pager {
+    float: right;
+    margin-top: 25px;
+    font-size: 0.7rem;
+}
+
+/* Phần tử phân trang */
+.pager a {
+    color: #337ab7;
+    text-decoration: none;
+    border: 1px solid #337ab7;
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+/* Phần tử phân trang hiện tại */
+.pager .current {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Phần tử phân trang không hoạt động */
+.pager .aspNetDisabled {
+    color: #ccc;
+    cursor: not-allowed;
+    border-color: #ccc;
+}
+
+.pager a[href]:hover {
+    background-color: #337ab7;
+    color: #fff;
+}
+
+#ContentPlaceHolder1_DataPager1 span {
+    color: #ccc;
+    border-color: #ccc;
+    border: 1px solid #ccc;
+    border-width: 1px;
+    cursor: not-allowed;
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+/*Css cho các nút sửa và xóa*/
+.admin-edit-button {
+    background-color: #0074D9;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.admin-edit-button:hover {
+    background-color: #0056a4;
+}
+
+.admin-delete-button {
+    background-color: #FF4136;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.admin-delete-button:hover {
+    background-color: #d93025;
+}
+
+
+/*Css cho form sửa category*/
+.edit-category-form {
+
+}
+
+.edit-category-form h1 {
+    margin-bottom: 25px;
+}
+
+.form_wrapper input, textarea {
+    display: block;
+}
+
+.form_wrapper input {
+    height: 30px;
+    width: 200px;
+    display: block;
+    margin: 6px 0 12px;
+    padding-left: 12px;
+}
+
+.form_wrapper textarea {
+    display: block;
+    height: 200px;
+    width: 500px;
+    margin-bottom: 20px;
+    padding: 12px;
+}
+
+.form_wrapper .btn_submit {
+    display: block;
+    margin-top: 10px;
+    height: 30px;
+    width: 100px;
+    cursor: pointer;
+    background-color: brown;
+    border: none;
+    color: white;
+    padding: 0px;
+}
+
+.form_wrapper button:hover {
+    background-color: transparent;
+    border: 1px solid brown;
+    color: brown;
+    transition: 0.3s;
+}
+
