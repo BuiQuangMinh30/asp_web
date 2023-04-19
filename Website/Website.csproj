@@ -82,6 +82,7 @@
     <Content Include="DeleteCartDefault.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="ErrorDefault.aspx" />
+    <Content Include="FormCart.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IndexDefault.aspx" />
     <Content Include="Product_InformationDefault.aspx" />
@@ -114,6 +115,7 @@
     <Content Include="css\v4-shims.min.css" />
     <Content Include="css\v5-font-face.css" />
     <Content Include="css\v5-font-face.min.css" />
+    <Content Include="styles\formcart.css" />
     <Content Include="styles\global.css" />
     <Content Include="styles\index.css" />
     <Content Include="styles\products_wrapper.css" />
@@ -171,6 +173,7 @@
     <Compile Include="AdminCategory.aspx.designer.cs">
       <DependentUpon>AdminCategory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CartItem.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Default.Master.cs">
       <DependentUpon>Default.Master</DependentUpon>
@@ -199,6 +202,13 @@
     </Compile>
     <Compile Include="ErrorDefault.aspx.designer.cs">
       <DependentUpon>ErrorDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormCart.aspx.cs">
+      <DependentUpon>FormCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormCart.aspx.designer.cs">
+      <DependentUpon>FormCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -57,7 +57,6 @@
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     var products = JSON.parse(this.responseText)
-                    console.log(products);
                     var htmls = products.map(function (product, index) {
                         return `
                                 <div class="products__wrapper">

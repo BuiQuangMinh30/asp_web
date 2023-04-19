@@ -57,7 +57,7 @@
                     </div>
                     <hr>
                     <div class="cart__buttons--right">
-                        <asp:Button class="purchase-button" ID="Button1" runat="server" Text="Thanh toán" OnClick="Button1_Click" />
+                        <asp:Button class="purchase-button" ID="Button1" runat="server" Text="Thanh toán"  href="FormCart.aspx" OnClientClick="FormCart.aspx"/>
                         <%--<button  type="button">Thanh toán</button>--%>
                     </div>
                 </div>

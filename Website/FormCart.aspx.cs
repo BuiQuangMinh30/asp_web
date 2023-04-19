@@ -10,9 +10,10 @@ using System.Web.UI.WebControls;
 
 namespace Website
 {
-    public partial class CartDefault : System.Web.UI.Page
+    public partial class FormCart : System.Web.UI.Page
     {
-        string con = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+         string con = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+        float productsPrice = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             Utility utility = new Utility();
@@ -34,8 +35,6 @@ namespace Website
                 productsLists.Add(product);
             }
 
-
-
             //Display products
             if (Request.Cookies["cart"] != null)
             {
@@ -53,23 +52,10 @@ namespace Website
                         }
                     }
                 }
-                ListViewCart.DataSource = cartList;
-                ListViewCart.DataBind();
-
-                float productsPrice = 0;
                 foreach (ProductsList product1 in cartList) productsPrice += product1.fDonGia;
-                products_price.InnerHtml = $"{productsPrice} <span class='cart__product-price-unit'>đ</span>";
-
-                ////Display delivery price
-                const int DELIVERY = 50000;
-                delivery_price.InnerHtml = $"{DELIVERY} <span class='cart__product-price-unit'>đ</span>";
-
-                //Display order total price
-                float orderTotal = productsPrice + DELIVERY;
-                order_total_price.InnerHtml = $"{orderTotal} <span class='cart__product-price-unit'>đ</span>";
+                
             }
         }
-
         public List<ProductsList> GetCartItems()
         {
             Utility utility = new Utility();
@@ -96,7 +82,7 @@ namespace Website
             //Display products
             if (Request.Cookies["cart"] != null)
             {
-               
+
                 string[] productsID = Request.Cookies["cart"].Value.Split(',');
                 foreach (string productID in productsID)
                 {
@@ -108,51 +94,55 @@ namespace Website
                         }
                     }
                 }
-               
+
             }
             return cartList;
         }
 
-        //protected void Button1_Click(object sender, EventArgs e)
-        //{
-            
-        //    //var orderDate = DateTime.UtcNow;
-        //    //using (SqlConnection conn = new SqlConnection(con))
-        //    //{
-        //    //    using (SqlCommand cmd = new SqlCommand("INSERT INTO tblDonHang (iKhachHangId, sTenKhachHang, sEmail, sPhuongThucThanhToan, sPhone, sDiaChiGiao,dNgayDat,fTongTien, iTrangThai) " +
-        //    //        "VALUES (@iKhachHangId, @sTenKhachHang, @sEmail, @sPhuongThucThanhToan, @sPhone, @sDiaChiGiao,@dNgayDat,@fTongTien,@iTrangThai); SELECT SCOPE_IDENTITY()", conn))
-        //    //    {
-                   
-        //    //        cmd.Connection = conn;
-        //    //        cmd.Parameters.AddWithValue("@iKhachHangId", 5);
-        //    //        cmd.Parameters.AddWithValue("@sTenKhachHang", "Minh123");
-        //    //        cmd.Parameters.AddWithValue("@sEmail", "eminh123@gmail.com");
-        //    //        cmd.Parameters.AddWithValue("@sPhuongThucThanhToan", "ck");
-        //    //        cmd.Parameters.AddWithValue("@sPhone", "0123999");
-        //    //        cmd.Parameters.AddWithValue("@sDiaChiGiao", "Ha Noi");
-        //    //        cmd.Parameters.AddWithValue("@dNgayDat", orderDate);
-        //    //        cmd.Parameters.AddWithValue("@fTongTien", 500000);
-        //    //        cmd.Parameters.AddWithValue("@iTrangThai", 1);
-                     
-        //    //            conn.Open();
-        //    //        var orderId = (int)(decimal)cmd.ExecuteScalar();
+
+        protected void btnAdd_Product_Click(object sender, EventArgs e)
+        {
+            string sTenkhachhang = Request.Form.Get("name");
+            string sEmail = Request.Form.Get("email");
+            string sPhone = Request.Form.Get("phone");
+            string address = Request.Form.Get("address");
+            var orderDate = DateTime.UtcNow;
+
+            using (SqlConnection conn = new SqlConnection(con))
+            {
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO tblDonHang (iKhachHangId, sTenKhachHang, sEmail, sPhuongThucThanhToan, sPhone, sDiaChiGiao,dNgayDat,fTongTien, iTrangThai) " +
+                    "VALUES (@iKhachHangId, @sTenKhachHang, @sEmail, @sPhuongThucThanhToan, @sPhone, @sDiaChiGiao,@dNgayDat,@fTongTien,@iTrangThai); SELECT SCOPE_IDENTITY()", conn))
+                {
+
+                    cmd.Connection = conn;
+                    cmd.Parameters.AddWithValue("@iKhachHangId", 5);
+                    cmd.Parameters.AddWithValue("@sTenKhachHang", sTenkhachhang.ToString());
+                    cmd.Parameters.AddWithValue("@sEmail", sEmail.ToString());
+                    cmd.Parameters.AddWithValue("@sPhuongThucThanhToan", 1);
+                    cmd.Parameters.AddWithValue("@sPhone", sPhone.ToString());
+                    cmd.Parameters.AddWithValue("@sDiaChiGiao", address.ToString());
+                    cmd.Parameters.AddWithValue("@dNgayDat", orderDate);
+                    cmd.Parameters.AddWithValue("@fTongTien", Convert.ToDouble(productsPrice));
+                    cmd.Parameters.AddWithValue("@iTrangThai", 1);
+
+                    conn.Open();
+                    var orderId = (int)(decimal)cmd.ExecuteScalar();
 
 
-        //    //        var cartItems = GetCartItems();
-        //    //        foreach (var cartItem in cartItems)
-        //    //        {
-        //    //            var orderItemCommand = new SqlCommand("INSERT INTO tblChiTietDonHang ( iDonHangId,iSanPhamId, iSoluong, fDonGia) VALUES (@iDonHangId, @iSanPhamId, @iSoluong, @fDonGia)", conn);
+                    var cartItems = GetCartItems();
+                    foreach (var cartItem in cartItems)
+                    {
+                        var orderItemCommand = new SqlCommand("INSERT INTO tblChiTietDonHang ( iDonHangId,iSanPhamId, iSoluong, fDonGia) VALUES (@iDonHangId, @iSanPhamId, @iSoluong, @fDonGia)", conn);
 
-        //    //            orderItemCommand.Parameters.AddWithValue("@iDonHangId", orderId);
-        //    //            orderItemCommand.Parameters.AddWithValue("@iSanPhamId", cartItem.idSanPham);
-        //    //            orderItemCommand.Parameters.AddWithValue("@iSoluong", 1);
-        //    //            orderItemCommand.Parameters.AddWithValue("@fDonGia", cartItem.fDonGia);
+                        orderItemCommand.Parameters.AddWithValue("@iDonHangId", orderId);
+                        orderItemCommand.Parameters.AddWithValue("@iSanPhamId", cartItem.idSanPham);
+                        orderItemCommand.Parameters.AddWithValue("@iSoluong", 1);
+                        orderItemCommand.Parameters.AddWithValue("@fDonGia", cartItem.fDonGia);
 
-        //    //            orderItemCommand.ExecuteNonQuery();
-        //    //        }
-        //    //    }
-        //    //}
-
-        //}
+                        orderItemCommand.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
     }
 }
