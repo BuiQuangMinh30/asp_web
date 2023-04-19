@@ -69,16 +69,16 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     // Nhận phản hồi từ server và xử lý dữ liệu trả về ở đây
-                    //console.log(this.responseText);
-                    var result = this.responseText;
-                    alert(result);
+                    var result = JSON.parse(this.responseText);
+                    //console.log(result);
+                    alert(result.d);
                     updateRowOnTable(category);
                 }
             };
             xhttp.open("POST", "AdminCategoryList.aspx/suaDanhMuc", true);
             xhttp.setRequestHeader("Content-type", "application/json");
             var data = JSON.stringify(category);
-            console.log(data);
+            //console.log(data);
             xhttp.send(data);
         }
 

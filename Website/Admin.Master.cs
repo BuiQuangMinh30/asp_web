@@ -13,7 +13,7 @@ namespace Website
         {
             //check_role();
             string username = Session["username"].ToString();
-            lblTenDangNhap.Text = username;
+            user_name.InnerText = username;
         }
 
         private void check_role()
