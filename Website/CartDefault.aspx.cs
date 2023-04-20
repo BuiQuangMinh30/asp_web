@@ -18,12 +18,12 @@ namespace Website
             Utility utility = new Utility();
 
             //========= Display page content==============
-            List<ProductsList> productsLists = new List<ProductsList>();
+            List<Product> productsLists = new List<Product>();
             DataTable dataTable = utility.getAll_SanPham();
 
             foreach (DataRow row in dataTable.Rows)
             {
-                ProductsList product = new ProductsList();
+                Product product = new Product();
                 product.idSanPham = (int)row["iSanPhamId"];
                 product.sTenSanPham = row["sTenSanPham"].ToString();
                 product.sMoTa = row["sMoTa"].ToString();
@@ -41,11 +41,11 @@ namespace Website
             {
 
                 //Display product information
-                List<ProductsList> cartList = new List<ProductsList>();
+                List<Product> cartList = new List<Product>();
                 string[] productsID = Request.Cookies["cart"].Value.Split(',');
                 foreach (string productID in productsID)
                 {
-                    foreach (ProductsList product in productsLists)
+                    foreach (Product product in productsLists)
                     {
                         if (product.idSanPham.ToString() == productID)
                         {
@@ -57,7 +57,7 @@ namespace Website
                 ListViewCart.DataBind();
 
                 float productsPrice = 0;
-                foreach (ProductsList product1 in cartList) productsPrice += product1.fDonGia;
+                foreach (Product product1 in cartList) productsPrice += product1.fDonGia;
                 products_price.InnerHtml = $"{productsPrice} <span class='cart__product-price-unit'>đ</span>";
 
                 ////Display delivery price
@@ -70,17 +70,17 @@ namespace Website
             }
         }
 
-        public List<ProductsList> GetCartItems()
+        public List<Product> GetCartItems()
         {
             Utility utility = new Utility();
 
             //========= Display page content==============
-            List<ProductsList> productsLists = new List<ProductsList>();
+            List<Product> productsLists = new List<Product>();
             DataTable dataTable = utility.getAll_SanPham();
 
             foreach (DataRow row in dataTable.Rows)
             {
-                ProductsList product = new ProductsList();
+                Product product = new Product();
                 product.idSanPham = (int)row["iSanPhamId"];
                 product.sTenSanPham = row["sTenSanPham"].ToString();
                 product.sMoTa = row["sMoTa"].ToString();
@@ -91,7 +91,7 @@ namespace Website
                 productsLists.Add(product);
             }
 
-            List<ProductsList> cartList = new List<ProductsList>();
+            List<Product> cartList = new List<Product>();
 
             //Display products
             if (Request.Cookies["cart"] != null)
@@ -100,7 +100,7 @@ namespace Website
                 string[] productsID = Request.Cookies["cart"].Value.Split(',');
                 foreach (string productID in productsID)
                 {
-                    foreach (ProductsList product in productsLists)
+                    foreach (Product product in productsLists)
                     {
                         if (product.idSanPham.ToString() == productID)
                         {
@@ -152,7 +152,7 @@ namespace Website
             //    //        }
             //    //    }
             //    //}
-            Response.Redirect("FormCart.aspx");
+            //Response.Redirect("FormCart.aspx");
         }
 }
 }
