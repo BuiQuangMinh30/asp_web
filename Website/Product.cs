@@ -5,20 +5,21 @@ using System.Web;
 
 namespace Website
 {
-    public class ProductsList
+    public class Product
     {
         public int idSanPham { get; set; }
+        public int iSoLuong { get; set; }
         public string sAnh { get; set; }
         public string sTenSanPham { get; set; }
         public float fDonGia { get; set; }
         public string sMoTa { get; set; }
         public int idDanhmuc { get; set; }
         public DateTime dThoiGianTao { get; set; }
-        public ProductsList()
+        public Product()
         {
 
         }
-        public ProductsList(int idSanPham, string sAnh, string sTenSanPham, float fDonGia, string sMoTa, int idDanhmuc, DateTime dThoiGianTao)
+        public Product(int idSanPham, string sAnh, string sTenSanPham, float fDonGia, string sMoTa, int idDanhmuc, DateTime dThoiGianTao)
         {
             this.idSanPham = idSanPham;
             this.sAnh = sAnh;

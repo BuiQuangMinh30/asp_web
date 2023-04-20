@@ -137,9 +137,9 @@ select * from tblDonHang
 
 /*-----------------Thêm dữ liệu cho bảng chi tiết đơn hàng--------------*/
 INSERT INTO tblChiTietDonHang(iDonHangId, iSanPhamId, iSoLuong, fDonGia)
-VALUES (3, 1, 2, 530000);
+VALUES (7, 1, 2, 530000);
 INSERT INTO tblChiTietDonHang(iDonHangId, iSanPhamId, iSoLuong, fDonGia)
-VALUES (3, 2, 3, 410000);
+VALUES (8, 2, 3, 410000);
 
 select * from tblChiTietDonHang
 delete tblChiTietDonHang where iDonHangId=2
@@ -333,7 +333,7 @@ delete tblKhachHang where iKhachHangId=20
 GO
 alter proc sp_order_Cart 
 (
-	@iDonHangId int output,
+	
 	@iKhachHangId int,
 	@sTenKhachHang nvarchar(255),
 	@sEmail nvarchar(20),
@@ -348,6 +348,5 @@ as
 begin
 	 INSERT INTO tblDonHang(iKhachHangId, sTenKhachHang, sEmail, sPhuongThucThanhToan, sPhone, sDiaChiGiao,dNgayDat,fTongTien, iTrangThai)
 	 VALUES (@iKhachHangId, @sTenKhachHang, @sEmail, @sPhuongThucThanhToan, @sPhone, @sDiaChiGiao,@dNgayDat,@fTongTien,@iTrangThai)
-
-	 set @iDonHangId = SCOPE_IDENTITY();
+	
 end

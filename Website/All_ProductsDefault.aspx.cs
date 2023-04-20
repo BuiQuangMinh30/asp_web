@@ -24,9 +24,9 @@ namespace Website
             ListViewAllProducts.DataBind();
         }
 
-        protected void getProductsListBySearchAndFilter(string search, int begin, int end, List<ProductsList> productsListsBySearchAndFilter, List<ProductsList> productsLists)
+        protected void getProductsListBySearchAndFilter(string search, int begin, int end, List<Product> productsListsBySearchAndFilter, List<Product> productsLists)
         {
-            foreach (ProductsList product in productsLists)
+            foreach (Product product in productsLists)
             {
                 if (product.sTenSanPham.ToLower().IndexOf(search) != -1 && product.fDonGia >= begin && product.fDonGia <= end)
                 {
@@ -37,10 +37,10 @@ namespace Website
             ListViewAllProducts.DataBind();
         }
 
-        protected string totalProducts(List<ProductsList> productsListsByTypeAndFilter)
+        protected string totalProducts(List<Product> productsListsByTypeAndFilter)
         {
             int total = 0;
-            foreach (ProductsList product in productsListsByTypeAndFilter)
+            foreach (Product product in productsListsByTypeAndFilter)
                 total++;
             return total.ToString();
         }

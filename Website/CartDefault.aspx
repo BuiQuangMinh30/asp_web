@@ -17,11 +17,13 @@
                                         <p class="cart__product-name">
                                             <%# Eval("sTenSanPham") %>
                                         </p>
-                                       <%-- <p>Giày thể thao</p>--%>
-                                        <%--<p>Màu: <span>
-                                                <%# Eval("color") %>    
-                                            </span></p>--%>
-                                        <p class="cart__product-quantity">Số lượng: 1</p>
+                                        <%--<p class="cart__product-quantity">Số lượng: 1</p>--%>
+                                        <select>
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                        </select>
                                         <div class="cart__buttons--left">
 
                                             <a class="delete-button cart__button" href="DeleteCartDefault.aspx?id=<%# Eval("idSanPham") %>">Xoá khỏi giỏ hàng</a>
@@ -38,6 +40,7 @@
                             </ItemTemplate>
                         </asp:ListView>
                     </div>
+                    
                 </div>
                 <div class="cart--right">
                     <h2 class="cart__title--right">Đơn hàng</h2>
@@ -56,7 +59,8 @@
                     </div>
                     <hr>
                     <div class="cart__buttons--right">
-                        <button class="purchase-button" type="button">Thanh toán</button>
+                        <asp:Button class="purchase-button" ID="Button1" runat="server" Text="Thanh toán" OnClick="Button1_Click"/>
+                        <%--<button  type="button">Thanh toán</button>--%>
                     </div>
                 </div>
             </div>

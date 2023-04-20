@@ -103,7 +103,7 @@ header {
 /*css bar*/
 
 .sidebar .container__bar {
-    display: inline-block;
+    /*display: inline-block;*/
     cursor: pointer;
     transform: translateX(calc(100% - 30px));
 }
@@ -395,7 +395,7 @@ table td:hover {
 }
 
 
-/*Animation cho ẩn hiện form*/
+/*Animation cho ẩn hiện form, độc lập so với trạng thái phần tử*/
 .edit-category-form,
 .list-category-form {
     animation-duration: 0.5s;
@@ -412,5 +412,15 @@ table td:hover {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/*Ẩn hiện với transection dùng thay đổi trạng thái của 1 phần tử*/
+.element {
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.element.hide {
+    opacity: 0;
 }
 
