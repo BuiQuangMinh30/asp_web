@@ -290,7 +290,7 @@ select * from tblSanPham
 /*----------------------------SignIn, SignUp -------------------------------------------*/
 ---Proc_DangNhap---
 GO
-create proc sp_dangNhap 
+alter proc sp_dangNhap 
 (
 	@sEmail nvarchar(255),
 	@sMatKhau nvarchar(255)

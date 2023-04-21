@@ -77,12 +77,9 @@
     <Content Include="All_ProductsDefault.aspx" />
     <Content Include="CartDefault.aspx" />
     <Content Include="AdminCategory.aspx" />
-<<<<<<< HEAD
     <Content Include="CheckouSuccess.aspx" />
     <Content Include="css\all.css" />
     <Content Include="css\all.min.css" />
-=======
->>>>>>> 18aa9f6a8fc1fe78e0d08465ca2b1160edd9c436
     <Content Include="DeleteCartDefault.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="ErrorDefault.aspx" />

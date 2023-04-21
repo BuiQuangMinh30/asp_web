@@ -43,6 +43,7 @@
                     
                 </div>
                 <div class="cart--right">
+                    <div id="isLogin" runat="server" >-1</div>
                     <h2 class="cart__title--right">Đơn hàng</h2>
                     <div class="cart__products-total-price">
                         <p>Tổng tiền <span runat="server" id="total_products">0</span> sản phẩm</p>
@@ -52,12 +53,12 @@
                         <p>Tổng phí giao hàng</p>
                         <p runat="server" id="delivery_price">0 <span class="cart__product-price-unit">đ</span></p>
                     </div>
-                    <hr>
+                    <hr/>
                     <div class="cart__order-total">
                         <p>Tổng cộng: </p>
                         <p runat="server" id="order_total_price">0 <span class="cart__product-price-unit">đ</span></p>
                     </div>
-                    <hr>
+                    <hr/>
                     <div class="cart__buttons--right">
                         <%--<asp:Button class="purchase-button" ID="Button1" runat="server" Text="Thanh toán" OnClick="Button1_Click"/>--%>
                         <%--<button  type="button">Thanh toán</button>--%>
@@ -99,41 +100,50 @@
     </script>--%>
 
     <script>
+        var isLogin = document.getElementById("<%= isLogin.ClientID %>").textContent;
         document.querySelector('button').onclick = function (e) {
-            // Lấy tất cả các dropdownlist trong trang
-            var dropdowns = document.getElementsByTagName('select');
+            if (isLogin == "0") {
+                window.location.href = 'signIn.aspx';
+            } else {
+                 // Lấy tất cả các dropdownlist trong trang
+                var dropdowns = document.getElementsByTagName('select');
 
-            // Tạo một đối tượng FormData để lưu trữ dữ liệu sẽ được gửi đi
-            var formData = new FormData();
+                // Tạo một đối tượng FormData để lưu trữ dữ liệu sẽ được gửi đi
+                var formData = new FormData();
 
-            // Duyệt qua từng dropdownlist
-            for (var i = 0; i < dropdowns.length; i++) {
-                var dropdown = dropdowns[i];
+                // Duyệt qua từng dropdownlist
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var dropdown = dropdowns[i];
 
-                // Lấy giá trị số lượng được chọn từ dropdownlist
-                var quantity = dropdown.value;
+                    // Lấy giá trị số lượng được chọn từ dropdownlist
+                    var quantity = dropdown.value;
 
-                // Tách lấy idSanPham và dataItemIndex từ tên của select
-                var nameParts = dropdown.name.split('_');
-                var idSanPham = nameParts[1];
-                var dataItemIndex = nameParts[2];
+                    // Tách lấy idSanPham và dataItemIndex từ tên của select
+                    var nameParts = dropdown.name.split('_');
+                    var idSanPham = nameParts[1];
+                    var dataItemIndex = nameParts[2];
 
-                // Thêm cặp key-value (productId:quantity) vào đối tượng FormData
-                formData.append('quantity[' + idSanPham + '][' + dataItemIndex + ']', quantity);
+                    // Thêm cặp key-value (productId:quantity) vào đối tượng FormData
+                    formData.append('quantity[' + idSanPham + '][' + dataItemIndex + ']', quantity);
+                }
+
+                // Gửi dữ liệu sang trang thanh toán
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'FormCart.aspx');
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        window.location.href = 'FormCart.aspx';
+
+                    }
+                    else {
+                        alert("Đã có lỗi xảy ra khi gửi dữ liệu");
+                    }
+                };
+                xhr.send(formData);
+
             }
-
-            // Gửi dữ liệu sang trang thanh toán
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'FormCart.aspx');
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    window.location.href = 'FormCart.aspx';
-                }
-                else {
-                    alert("Đã có lỗi xảy ra khi gửi dữ liệu");
-                }
-            };
-            xhr.send(formData);
+           
+            
         };
     </script>
 </asp:Content>
