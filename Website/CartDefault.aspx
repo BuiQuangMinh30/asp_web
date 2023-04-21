@@ -43,7 +43,7 @@
                     
                 </div>
                 <div class="cart--right">
-                    <div id="isLogin" runat="server" >-1</div>
+                    <div id="isLogin" runat="server" ></div>
                     <h2 class="cart__title--right">Đơn hàng</h2>
                     <div class="cart__products-total-price">
                         <p>Tổng tiền <span runat="server" id="total_products">0</span> sản phẩm</p>

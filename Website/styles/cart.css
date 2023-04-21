@@ -48,7 +48,7 @@
     flex-grow: 1;
 }
 #isLogin{
-    /*display: none;*/
+    display: none;
 }
 .cart__product-information p {
     margin-bottom: 2px;
