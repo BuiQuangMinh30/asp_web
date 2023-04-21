@@ -17,8 +17,9 @@ namespace Website
         Utility utility = new Utility();
         protected void Page_Load(object sender, EventArgs e)
         {
-            int soLuong = Convert.ToInt32(Request.QueryString["quantity[3][1]"]);
-            if (!IsPostBack)
+            //Check chỉ PostBack lần đầu và  chỉ thực hiện các thao tác cần thiết
+            //nếu trang được tải lên từ một yêu cầu POST từ trang khác
+            if (!IsPostBack && Request.HttpMethod == "POST")
             {
                 //========= Display page content==============
                 List<Product> productsLists = new List<Product>();
@@ -42,24 +43,37 @@ namespace Website
                 {
 
                     //Display product information
-                    List<Product> cartItems = (List<Product>)Session["CartItems"];
-                    if (cartItems == null)
-                    {
-                        cartItems = new List<Product>();
-                    }
+
+                    //List<Product> cartItems = (List<Product>)Session["CartItems"];
+                    //if (cartItems == null)
+                    //{
+                    //    cartItems = new List<Product>();
+                    //}
 
                     string[] productsID = Request.Cookies["cart"].Value.Split(',');
+                    // Tạo dictionary để lưu trữ sản phẩm trong giỏ hàng
+                    Dictionary<int, CartItem> cartItems = new Dictionary<int, CartItem>();
 
-                    int i = -1;
+                    int i = 0;
                     foreach (string productID in productsID)
                     {
                         foreach (Product product in productsLists)
                         {
                             if (product.idSanPham.ToString() == productID)
                             {
-                                i++;
-                                product.iSoLuong = Convert.ToInt32(Request.Form["quantity[" + product.idSanPham + "][" + i + "]"]);
-                                cartItems.Add(product);
+                                int soLuong = Convert.ToInt32(Request.Form["quantity[" + product.idSanPham + "][" + i + "]"]);
+                                if (cartItems.ContainsKey(product.idSanPham))
+                                {
+                                    cartItems[product.idSanPham].iSoluong += soLuong;
+                                    i++;
+                                }
+                                else
+                                {
+                                    //Dùng dictionary để lưu
+                                    CartItem cartItem = new CartItem { iSanPhamId = product.idSanPham, iSoluong = soLuong, fDonGia = product.fDonGia};
+                                    cartItems.Add(product.idSanPham, cartItem); 
+                                    i++;
+                                }
                             }
                         }
                     }
@@ -67,12 +81,6 @@ namespace Website
                     {
                         Session["CartItems"] = cartItems;
                     }
-
-                    foreach (Product cartItem in cartItems)
-                    {
-                        productsPrice += cartItem.fDonGia * cartItem.iSoLuong;
-                    }
-
                 }
             }
         }
@@ -96,7 +104,7 @@ namespace Website
 
 
             //Lấy ra những mặt hàng có trong giỏ hàng
-            List<Product> cartList = new List<Product>();
+            List<Product> cartItems = (List<Product>)Session["CartItems"]; ;
             //Display products
             if (Request.Cookies["cart"] != null)
             {
@@ -112,12 +120,20 @@ namespace Website
                         {
                             i++;
                             product.iSoLuong = Convert.ToInt32(Request.Form.Get("quantity[" + product.idSanPham + "][" + i + "]"));
-                            cartList.Add(product);
+                            cartItems.Add(product);
                         }
                     }
                 }
             }
-            return cartList;
+            if (Session["CartItems"] == null)
+            {
+                Session["CartItems"] = cartItems;
+            }
+            foreach (Product cartItem in cartItems)
+            {
+                productsPrice += cartItem.fDonGia * cartItem.iSoLuong;
+            }
+            return cartItems;
         }
 
 
@@ -129,6 +145,11 @@ namespace Website
             string address = Request.Form.Get("address");
             var orderDate = DateTime.UtcNow;
 
+            //Lấy ra từng cặp key-value  trong dictionary
+            foreach (KeyValuePair<int, CartItem> cartItem in (Dictionary<int, CartItem>)Session["CartItems"])
+            {
+                productsPrice += cartItem.Value.fDonGia * cartItem.Value.iSoluong;
+            }
             using (SqlConnection conn = new SqlConnection(con))
             {
                 using (SqlCommand cmd = new SqlCommand("INSERT INTO tblDonHang (iKhachHangId, sTenKhachHang, sEmail, sPhuongThucThanhToan, sPhone, sDiaChiGiao,dNgayDat,fTongTien, iTrangThai) " +
@@ -149,16 +170,15 @@ namespace Website
                     conn.Open();
                     var orderId = (int)(decimal)cmd.ExecuteScalar();
 
-
-                    List<Product> cartItems = (List<Product>)Session["CartItems"];
-                    foreach (Product cartItem in cartItems)
+                    //Lặp qua các key value trong dictionary
+                    foreach (KeyValuePair<int, CartItem> cartItem in (Dictionary<int, CartItem>)Session["CartItems"])
                     {
                         var orderItemCommand = new SqlCommand("INSERT INTO tblChiTietDonHang ( iDonHangId,iSanPhamId, iSoluong, fDonGia) VALUES (@iDonHangId, @iSanPhamId, @iSoluong, @fDonGia)", conn);
 
                         orderItemCommand.Parameters.AddWithValue("@iDonHangId", orderId);
-                        orderItemCommand.Parameters.AddWithValue("@iSanPhamId", cartItem.idSanPham);
-                        orderItemCommand.Parameters.AddWithValue("@iSoluong", cartItem.iSoLuong);
-                        orderItemCommand.Parameters.AddWithValue("@fDonGia", cartItem.fDonGia);
+                        orderItemCommand.Parameters.AddWithValue("@iSanPhamId", cartItem.Value.iSanPhamId);
+                        orderItemCommand.Parameters.AddWithValue("@iSoluong", cartItem.Value.iSoluong);
+                        orderItemCommand.Parameters.AddWithValue("@fDonGia", cartItem.Value.fDonGia);
 
                         orderItemCommand.ExecuteNonQuery();
                     }

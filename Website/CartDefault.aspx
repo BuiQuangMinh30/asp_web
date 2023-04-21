@@ -100,6 +100,7 @@
 
     <script>
         document.querySelector('button').onclick = function (e) {
+          
             // Lấy tất cả các dropdownlist trong trang
             var dropdowns = document.getElementsByTagName('select');
 
