@@ -18,7 +18,6 @@
                                 <p class="cart__product-name">
                                     <%# Eval("sTenSanPham") %>
                                 </p>
-                                <%--<p class="cart__product-quantity">Số lượng: 1</p>--%>
                                 <select onchange="updatePrice(this)" data-name=" <%# Eval("sTenSanPham") %>" name="quantity_<%# Eval("idSanPham")%>_<%# Container.DataItemIndex %>" data-price="<%# Eval("fDonGia") %>">
                                     <option value="0">Chọn số lượng</option>
                                     <option value="1">1</option>
@@ -27,10 +26,8 @@
                                     <option value="4">4</option>
                                 </select>
                                 <div class="cart__buttons--left">
-
                                     <a class="delete-button cart__button" href="DeleteCartDefault.aspx?id=<%# Eval("idSanPham") %>">Xoá khỏi giỏ hàng</a>
                                     <a class="information-button cart__button" href="Product_InformationDefault.aspx?id=<%# Eval("idSanPham") %>">Chi tiết</a>
-
                                 </div>
                             </div>
                             <div class="cart__product-price-wrapper">
@@ -42,10 +39,9 @@
                     </ItemTemplate>
                 </asp:ListView>
             </div>
-
         </div>
         <div class="cart--right">
-            <div id="isLogin" style="display:none" runat="server">-1</div>
+            <div id="isLogin" style="display: none" runat="server">-1</div>
             <h2 class="cart__title--right">Đơn hàng</h2>
             <div class="cart__products-total-price">
                 <p>Tổng tiền <span runat="server" id="total_products">0</span> sản phẩm</p>
@@ -107,7 +103,7 @@
             var products_PriceElement = document.querySelector("#products_price");
             var order_Total_PriceElement = document.querySelector("#order_total_price");
             var cart_Product_Elements = document.querySelectorAll(".cart__product-price");
-            
+
             //set giá trị mặc định là 0 khi chưa chọn
             var cart_Product = 0;
             var delivery_price = 50000;
@@ -122,7 +118,7 @@
             products_PriceElement.innerText = product_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
             order_Total_PriceElement.innerText = total_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
         })();
-       
+
         function updatePrice(select) {
 
             //Lấy phần tử cha của phần tử select chứa phần tử price
@@ -209,12 +205,11 @@
             // Duyệt qua từng select để kiểm tra xem người dùng đã chọn giá trị hay chưa
             for (var i = 0; i < selectElements.length; i++) {
                 var select = selectElements[i];
-                if (select.value === "" || select.value==="0") {
+                if (select.value === "" || select.value === "0") {
                     alert("Bạn chưa chọn giá trị cho " + select.dataset.name);
                     return;
                 }
             }
-
             if (isLogin == "0") {
                 alert("Hãy đăng nhập trước khi tiến hành thanh toán.")
                 window.location.href = 'signIn.aspx';
@@ -255,7 +250,6 @@
                     }
                 };
                 xhr.send(formData);
-
             }
         };
     </script>
