@@ -350,3 +350,5 @@ begin
 	 VALUES (@iKhachHangId, @sTenKhachHang, @sEmail, @sPhuongThucThanhToan, @sPhone, @sDiaChiGiao,@dNgayDat,@fTongTien,@iTrangThai)
 	
 end
+select * from tblChiTietDonHang
+select * from tblDonHang

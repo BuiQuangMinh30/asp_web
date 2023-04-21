@@ -15,6 +15,7 @@ namespace Website
         public string sMoTa { get; set; }
         public int idDanhmuc { get; set; }
         public DateTime dThoiGianTao { get; set; }
+        public string uniqueIdentifier { get; set; } // thuộc tính ID duy nhất cho sản phẩm
         public Product()
         {
 
