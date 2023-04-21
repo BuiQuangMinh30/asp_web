@@ -47,8 +47,10 @@
 .cart__product-information{
     flex-grow: 1;
 }
-
-.cart__product-information p{
+#isLogin{
+    /*display: none;*/
+}
+.cart__product-information p {
     margin-bottom: 2px;
 }
 

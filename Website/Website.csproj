@@ -77,6 +77,9 @@
     <Content Include="All_ProductsDefault.aspx" />
     <Content Include="CartDefault.aspx" />
     <Content Include="AdminCategory.aspx" />
+    <Content Include="CheckouSuccess.aspx" />
+    <Content Include="css\all.css" />
+    <Content Include="css\all.min.css" />
     <Content Include="DeleteCartDefault.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="ErrorDefault.aspx" />
@@ -158,6 +161,13 @@
     </Compile>
     <Compile Include="CartItem.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="CheckouSuccess.aspx.cs">
+      <DependentUpon>CheckouSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckouSuccess.aspx.designer.cs">
+      <DependentUpon>CheckouSuccess.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.Master.cs">
       <DependentUpon>Default.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

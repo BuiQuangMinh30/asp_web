@@ -139,6 +139,7 @@ namespace Website
 
         protected void btnAdd_Product_Click(object sender, EventArgs e)
         {
+            var idUser = Convert.ToInt32(Session["id"]);
             string sTenkhachhang = Request.Form.Get("name");
             string sEmail = Request.Form.Get("email");
             string sPhone = Request.Form.Get("phone");
@@ -157,7 +158,7 @@ namespace Website
                 {
 
                     cmd.Connection = conn;
-                    cmd.Parameters.AddWithValue("@iKhachHangId", 22);
+                    cmd.Parameters.AddWithValue("@iKhachHangId", idUser);
                     cmd.Parameters.AddWithValue("@sTenKhachHang", sTenkhachhang.ToString());
                     cmd.Parameters.AddWithValue("@sEmail", sEmail.ToString());
                     cmd.Parameters.AddWithValue("@sPhuongThucThanhToan", 1);
