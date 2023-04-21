@@ -78,15 +78,12 @@
     <Content Include="CartDefault.aspx" />
     <Content Include="AdminCategory.aspx" />
     <Content Include="CheckouSuccess.aspx" />
-    <Content Include="css\all.css" />
-    <Content Include="css\all.min.css" />
     <Content Include="DeleteCartDefault.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="ErrorDefault.aspx" />
     <Content Include="FormCart.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IndexDefault.aspx" />
-    <Content Include="Payment.aspx" />
     <Content Include="Product_InformationDefault.aspx" />
     <Content Include="scripts\adminCategory.js" />
     <Content Include="scripts\global.js" />
@@ -212,13 +209,6 @@
     </Compile>
     <Compile Include="IndexDefault.aspx.designer.cs">
       <DependentUpon>IndexDefault.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Payment.aspx.cs">
-      <DependentUpon>Payment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Payment.aspx.designer.cs">
-      <DependentUpon>Payment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="Product_InformationDefault.aspx.cs">

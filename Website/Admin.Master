@@ -17,7 +17,7 @@
     <form id="form1" method="post" runat="server">
         <header>
             <div class="page-title">
-                <h3 class="breadcrumb-header admin-header">Chào mừng <span id="user_name" class="user-name" runat="server"></span>đến trang quản trị viên</h3>
+                <h3 class="breadcrumb-header admin-header">Chào mừng <span id="user_name" class="user-name" runat="server"></span> đến trang quản trị viên</h3>
             </div>
             <div class="logout-menu">
                 <ul>

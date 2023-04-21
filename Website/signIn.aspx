@@ -70,7 +70,7 @@
                                 <div class="cart__status">
                                     <p class="cart__number" runat="server" id="Cart_Total_Products">0</p>
                                 </div>
-                                <a href="cart.aspx">
+                                <a href="CartDefault.aspx">
                                     <img src="./Images/Icons/Cart.svg" alt="">
                                 </a>
                             </div>

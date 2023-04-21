@@ -70,8 +70,8 @@ namespace Website
                                 else
                                 {
                                     //Dùng dictionary để lưu
-                                    CartItem cartItem = new CartItem { iSanPhamId = product.idSanPham, iSoluong = soLuong, fDonGia = product.fDonGia};
-                                    cartItems.Add(product.idSanPham, cartItem); 
+                                    CartItem cartItem = new CartItem { iSanPhamId = product.idSanPham, iSoluong = soLuong, fDonGia = product.fDonGia };
+                                    cartItems.Add(product.idSanPham, cartItem);
                                     i++;
                                 }
                             }
@@ -165,12 +165,13 @@ namespace Website
                     cmd.Parameters.AddWithValue("@sPhone", sPhone.ToString());
                     cmd.Parameters.AddWithValue("@sDiaChiGiao", address.ToString());
                     cmd.Parameters.AddWithValue("@dNgayDat", orderDate);
-                    cmd.Parameters.AddWithValue("@fTongTien", Convert.ToDouble(productsPrice));
+                    cmd.Parameters.AddWithValue("@fTongTien", Convert.ToDouble(productsPrice + 50000));
                     cmd.Parameters.AddWithValue("@iTrangThai", 1);
 
                     conn.Open();
                     var orderId = (int)(decimal)cmd.ExecuteScalar();
 
+                    int rs = 0;
                     //Lặp qua các key value trong dictionary
                     foreach (KeyValuePair<int, CartItem> cartItem in (Dictionary<int, CartItem>)Session["CartItems"])
                     {
@@ -181,7 +182,14 @@ namespace Website
                         orderItemCommand.Parameters.AddWithValue("@iSoluong", cartItem.Value.iSoluong);
                         orderItemCommand.Parameters.AddWithValue("@fDonGia", cartItem.Value.fDonGia);
 
-                        orderItemCommand.ExecuteNonQuery();
+                        rs = orderItemCommand.ExecuteNonQuery();
+                    }
+
+                    if (rs > 0)
+                    {
+                        Response.Cookies["cart"].Value = "";
+                        Response.Cookies["cart"].Expires = DateTime.Now.AddDays(-1);
+                        Response.Redirect("CheckouSuccess.aspx");
                     }
                 }
             }

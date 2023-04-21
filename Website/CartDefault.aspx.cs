@@ -59,23 +59,23 @@ namespace Website
                 ListViewCart.DataSource = cartList;
                 ListViewCart.DataBind();
 
-                float productsPrice = 0;
+                //float productsPrice = 0;
                 float productLength = 0;
                 foreach (Product product1 in cartList)
                 {
-                    productsPrice += product1.fDonGia;
+                    //productsPrice += product1.fDonGia;
                     productLength++;
                 }
-                products_price.InnerHtml = $"{productsPrice} <span class='cart__product-price-unit'>đ</span>";
+                //products_price.InnerHtml = $"{productsPrice} <span class='cart__product-price-unit'>đ</span>";
                 total_products.InnerHtml = $"{productLength}";
 
                 ////Display delivery price
-                const int DELIVERY = 50000;
-                delivery_price.InnerHtml = $"{DELIVERY} <span class='cart__product-price-unit'>đ</span>";
+                //const int DELIVERY = 50000;
+                //delivery_price.InnerHtml = $"{DELIVERY} <span class='cart__product-price-unit'>đ</span>";
 
                 //Display order total price
-                float orderTotal = productsPrice + DELIVERY;
-                order_total_price.InnerHtml = $"{orderTotal} <span class='cart__product-price-unit'>đ</span>";
+                //float orderTotal = productsPrice + DELIVERY;
+                //order_total_price.InnerHtml = $"{orderTotal} <span class='cart__product-price-unit'>đ</span>";
             }
         }
 
