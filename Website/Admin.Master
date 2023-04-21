@@ -7,46 +7,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/admin.css" rel="stylesheet" />
-    <link href="css/all.min.css" rel="stylesheet" />
     <%--<script src="ckeditor/ckeditor.js"></script>
     <script src="ckfinder/ckfinder.js"></script>--%>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <title>Admin Dashboard</title>
+    <title>Trang quản lý</title>
 </head>
 <body>
     <form id="form1" method="post" runat="server">
         <header>
             <div class="page-title">
-                <h3 class="breadcrumb-header admin-header">Chào mừng <asp:Label ID="lblTenDangNhap" runat="server"></asp:Label> đến trang quản trị viên</h3>
+                <h3 class="breadcrumb-header admin-header">Chào mừng <span id="user_name" class="user-name" runat="server"></span>đến trang quản trị viên</h3>
+            </div>
+            <div class="logout-menu">
+                <ul>
+                    <%-- <li><a href="#">Thông tin tài khoản</a></li>
+                    <li><a href="#">Đổi mật khẩu</a></li>--%>
+                    <li><a class="logout-button" href="signOut.aspx">Đăng xuất</a></li>
+                </ul>
             </div>
         </header>
         <section class="admin-content">
             <div class="admin-content-left sidebar">
-                <ul>
-                    <li><a href="">Danh mục</a>
-                        <ul>
-                            <li><a href="AdminCategory.aspx">Thêm danh mục</a></li>
-                            <li><a href="AdminCategoryList.aspx">Danh sách danh mục</a></li>
-                        </ul>
-                    </li>
-                   <!-- <li><a href="">Loại sản phẩm</a>
-                        <ul>
-                            <li><a href="brandadd.php">Thêm loại sản phẩm</a></li>
-                            <li><a href="brandlist.php">Danh sách loại sản phẩm</a></li>
-                        </ul>
-                    </li>-->
-                    <li><a href="">Sản phẩm</a>
-                        <ul>
-                            <li><a href="AdminProduct.aspx">Thêm sản phẩm</a></li>
-                            <li><a href="AdminProductList.aspx">Danh sách sản phẩm</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                <div class="container__bar" onclick="myFunction(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+                <div class="menu__wrapper">
+                    <ul>
+                        <li class="menu"><a href="javascript:void(0)">Danh mục</a>
+                            <ul class="submenu">
+                                <li><a href="AdminCategory.aspx">Thêm danh mục</a></li>
+                                <li><a href="AdminCategoryList.aspx">Danh sách danh mục</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu"><a href="javascript:void(0)">Sản phẩm</a>
+                            <ul class="submenu">
+                                <li><a href="AdminProduct.aspx">Thêm sản phẩm</a></li>
+                                <li><a href="AdminProductList.aspx">Danh sách sản phẩm</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu"><a href="javascript:void(0)">Hóa đơn</a>
+                            <ul class="submenu">
+                                <li><a href="AdminProductList.aspx">Danh sách hóa đơn</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
         </section>
     </form>
+    <script>
+        //var menus = document.querySelectorAll('.admin-content-left > ul > li');
+        var menus = document.querySelectorAll('.menu');
+        console.log(menus)
+
+        menus.forEach(function (menu, index) {
+
+            menu.addEventListener('click', function () {
+                const subMenu = this.querySelector('ul');
+                console.log(this);
+                if (subMenu) {
+                    if (subMenu.classList.contains('active')) {
+                        subMenu.classList.remove('active');
+                    } else {
+                        subMenu.classList.add('active');
+                    }
+                }
+            });
+        })
+
+        function myFunction(x) {
+            x.classList.toggle("change");
+            document.querySelector('.menu__wrapper').classList.toggle("change");
+        }
+    </script>
 </body>
 </html>

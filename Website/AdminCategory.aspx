@@ -19,27 +19,6 @@
                 <asp:Button ID="btnAdd" CssClass="btn_submit" runat="server" Text="Thêm" OnClick="btnAdd_Click" />
             </div>
         </div>
-        <!--<div class="admin-content-right-cartegory_list">
-            <h1>Danh sách danh mục sản phẩm</h1>
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Tên danh mục</th>
-                    <th>Mô tả</th>
-                    <th>Thời gian tạo</th>
-                    <th>Tùy biến</th>
-                </tr>
-                <%--<asp:ListView ID="ListView1" runat="server">--%>
-                <tr>
-                    <td>1</td>
-                    <td>Gà</td>
-                    <td>Cái này ngon lắm</td>
-                    <td>21/08/2001</td>
-                    <td><a href="">Sửa</a>|<a href="">Xóa</a></td>
-                </tr>
-               <%-- </asp:ListView>--%>
-            </table>
-        </div>-->
     </div>
     <script src="scripts/adminCategory.js"></script>
 </asp:Content>

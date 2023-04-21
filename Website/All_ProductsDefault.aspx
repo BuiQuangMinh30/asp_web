@@ -51,6 +51,8 @@
 
     <script>
         function filterName(obj, e) {
+            console.log(e);
+            e.preventDefault();
             var txtSearch = document.querySelector("#search_text").value;
             document.title = "Tìm kiếm " + txtSearch;
             var xmlhttp = new XMLHttpRequest();

@@ -9,7 +9,7 @@ namespace Website
     {
         public int iDonHangId { get; set; }
         public int iSanPhamId { get; set; }
-        public float iSoluong { get; set; }
+        public string iSoluong { get; set; }
         public int iDonGia { get; set; }
     }
 

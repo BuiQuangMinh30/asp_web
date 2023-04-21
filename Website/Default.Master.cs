@@ -10,6 +10,15 @@ namespace Website
 {
     public partial class Default : System.Web.UI.MasterPage
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                displayUserInformation();
+                getAll_DanhMuc();
+                displayCartNumber();
+            }
+        }
         protected void displayUserInformation()
         {
             //Display user information
@@ -47,12 +56,6 @@ namespace Website
             DataTable tb = utility.getAll_DanhMuc();
             listDanhMuc.DataSource = tb;
             listDanhMuc.DataBind();
-        }
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            displayUserInformation();
-            getAll_DanhMuc();
-            displayCartNumber();
         }
     }
 }

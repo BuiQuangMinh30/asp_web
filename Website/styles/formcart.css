@@ -2,7 +2,6 @@
 #Slider {
     width: auto;
     height: 240px;
-    ;
 }
 
 
@@ -88,7 +87,6 @@ h1, h2, h3, h4, h5, h6 {
         padding: 7px;
         margin-bottom: 5%;
         margin-top: 10px;
-        ;
     }
 
     .overlay-right .btn-secondary {
@@ -498,7 +496,6 @@ body#checkout-page #site-info {
         background: #fafafa;
     }
 
-    ,
     .shopping-cart td.pdelete {
         text-align: center;
     }
@@ -555,43 +552,43 @@ body#checkout-page #site-info {
     margin: 1.5em 0;
 }
 
-    #checkout-order-form fieldset {
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        padding: 1em;
-        margin-bottom: 1.3em;
-    }
+#checkout-order-form fieldset {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1em;
+    margin-bottom: 1.3em;
+}
 
-    #checkout-order-form legend {
-        padding: 0.3em;
-        background: #fafafa;
-        font-weight: bold;
-    }
+#checkout-order-form legend {
+    padding: 0.3em;
+    background: #fafafa;
+    font-weight: bold;
+}
 
-    #checkout-order-form div {
-        margin-bottom: 1em;
-    }
+#checkout-order-form div {
+    margin-bottom: 1em;
+}
 
-    #checkout-order-form label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 0.3em;
-        text-align: left;
-    }
+#checkout-order-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+    text-align: left;
+}
 
-    #checkout-order-form input[type="text"] {
-        width: 200px;
-        display: block;
-        background: #fff;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        padding: 0.1em;
-    }
+#checkout-order-form input[type="text"] {
+    width: 200px;
+    display: block;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.1em;
+}
 
-    #checkout-order-form select {
-        width: 200px;
-        display: block;
-    }
+#checkout-order-form select {
+    width: 200px;
+    display: block;
+}
 
 .message {
     display: block;
@@ -603,10 +600,10 @@ body#checkout-page #site-info {
     margin: 1.5em 0;
 }
 
-    #user-details > h2 {
-        text-align: center;
-        font-size: 2em;
-    }
+#user-details > h2 {
+    text-align: center;
+    font-size: 2em;
+}
 
 #user-details-content {
     margin: 1.5em 0;
@@ -616,33 +613,33 @@ body#checkout-page #site-info {
     overflow: hidden;
 }
 
-    #user-details-content .detail {
-        float: left;
-        width: 46%;
-    }
+#user-details-content .detail {
+    float: left;
+    width: 46%;
+}
 
-        #user-details-content .detail.right {
-            float: right;
-        }
+#user-details-content .detail.right {
+    float: right;
+}
 
-        #user-details-content .detail > h2 {
-            text-align: center;
-            font-size: 1.6em;
-            margin-bottom: 0.5em;
-        }
+#user-details-content .detail > h2 {
+    text-align: center;
+    font-size: 1.6em;
+    margin-bottom: 0.5em;
+}
 
-    #user-details-content ul {
-        margin: 0 0 1em 0;
-        padding: 0;
-        list-style: none;
-    }
+#user-details-content ul {
+    margin: 0 0 1em 0;
+    padding: 0;
+    list-style: none;
+}
 
-    #user-details-content li {
-        display: block;
-        margin-bottom: 0.5em;
-        padding-bottom: 0.3em;
-        border-bottom: 1px solid #ddd;
-    }
+#user-details-content li {
+    display: block;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #ddd;
+}
 
 #paypal-form {
     margin: 1.5em 0;

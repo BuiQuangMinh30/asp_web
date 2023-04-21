@@ -36,17 +36,19 @@ namespace Website
 		//Dùng webservice
 		public static string suaDanhMuc(string id, string name, string description)
         {
+			string kq = "";
             try
             {	
 				Utility utility = new Utility();
 				utility.update_DanhMuc(Convert.ToInt32(id), name, description);
-				return "Cập nhập thành công";   
+				kq="Cập nhập thành công";   
 				
 			}
             catch (Exception ex)
             {
-				return "Lỗi: " + ex.Message;
-            }
+				kq = "Lỗi" + ex.Message;
+			}
+			return kq;
         }
 
 
