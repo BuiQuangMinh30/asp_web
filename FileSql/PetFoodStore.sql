@@ -178,7 +178,7 @@ end
 
 ---proc_UpdateCategory----
 GO
-alter proc sp_updateCategory
+create proc sp_updateCategory
 @sTenDanhMuc nvarchar(50),
 @sMoTa nvarchar(255),
 @id int
@@ -207,7 +207,7 @@ select * from tblDanhMuc
 
 -------Danh sách sản phẩm lấy ra tên danh mục-------------
 GO
-alter proc sp_listProduct 
+create proc sp_listProduct 
 as
 begin
 	select b.sTenDanhMuc, a.*   from tblSanPham as a,tblDanhMuc as b where a.iDanhMucId = b.iDanhMucId
@@ -352,3 +352,30 @@ begin
 end
 select * from tblChiTietDonHang
 select * from tblDonHang
+
+
+create proc sp_getAll_Order
+as
+begin
+	select * from tblDonHang
+end
+
+
+alter proc sp_updateCart
+@iTrangThai int,
+@iDonHangId int
+as
+begin
+	update tblDonHang
+	set iTrangThai=@iTrangThai
+		where iDonHangId=@iDonHangId
+end
+
+-------Proc_getAll_Cart----
+GO
+create proc sp_getAll_Cart
+as
+begin
+	select * from tblChiTietDonHang
+end
+exec sp_getAll_Cart

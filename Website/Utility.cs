@@ -48,6 +48,24 @@ namespace Website
             } 
         }
 
+        public DataTable getAll_Cart()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_getAll_Cart";
+                using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
+                {
+                    using (DataTable dt = new DataTable())
+                    {
+                        ad.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
+
         //Update danh mục
         public void update_DanhMuc(int id, string sTenDanhMuc, string sMoTa)
         {
@@ -65,6 +83,23 @@ namespace Website
             }
             con.Close();
         }
+
+        public void update_Cart(int id)
+        {
+            con.Open();
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_updateCart";
+                cmd.Parameters.Add("@iTrangThai", 1);
+                cmd.Parameters.Add("@id", id);
+                cmd.ExecuteNonQuery();
+
+            }
+            con.Close();
+        }
+
 
         //Lấy ra sản phẩm theo danh mục
         public DataTable get_SanPham(string id)
@@ -134,6 +169,26 @@ namespace Website
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "sp_get_ChiTietSP";
                 cmd.Parameters.Add("@iSanPhamId", id);
+                using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
+                {
+                    using (DataTable dt = new DataTable())
+                    {
+                        ad.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
+
+
+        // Lấy ra thông tin order
+        public DataTable getAll_Order()
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_getAll_Order";
                 using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
                 {
                     using (DataTable dt = new DataTable())
