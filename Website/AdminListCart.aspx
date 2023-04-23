@@ -64,6 +64,7 @@
                         var idSanPham = tr.getAttribute("data-id"); // Lấy giá trị của thuộc tính data-id
                         var tbody = tr.parentNode; // Thẻ <tbody> cha của <tr>
                         console.log('tbody', tr, idSanPham)
+                        tr.querySelector("#trangthai").innerHTML = "Giao hàng thành công";
                         
                         //tbody.removeChild(tr); // Xóa <tr> khỏi <tbody>
                     }

@@ -49,6 +49,8 @@ namespace Website
             string idDanhMuc = Request.QueryString.Get("idDanhMuc");
             string sTenDanhMuc = Request.QueryString.Get("type");
             string search = Request.QueryString.Get("searchText");
+            string Number1 = Request.QueryString.Get("searchGia_1");
+            string Number2 = Request.QueryString.Get("searchGia_2");
 
             if (idDanhMuc != null)
             {
@@ -67,6 +69,20 @@ namespace Website
             {
                 string searchText = Request.QueryString["searchText"];
                 DataTable dt = GetFilteredData(searchText); // Hàm lấy danh sách sản phẩm từ cơ sở dữ liệu
+                string jsonString = ConvertDataTableToJson(dt);  // Hàm chuyển đổi DataTable sang đối tượng JSON
+                Response.Clear();
+                Response.ContentType = "application/json; charset=utf-8";
+                Response.Write(jsonString);
+                Response.End();
+            }
+
+           
+
+            if (Number1 != null && Number2 != null)
+            {
+                string Number_1 = Request.QueryString.Get("searchGia_1");
+                string Number_2 = Request.QueryString.Get("searchGia_2");
+                DataTable dt = GetFilteredMoney(Number_1, Number_2); // Hàm lấy danh sách sản phẩm từ cơ sở dữ liệu
                 string jsonString = ConvertDataTableToJson(dt);  // Hàm chuyển đổi DataTable sang đối tượng JSON
                 Response.Clear();
                 Response.ContentType = "application/json; charset=utf-8";
@@ -96,7 +112,28 @@ namespace Website
                 }
             }
         }
+        public DataTable GetFilteredMoney(string f1, string f2)
+        {
+            string connString = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "SELECT * FROM tblSanPham WHERE fDonGia >= @f1 AND fDonGia <= @f2";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@f1", f1);
+                    cmd.Parameters.AddWithValue("@f2", f2);
+                    using (SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd))
+                    {
+                        using (DataTable dt = new DataTable())
+                        {
+                            dataAdapter.Fill(dt);
+                            return dt;
+                        }
+                    }
 
+                }
+            }
+        }
 
 
         private string ConvertDataTableToJson(DataTable dt)
@@ -104,5 +141,24 @@ namespace Website
             string jsonString = JsonConvert.SerializeObject(dt);
             return jsonString;
         }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            string Number1 = Request.QueryString.Get("Number1");
+            string Number2 = Request.QueryString.Get("Number2");
+
+            if (Number1 != null || Number2 != null)
+            {
+                DataTable dt = GetFilteredMoney(Number1, Number2); // Hàm lấy danh sách sản phẩm từ cơ sở dữ liệu
+                string jsonString = ConvertDataTableToJson(dt);  // Hàm chuyển đổi DataTable sang đối tượng JSON
+                Response.Clear();
+                Response.ContentType = "application/json; charset=utf-8";
+                Response.Write(jsonString);
+                Response.End();
+            }
+
+        }
+
+        
     }
 }

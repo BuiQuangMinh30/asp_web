@@ -60,7 +60,10 @@ CREATE TABLE tblChiTietDonHang (
    FOREIGN KEY (iDonHangId) REFERENCES tblDonHang(iDonHangId),
    FOREIGN KEY (iSanPhamId) REFERENCES tblSanPham(iSanPhamId)
 );
-
+ALTER TABLE tblChiTietDonHang
+Add sTenSanPham NVARCHAR(255) NULL;
+ALTER TABLE tblChiTietDonHang
+Add sAnh NVARCHAR(255) NULL;   
 
 /*---------------Thêm dữ liệu cho danh mục---------------*/
 GO
@@ -379,3 +382,5 @@ begin
 	select * from tblChiTietDonHang
 end
 exec sp_getAll_Cart
+
+SELECT * FROM tblSanPham WHERE fDonGia >=  500000 and fDonGia <= 2000000;

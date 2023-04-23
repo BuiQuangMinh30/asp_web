@@ -166,7 +166,7 @@ namespace Website
                     cmd.Parameters.AddWithValue("@sDiaChiGiao", address.ToString());
                     cmd.Parameters.AddWithValue("@dNgayDat", orderDate);
                     cmd.Parameters.AddWithValue("@fTongTien", Convert.ToDouble(productsPrice + 50000));
-                    cmd.Parameters.AddWithValue("@iTrangThai", 1);
+                    cmd.Parameters.AddWithValue("@iTrangThai", 0);
 
                     conn.Open();
                     var orderId = (int)(decimal)cmd.ExecuteScalar();
@@ -175,12 +175,14 @@ namespace Website
                     //Lặp qua các key value trong dictionary
                     foreach (KeyValuePair<int, CartItem> cartItem in (Dictionary<int, CartItem>)Session["CartItems"])
                     {
-                        var orderItemCommand = new SqlCommand("INSERT INTO tblChiTietDonHang ( iDonHangId,iSanPhamId, iSoluong, fDonGia) VALUES (@iDonHangId, @iSanPhamId, @iSoluong, @fDonGia)", conn);
+                        var orderItemCommand = new SqlCommand("INSERT INTO tblChiTietDonHang ( iDonHangId,iSanPhamId,sTenSanPham,sAnh, iSoluong, fDonGia) VALUES (@iDonHangId, @iSanPhamId,@sTenSanPham,@sAnh, @iSoluong, @fDonGia)", conn);
 
                         orderItemCommand.Parameters.AddWithValue("@iDonHangId", orderId);
                         orderItemCommand.Parameters.AddWithValue("@iSanPhamId", cartItem.Value.iSanPhamId);
                         orderItemCommand.Parameters.AddWithValue("@iSoluong", cartItem.Value.iSoluong);
                         orderItemCommand.Parameters.AddWithValue("@fDonGia", cartItem.Value.fDonGia);
+                        orderItemCommand.Parameters.AddWithValue("@sTenSanPham", cartItem.Value.sTenSanPham);
+                        orderItemCommand.Parameters.AddWithValue("@sAnh", cartItem.Value.sAnh);
 
                         rs = orderItemCommand.ExecuteNonQuery();
                     }

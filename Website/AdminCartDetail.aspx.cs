@@ -34,7 +34,9 @@ namespace Website
                     product.iChiTietDonHangId = (int)row["iChiTietDonHangId"];
                     product.iDonHangId = (int)row["iDonHangId"];
                     product.iSanPhamId = (int)row["iSanPhamId"];
+                    product.sTenSanPham = row["sTenSanPham"].ToString();
                     product.fDonGia = (float)Convert.ToDouble(row["fDonGia"]);
+                    product.sAnh = row["sAnh"].ToString();
                     product.iSoLuong = (int)row["iSoLuong"];
                     productsLists.Add(product);
                 }
