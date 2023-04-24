@@ -114,8 +114,6 @@ namespace Website
                 }
             }
         }
-<<<<<<< HEAD
-=======
         public DataTable GetFilteredMoney(string f1, string f2)
         {
             string connString = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
@@ -139,8 +137,6 @@ namespace Website
             }
         }
 
-
->>>>>>> 6be472fee1c4c8295ba0f68df1c916c2b9b2377e
         private string ConvertDataTableToJson(DataTable dt)
         {
             string jsonString = JsonConvert.SerializeObject(dt);

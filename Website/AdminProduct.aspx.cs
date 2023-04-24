@@ -39,7 +39,7 @@ namespace Website
                 {
                     cmd.Connection = cnn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "update_SanPham";
+                    cmd.CommandText = "sp_addProduct";
                     cmd.Parameters.Add("@sTenSanPham", sTenSanPham.ToString());
                     cmd.Parameters.Add("@iDanhMucId",Convert.ToInt32(idDanhMuc));
                     cmd.Parameters.Add("@fDonGia", Convert.ToDouble(donGia));

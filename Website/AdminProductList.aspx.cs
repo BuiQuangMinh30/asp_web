@@ -23,13 +23,17 @@ namespace Website
             ListView1.DataSource = utility.getAll_DanhMuc();
             ListView1.DataBind();
             get_ListProduct();
-            if (Request["id"] != null)
+            if(Request["act"] == "xoa")
             {
-                Response.Clear();
-                btnXoa(Convert.ToInt32(Request.QueryString["id"]));
-                Response.Flush();
-                Response.End();
+                if (Request["id"] != null)
+                {
+                    Response.Clear();
+                    btnXoa(Convert.ToInt32(Request.QueryString["id"]));
+                    Response.Flush();
+                    Response.End();
+                }
             }
+           
         }
 
         protected void get_ListProduct()
@@ -128,10 +132,10 @@ namespace Website
             }
             return kq;
         }
-        public class FileUploadModel
+
+        protected void btnLuu_Click(object sender, EventArgs e)
         {
-            public string FileName { get; set; }
-            public string FileContent { get; set; }
+
         }
     }
 }
