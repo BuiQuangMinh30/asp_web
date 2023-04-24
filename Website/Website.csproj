@@ -71,7 +71,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminCartDetail.aspx" />
     <Content Include="AdminCategoryList.aspx" />
+    <Content Include="AdminListCart.aspx" />
     <Content Include="AdminProductList.aspx" />
     <Content Include="AdminProduct.aspx" />
     <Content Include="All_ProductsDefault.aspx" />
@@ -114,12 +116,26 @@
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
+    <Compile Include="AdminCartDetail.aspx.cs">
+      <DependentUpon>AdminCartDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminCartDetail.aspx.designer.cs">
+      <DependentUpon>AdminCartDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminCategoryList.aspx.cs">
       <DependentUpon>AdminCategoryList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminCategoryList.aspx.designer.cs">
       <DependentUpon>AdminCategoryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminListCart.aspx.cs">
+      <DependentUpon>AdminListCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminListCart.aspx.designer.cs">
+      <DependentUpon>AdminListCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminProductList.aspx.cs">
       <DependentUpon>AdminProductList.aspx</DependentUpon>
@@ -156,6 +172,7 @@
     <Compile Include="AdminCategory.aspx.designer.cs">
       <DependentUpon>AdminCategory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CartDetail.cs" />
     <Compile Include="CartItem.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="CheckouSuccess.aspx.cs">

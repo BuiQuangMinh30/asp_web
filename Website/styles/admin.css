@@ -47,6 +47,7 @@ header {
     font-weight: bold;
     padding: 10px 20px;
     transition: all 0.3s ease;
+    border-radius: 4px;
 }
 
 .logout-button:hover {
@@ -62,10 +63,68 @@ header {
 .admin-content {
     display: flex;
 }
+.header__search,
+.header__search-mobile {
+    position: relative;
+}
+
+    .header__search img,
+    .header__search-mobile img {
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+    }
+
+    .header__search input,
+    .header__search-mobile input {
+        height: 35px;
+        border-radius: 20px;
+        padding: 0 50px 0 35px;
+        /* line-height: 40px; */
+        width: 175px;
+        border: 1px solid gray;
+        margin-right: 10px
+    }
+
+        .header__search input::placeholder,
+        .header__search-mobile input::placeholder {
+            transform: scale(1.3,1.2) translateX(15px);
+        }
+
+        .header__search input:hover,
+        .header__search input:focus,
+        .header__search-mobile input:hover,
+        .header__search-mobile input:focus {
+            background: var(--inputHover);
+        }
+
+    .header__search button,
+    .header__search-mobile button {
+        position: absolute;
+        background: #b6d7a8;
+        color: #fff;
+        top: 0px;
+        outline: none;
+        width: 50px;
+        height: 35px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        transition: background 125ms linear;
+    }
+
+        .header__search button:hover,
+        .header__search-mobile button:hover {
+            filter: brightness(1.1);
+        }
 
 /*Phần slidebar bên trái*/
 .sidebar {
     /*width: 20%;*/
+    
     height: 100vh;
     background-color: #f2f2f2;
     color: #333;
@@ -82,10 +141,11 @@ header {
 
 .menu__wrapper > ul > li > a {
     font-weight: bold;
+    /*font-size: 24px;*/
 }
 
 .menu__wrapper ul li {
-    margin: 6px 0;
+    margin: 6px 0 ;
 }
 
 .menu__wrapper ul ul {

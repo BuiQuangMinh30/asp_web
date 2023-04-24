@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="./styles/formcart.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderSearch" runat="server">
+     <link rel="stylesheet" href="./styles/formcart.css">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="content">
@@ -35,8 +36,9 @@
                         <option value="IN">Thanh toán chuyển khoản</option>
                     </select>
                 </div>
+                  <asp:Button CssClass="btn_submit" ID="btnAdd_Product" runat="server" Text="Thanh toán" OnClick="btnAdd_Product_Click" />
             </fieldset>
-            <asp:Button CssClass="btn_submit" ID="btnAdd_Product" runat="server" Text="Thanh toán" OnClick="btnAdd_Product_Click" />
+          
         </div>
     </div>
 </asp:Content>

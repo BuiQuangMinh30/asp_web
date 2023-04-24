@@ -50,7 +50,7 @@
                         </li>
                         <li class="menu"><a href="javascript:void(0)">Hóa đơn</a>
                             <ul class="submenu">
-                                <li><a href="AdminProductList.aspx">Danh sách hóa đơn</a></li>
+                                <li><a href="AdminListCart.aspx">Danh sách hóa đơn</a></li>
                             </ul>
                         </li>
                     </ul>

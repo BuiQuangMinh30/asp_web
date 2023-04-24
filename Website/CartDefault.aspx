@@ -18,7 +18,10 @@
                                 <p class="cart__product-name">
                                     <%# Eval("sTenSanPham") %>
                                 </p>
-                                <select onchange="updatePrice(this)" data-name=" <%# Eval("sTenSanPham") %>" name="quantity_<%# Eval("idSanPham")%>_<%# Container.DataItemIndex %>" data-price="<%# Eval("fDonGia") %>">
+                                <%-- <p class="cart__product-price" id="dongia">
+                                    <%# Eval("fDonGia") %>
+                                </p>--%>
+                                <select id="mySelect" onchange="updatePrice(this)" data-name=" <%# Eval("sTenSanPham") %>" name="quantity_<%# Eval("idSanPham")%>_<%# Container.DataItemIndex %>" data-price="<%# Eval("fDonGia") %>">
                                     <option value="0">Chọn số lượng</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -31,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="cart__product-price-wrapper">
-                                <p class="cart__product-price" runat="server">
+                                <p class="cart__product-price" runat="server" >
                                     0 <%--<span class="cart__product-price-unit">đ</span>--%>
                                 </p>
                             </div>
@@ -63,60 +66,33 @@
         </div>
     </div>
 
-    <%--  <script>
-        document.querySelector('button').onclick = function (e) {
-            // Lấy tất cả các dropdownlist trong trang
-            var dropdowns = document.getElementsByTagName('select');
-
-            // Tạo một mảng lưu trữ các cặp key-value (productId:quantity)
-            var params = [];
-
-            // Duyệt qua từng dropdownlist
-            for (var i = 0; i < dropdowns.length; i++) {
-                var dropdown = dropdowns[i];
-
-                // Lấy giá trị số lượng được chọn từ dropdownlist
-                var quantity = dropdown.value;
-
-                // Tách lấy idSanPham và DataItemIndex từ tên của select
-                var nameParts = dropdown.name.split('_');
-                var idSanPham = nameParts[1];
-                var dataItemIndex = nameParts[2];
-
-                // Thêm cặp key-value (productId:quantity) vào mảng params
-                params.push('quantity[' + idSanPham + '][' + dataItemIndex + ']=' + encodeURIComponent(quantity));
-            }
-
-            // Tạo URL chứa các tham số truyền đi
-            var url = 'Payment.aspx?' + params.join('&');
-
-            // Chuyển hướng sang trang thanh toán
-            window.location.href = url;
-        };
-    </script>--%>
-
     <script>
 
+        
         //IIFE khởi tạo giá trị tiền khi chưa chọn sản phẩm
         const InitPrice = (() => {
             var deliveryElement = document.querySelector("#delivery_price");
             var products_PriceElement = document.querySelector("#products_price");
             var order_Total_PriceElement = document.querySelector("#order_total_price");
             var cart_Product_Elements = document.querySelectorAll(".cart__product-price");
-
+           
             //set giá trị mặc định là 0 khi chưa chọn
-            var cart_Product = 0;
+            var cart_Product =0;
             var delivery_price = 50000;
-            var product_price = 0;
+            var product_price =0;
             var total_price = delivery_price + product_price;
 
+            cart_Product.innerText = cart_Product_Elements.length;
             //Định dạng lại thành chuỗi tiền tệ bằng phương thức toLocaleString() của Number
             cart_Product_Elements.forEach((element, index) => {
                 element.innerText = cart_Product.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
             });
+            cart_Product_Elements.innerText = product_price;
             deliveryElement.innerText = delivery_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-            products_PriceElement.innerText = product_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            products_PriceElement.innerText = total_product_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
             order_Total_PriceElement.innerText = total_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            
+
         })();
 
         function updatePrice(select) {
@@ -130,6 +106,8 @@
             //Lấy số lượng chọn
             var selectedQuantity = select.value;
 
+
+            console.log('select', select, selectedQuantity)
             // Lấy đơn giá mỗi mặt hàng từ thuộc tính data-price
             var pricePerItem = parseFloat(select.dataset.price);
 
@@ -193,7 +171,7 @@
             orderTotalElement.innerText = orderTotal.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
         }
     </script>
-
+ >
 
     <script>
         //Lấy ra các thẻ select

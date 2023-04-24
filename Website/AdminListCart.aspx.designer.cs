@@ -11,26 +11,17 @@ namespace Website
 {
 
 
-    public partial class AdminCategoryList
+    public partial class AdminListCart
     {
 
         /// <summary>
-        /// search_button control.
+        /// listProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton search_button;
-
-        /// <summary>
-        /// listDanhMuc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView listDanhMuc;
+        protected global::System.Web.UI.WebControls.ListView listProduct;
 
         /// <summary>
         /// DataPager1 control.
