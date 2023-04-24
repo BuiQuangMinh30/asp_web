@@ -57,7 +57,7 @@
             <hr />
             <div class="cart__order-total">
                 <p>Tổng cộng: </p>
-                <p id="order_total_price" class="order_total_price">0 <span class="cart__product-price-unit">đ</span></p>
+                <p id="order_total_price" class="order_total_price">0<span class="cart__product-price-unit">đ</span></p>
             </div>
             <hr />
             <div class="cart__buttons--right">
@@ -180,6 +180,7 @@
 
         //Sự kiện click thì gửi số lượng các mặt hàng sang cho trang thanh toán
         document.querySelector('button').onclick = function (e) {
+
             // Duyệt qua từng select để kiểm tra xem người dùng đã chọn giá trị hay chưa
             for (var i = 0; i < selectElements.length; i++) {
                 var select = selectElements[i];
@@ -194,7 +195,7 @@
             }
             else {
                 // Lấy tất cả các dropdownlist trong trang
-                var dropdowns = document.getElementsByTagName('select');
+                var dropdowns = document.querySelectorAll('select[name^="quantity_"]');
 
                 // Tạo một đối tượng FormData để lưu trữ dữ liệu sẽ được gửi đi
                 var formData = new FormData();

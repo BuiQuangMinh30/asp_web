@@ -15,7 +15,7 @@ namespace Website
     public partial class All_ProductsDefault : System.Web.UI.Page
     {
         string con = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
-        protected void getProductsListByTypeAndFilter(string idDanhMuc, string Type)
+        protected void getProductsListByType(string idDanhMuc, string Type)
         {
             Utility utility = new Utility();
             DataTable dt = utility.get_SanPham(idDanhMuc);
@@ -54,7 +54,7 @@ namespace Website
 
             if (idDanhMuc != null)
             {
-                getProductsListByTypeAndFilter(idDanhMuc, sTenDanhMuc);
+                getProductsListByType(idDanhMuc, sTenDanhMuc);
             }
 
             if (idDanhMuc == null && search == null)
@@ -68,7 +68,7 @@ namespace Website
             if (search != null)
             {
                 string searchText = Request.QueryString["searchText"];
-                DataTable dt = GetFilteredData(searchText); // Hàm lấy danh sách sản phẩm từ cơ sở dữ liệu
+                DataTable dt = GetFilteredData(searchText);      //Hàm lấy danh sách sản phẩm từ cơ sở dữ liệu
                 string jsonString = ConvertDataTableToJson(dt);  // Hàm chuyển đổi DataTable sang đối tượng JSON
                 Response.Clear();
                 Response.ContentType = "application/json; charset=utf-8";
@@ -93,25 +93,29 @@ namespace Website
         }
         public DataTable GetFilteredData(string searchText)
         {
-            string connString = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(connString))
+            using (SqlConnection conn = new SqlConnection(con))
             {
-                string query = "SELECT * FROM tblSanPham WHERE sTenSanPham LIKE '%' + @searchText + '%'";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                //string query = "SELECT * FROM tblSanPham WHERE sTenSanPham LIKE '%' + @searchText + '%'";
+                using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Parameters.AddWithValue("@searchText", searchText);
-                    using(SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd))
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "sp_search_Product";
+                    cmd.Parameters.AddWithValue("@sTenSanPham", searchText);
+                    using (SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd))
                     {
-                        using(DataTable dt = new DataTable())
+                        using (DataTable dt = new DataTable())
                         {
                             dataAdapter.Fill(dt);
                             return dt;
                         }
                     }
-                   
+
                 }
             }
         }
+<<<<<<< HEAD
+=======
         public DataTable GetFilteredMoney(string f1, string f2)
         {
             string connString = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
@@ -136,6 +140,7 @@ namespace Website
         }
 
 
+>>>>>>> 6be472fee1c4c8295ba0f68df1c916c2b9b2377e
         private string ConvertDataTableToJson(DataTable dt)
         {
             string jsonString = JsonConvert.SerializeObject(dt);

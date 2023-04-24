@@ -12,6 +12,7 @@ namespace Website
 {
     public partial class AdminProducts : System.Web.UI.Page
     {
+        Utility utility = new Utility();
         string con = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,7 +21,6 @@ namespace Website
 
         protected void get_DanhMuc()
         {
-            Utility utility = new Utility();
             DataTable tb = utility.getAll_DanhMuc();
             lvDanhMuc.DataSource = tb;
             lvDanhMuc.DataBind();
@@ -39,7 +39,7 @@ namespace Website
                 {
                     cmd.Connection = cnn;
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "sp_addProduct";
+                    cmd.CommandText = "update_SanPham";
                     cmd.Parameters.Add("@sTenSanPham", sTenSanPham.ToString());
                     cmd.Parameters.Add("@iDanhMucId",Convert.ToInt32(idDanhMuc));
                     cmd.Parameters.Add("@fDonGia", Convert.ToDouble(donGia));

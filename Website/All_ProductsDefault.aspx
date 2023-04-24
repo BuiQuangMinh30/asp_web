@@ -11,7 +11,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="all-products-page-content">
-            
+            <div class="total_Product">
+                <h3></h3>
+            </div>
             <div class="filter">
                 <h3 class="filter__heading">Bộ lọc</h3>
                 <%--<ul class="filter__list">
@@ -53,7 +55,7 @@
                                         <div class="products__color--black"></div>
                                         <div class="products__color--red"></div>
                                     </div>--%>
-                                    <p class="products__price">Giá: <%# Convert.ToDecimal(Eval("fDonGia")).ToString("N0").Replace(",", ".") %><span class="products__price-unit">VNĐ</span></p>
+                                    <p class="products__price">Giá: <%# Convert.ToDecimal(Eval("fDonGia")).ToString("N0").Replace(",", ".") %>&nbsp;₫</p>
                                     <a class="products__button" href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">Chi tiết</a>
                                 
                                 </div>
@@ -65,16 +67,25 @@
         </div>
 
     <script>
+<<<<<<< HEAD
+        function filterName(obj, e) {
+            //console.log(e);
+=======
         function filterMoney(obj, e) {
            
+>>>>>>> 6be472fee1c4c8295ba0f68df1c916c2b9b2377e
             e.preventDefault();
             var txtSearch1 = document.getElementById("Number1").value;
             var txtSearch2 = document.getElementById("Number3").value;
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
+<<<<<<< HEAD
+                    var products = JSON.parse(this.responseText);
+=======
                     var products = JSON.parse(this.responseText)
                     console.log('this', this.responseText, products)
+>>>>>>> 6be472fee1c4c8295ba0f68df1c916c2b9b2377e
                     var htmls = products.map(function (product, index) {
                         return `
                                 <div class="products__wrapper">
@@ -91,6 +102,7 @@
                         `;
                     });
                     document.querySelector(".all-products__container").innerHTML = htmls;
+                    document.querySelector(".total_Product").innerHTML = `<h3>Kết quả tìm kiếm(${products.length})</h3>`;
                 }
             };
             var url = window.location.href + "?searchGia_1=" + txtSearch1 + "&searchGia_2=" + txtSearch2;

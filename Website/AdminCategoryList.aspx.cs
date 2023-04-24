@@ -20,7 +20,6 @@ namespace Website
 		string con = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
 		protected void Page_Load(object sender, EventArgs e)
 		{
-			int id = Convert.ToInt32(Request.QueryString["id"]);
 			getAll_DanhMuc();
 			//if (Request.HttpMethod == "POST")
 			//{
@@ -29,6 +28,7 @@ namespace Website
 			//}
 			if (Request["id"] != null)
             {
+				int id = Convert.ToInt32(Request.QueryString["id"]);
 				xoaDanhMuc(id);
             }
         }

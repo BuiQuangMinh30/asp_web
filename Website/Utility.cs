@@ -121,7 +121,7 @@ namespace Website
             }
         }
 
-        //Lấy ra sản phẩm theo danh mục, ten, giat ien
+        //Lấy ra sản phẩm theo danh mục, tên, gia tiền
         public DataTable get_select_SanPham(string id)
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -141,7 +141,7 @@ namespace Website
             }
         }
 
-        //Lay ra all product
+        //Lấy ra all product
         public DataTable getAll_SanPham()
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -180,14 +180,11 @@ namespace Website
             }
         }
 
-
         // Lấy ra thông tin order
         public DataTable getAll_Order()
         {
             using (SqlCommand cmd = new SqlCommand())
             {
-                cmd.Connection = con;
-                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "sp_getAll_Order";
                 using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
                 {
@@ -198,6 +195,49 @@ namespace Website
                     }
                 }
             }
+        }
+
+        //Update sản phẩm
+        public int update_SanPham(int id, int idDM, string name, string sMoTa, float donGia, string img)
+        {
+            int result = 0;
+            con.Open();
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_updateProduct";
+                cmd.Parameters.Add("@sTenSanPham", name);
+                cmd.Parameters.Add("@iDanhMucId", idDM);
+                cmd.Parameters.Add("@fDonGia", donGia);
+                cmd.Parameters.Add("@sMoTa", sMoTa);
+                cmd.Parameters.Add("@sAnh", img);
+                cmd.Parameters.Add("@id", id);
+                result = cmd.ExecuteNonQuery();
+            }
+            con.Close();
+            return result;
+        }
+        public void CallStoredProcedure(string connectionString, string storedProcedureName, params SqlParameter[] parameters)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddRange(parameters);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            /*VD: cho truyền vs nhiều tham số
+            string connectionString = "your_connection_string_here";
+            string storedProcedureName = "sp_insert_data";
+            SqlParameter nameParameter = new SqlParameter("@name", SqlDbType.NVarChar);
+            nameParameter.Value = "John";
+            SqlParameter ageParameter = new SqlParameter("@age", SqlDbType.Int);
+            ageParameter.Value = 30;
+            CallStoredProcedure(connectionString, storedProcedureName, nameParameter, ageParameter);*/
         }
     }
 }
