@@ -11,7 +11,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="all-products-page-content">
-            
+            <div class="total_Product">
+                <h3></h3>
+            </div>
             <div class="filter">
                <%-- <h3 class="filter__heading">Bộ lọc</h3>
                 <ul class="filter__list">
@@ -38,7 +40,7 @@
                                         <div class="products__color--black"></div>
                                         <div class="products__color--red"></div>
                                     </div>--%>
-                                    <p class="products__price">Giá: <%# Convert.ToDecimal(Eval("fDonGia")).ToString("N0").Replace(",", ".") %><span class="products__price-unit">VNĐ</span></p>
+                                    <p class="products__price">Giá: <%# Convert.ToDecimal(Eval("fDonGia")).ToString("N0").Replace(",", ".") %>&nbsp;₫</p>
                                     <a class="products__button" href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">Chi tiết</a>
                                 
                                 </div>
@@ -51,14 +53,14 @@
 
     <script>
         function filterName(obj, e) {
-            console.log(e);
+            //console.log(e);
             e.preventDefault();
             var txtSearch = document.querySelector("#search_text").value;
             document.title = "Tìm kiếm " + txtSearch;
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    var products = JSON.parse(this.responseText)
+                    var products = JSON.parse(this.responseText);
                     var htmls = products.map(function (product, index) {
                         return `
                                 <div class="products__wrapper">
@@ -75,6 +77,7 @@
                         `;
                     });
                     document.querySelector(".all-products__container").innerHTML = htmls;
+                    document.querySelector(".total_Product").innerHTML = `<h3>Kết quả tìm kiếm(${products.length})</h3>`;
                 }
             };
             var url = window.location.href + "?searchText=" + txtSearch;

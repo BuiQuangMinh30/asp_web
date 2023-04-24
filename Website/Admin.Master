@@ -63,7 +63,7 @@
     <script>
         //var menus = document.querySelectorAll('.admin-content-left > ul > li');
         var menus = document.querySelectorAll('.menu');
-        console.log(menus)
+        //console.log(menus)
 
         menus.forEach(function (menu, index) {
 

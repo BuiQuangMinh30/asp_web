@@ -17,7 +17,6 @@ namespace Website
         {
             isLogin.InnerHtml = Convert.ToString(Session["login"]);
 
-
             Utility utility = new Utility();
             
             //========= Display page content==============

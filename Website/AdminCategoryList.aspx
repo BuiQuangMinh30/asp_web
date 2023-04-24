@@ -48,7 +48,7 @@
                     <input type="hidden" name="category-id" value="">
                     <label for="category-name">Tên danh mục<span style="color: red;">*</span></label>
                     <input type="text" name="category-name" value="">
-                    <label for="category-description">Mô tả sản phẩm<span style="color: red;">*</span></label>
+                    <label for="category-description">Mô tả danh mục<span style="color: red;">*</span></label>
                     <textarea type="text" name="category-description" value="" cols="30" rows="10"></textarea>
                     <button id="btnLuu" class="btn_submit">Lưu</button>
                     <button id="btnHuy" class="btn_submit">Hủy</button>
