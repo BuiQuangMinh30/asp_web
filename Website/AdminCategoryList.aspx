@@ -1,11 +1,21 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminCategoryList.aspx.cs" Inherits="Website.AdminCategoryList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
+    
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
     <div class="admin-content-right">
+
+        <%--copy input search từ đây--%> 
+         <div class="header__search">
+        <img src="./Images/Icons/Search.png" alt="">
+        <input type="text" name="search" placeholder="Search" id="search_text" onkeyup="filterName(this, event)">
+        <button type="button" runat="server" id="search_button">Tìm</button>
+
+              <%--copy input search đến đây--%> 
+    </div>
         <div class="admin-content-right-cartegory_list">
             <div class="list-category-form">
                 <h1>Danh sách danh mục sản phẩm</h1>

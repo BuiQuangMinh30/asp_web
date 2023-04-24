@@ -556,13 +556,16 @@ body#checkout-page #site-info {
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 1em;
-    margin-bottom: 1.3em;
+   margin: 40px;
+
+           }
 }
 
 #checkout-order-form legend {
     padding: 0.3em;
     background: #fafafa;
     font-weight: bold;
+    font-size: 30px;
 }
 
 #checkout-order-form div {
@@ -583,13 +586,27 @@ body#checkout-page #site-info {
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 0.1em;
+    height: 28px;
 }
 
 #checkout-order-form select {
     width: 200px;
     display: block;
+    border: 1px solid #ddd;
+    height: 40px;
+    border-radius: 4px;
 }
-
+#checkout-order-form .btn_submit {
+    height: 32px;
+    width: 140px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #b6d7a8;
+    float: right;
+    margin-right: 40px;
+    font-weight: 600;
+    cursor: pointer;
+}
 .message {
     display: block;
     margin: 0.5em 0;

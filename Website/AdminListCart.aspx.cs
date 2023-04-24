@@ -24,7 +24,21 @@ namespace Website
                 Response.End();
             }
         }
-
+        //public string ConvertNumberToThanhToan(string text)
+        //{
+        //    if (text == "1" || text == "ck")
+        //    {
+        //        return "Thanh toán chuyển khoản";
+        //    }
+        //    else if (text == "0")
+        //    {
+        //        return "Thanh toán trực tiếp";
+        //    }
+        //    else
+        //    {
+        //        return "Không rõ";
+        //    }
+        //}
         public string ConvertNumberToWord(int number)
         {
             if (number == 1)
@@ -40,6 +54,9 @@ namespace Website
                 return "Không rõ";
             }
         }
+
+       
+
         protected void get_DanhMuc()
         {
             Utility utility = new Utility();
