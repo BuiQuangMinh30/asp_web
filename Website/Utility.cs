@@ -141,6 +141,26 @@ namespace Website
             }
         }
 
+        public DataTable sp_search_Price_Product(string f1, string f2)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "sp_search_Price_Product";
+                cmd.Parameters.Add("@fDonGia_1", f1);
+                cmd.Parameters.Add("@fDonGia_2", f2);
+                using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
+                {
+                    using (DataTable dt = new DataTable())
+                    {
+                        ad.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+        }
+
         //Lấy ra all product
         public DataTable getAll_SanPham()
         {

@@ -11,7 +11,7 @@ namespace Website
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-        
+            Application["TotalVisitors"] = 0;
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -26,7 +26,7 @@ namespace Website
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
+            Application["TotalVisitors"] = (int)Application["TotalVisitors"] + 1;
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)

@@ -65,7 +65,12 @@ namespace Website
                     cmd.CommandText = "sp_deleteProduct";
                     cmd.Parameters.Add("@iSanPhamId", id);
                     cnn.Open();
-                    cmd.ExecuteNonQuery();
+                    int exec = cmd.ExecuteNonQuery();
+                    if(exec > 0)
+                    {
+
+                    }
+                    
                     cnn.Close();
                 }
             }

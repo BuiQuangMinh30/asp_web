@@ -15,27 +15,28 @@
                 <h3></h3>
             </div>
             <div class="filter">
-                <h3 class="filter__heading">Bộ lọc</h3>
+                <h3 class="filter__heading">Bộ lọc theo giá tiền</h3>
                 <%--<ul class="filter__list">
                     <li class="filter__item"><a href="#" runat="server" id="Filter_01">&le; 1 triệu</a></li>
                     <li class="filter__item"><a href="#" runat="server" id="Filter_02">1 - 3 triệu</a></li>
                     <li class="filter__item"><a href="#" runat="server" id="Filter_03">&ge; 3 triệu</a></li>
                 </ul>--%>
-
+                <%--<asp:DropDownList ID="ddlSorting"  runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSorting_SelectedIndexChanged">
+            <asp:ListItem Value="default">Default</asp:ListItem>
+            <asp:ListItem Value="fDonGia ASC">Price ASC</asp:ListItem>
+            <asp:ListItem Value="fDonGia DESC">Price DESC</asp:ListItem>
+        </asp:DropDownList>--%>
+               
                  <div class="header__search">
                                 <%--<img src="./Images/Icons/Search.png" alt="">--%>
-                                <input type="number" name="search_1" placeholder="Giá trị đầu" id="Number1" onkeyup="filterMoney(this, event)">
-                               <%-- <button type="button" runat="server" id="search_button" onserverclick="SearchButton_Click">Tìm</button>--%>
+                                <input type="number" name="search_1" placeholder="Giá trị đầu" id="Number1" onkeyup="filterMoney(this, event)"/>
                             </div>
 
                  <div class="header__search">
                                 <%--<img src="./Images/Icons/Search.png" alt="">--%>
-                                <input type="number" name="search_2" placeholder="Giá trị cuối"  id="Number3"  onkeyup="filterMoney(this, event)" >
-                               <%-- <button type="button" runat="server" id="search_button" onserverclick="SearchButton_Click">Tìm</button>--%>
+                                <input type="number" name="search_2" placeholder="Giá trị cuối"  id="Number3"  onkeyup="filterMoney(this, event)" />
                             </div>
 
-                <%--<button type="button" runat="server" id="Button1" onclick="filterMoney(this, event)">Tìm</button>
-                <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" />--%>
             </div>
             <div class="all-products">
                 <div class="all-products_heading">
@@ -48,13 +49,8 @@
                                 <a href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">
                                     <img class="products__image" src="<%# Eval("sAnh") %>" alt="">
                                 </a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="products__content">
+                                &nbsp;<div class="products__content">
                                     <h4 class="products__name"><%# Eval("sTenSanPham") %></h4>
-                                    <%--<div class="products__colors">
-                                        <div class="products__color--white"></div>
-                                        <div class="products__color--black"></div>
-                                        <div class="products__color--red"></div>
-                                    </div>--%>
                                     <p class="products__price">Giá: <%# Convert.ToDecimal(Eval("fDonGia")).ToString("N0").Replace(",", ".") %>&nbsp;₫</p>
                                     <a class="products__button" href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">Chi tiết</a>
                                 
@@ -67,25 +63,17 @@
         </div>
 
     <script>
-<<<<<<< HEAD
-        function filterName(obj, e) {
-            //console.log(e);
-=======
+       
         function filterMoney(obj, e) {
            
->>>>>>> 6be472fee1c4c8295ba0f68df1c916c2b9b2377e
             e.preventDefault();
             var txtSearch1 = document.getElementById("Number1").value;
             var txtSearch2 = document.getElementById("Number3").value;
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-<<<<<<< HEAD
-                    var products = JSON.parse(this.responseText);
-=======
                     var products = JSON.parse(this.responseText)
                     console.log('this', this.responseText, products)
->>>>>>> 6be472fee1c4c8295ba0f68df1c916c2b9b2377e
                     var htmls = products.map(function (product, index) {
                         return `
                                 <div class="products__wrapper">
