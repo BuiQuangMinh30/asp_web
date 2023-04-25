@@ -73,6 +73,7 @@
   <ItemGroup>
     <Content Include="AdminCartDetail.aspx" />
     <Content Include="AdminCategoryList.aspx" />
+    <Content Include="AdminEditProduct.aspx" />
     <Content Include="AdminListCart.aspx" />
     <Content Include="AdminProductList.aspx" />
     <Content Include="AdminProduct.aspx" />
@@ -129,6 +130,13 @@
     </Compile>
     <Compile Include="AdminCategoryList.aspx.designer.cs">
       <DependentUpon>AdminCategoryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminEditProduct.aspx.cs">
+      <DependentUpon>AdminEditProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminEditProduct.aspx.designer.cs">
+      <DependentUpon>AdminEditProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminListCart.aspx.cs">
       <DependentUpon>AdminListCart.aspx</DependentUpon>

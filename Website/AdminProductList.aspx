@@ -33,7 +33,9 @@
                             <td><%# Eval("dThoiGianTao", "{0:dd/MM/yyyy}") %></td>
                             <%--  <td><a href="#">Sửa</a>|<a href="#">Xóa</a></td>--%>
                             <td>
-                                <button class="admin-edit-button" style="margin: 4px 0px" id="sua_<%# Eval("iSanPhamId") %>" onclick="btnSua(this, <%# Eval("iSanPhamId") %>, event)">Sửa</button>
+                                <button class="admin-edit-button" style="margin: 4px 0px" id="sua_<%# Eval("iSanPhamId") %>"<%-- onclick="btnSua(this, <%# Eval("iSanPhamId") %>, event)"--%>>
+                                    <a href="AdminEditProduct.aspx?id=<%# Eval("iSanPhamId") %>">Sửa</a>
+                                </button>
                                 <button class="admin-delete-button" style="margin-right: 0px" id="xoa_<%# Eval("iSanPhamId") %>" onclick="btnXoa(this, <%# Eval("iSanPhamId") %>, event)">Xóa</button>
                             </td>
                         </tr>
@@ -67,7 +69,6 @@
                             </ItemTemplate>
                         </asp:ListView>
                     </select>
-
                     <label for="productName">Tên sản phẩm<span style="color: red;">*</span></label>
                     <input type="text" id="productName" name="productName">
 
@@ -87,7 +88,7 @@
         </div>
     </div>
 
-    <script>
+   <%-- <script>
         //Sửa sản phẩm
         var btnEdits = document.querySelectorAll('button[id^="sua_"]');
         var close = document.querySelector('.close');
@@ -106,7 +107,6 @@
             };
             var data = JSON.stringify(product);
             //console.log(data);
-            //const url = "AdminProductList.aspx?id=" + idDanhMuc + ""
             xhttp.open("POST", "AdminProductList.aspx/suaSanPham", true);
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(data);
@@ -127,7 +127,6 @@
             button.onclick = function (event) {
                 event.preventDefault();
                 var idElement = this.id;
-                //console.log(idElement);
                 var arr = idElement.split(",");
                 var action = arr[0];
                 var id_Product = arr[1];
@@ -185,7 +184,7 @@
                     product.nameCate = option.innerHTML;
                     product.img = productImgInput.files[0].name;
 
-                    console.log(product);
+                    //console.log(product);
                     formEdit.classList.remove('show');
                   
                     updateCategory(product);
@@ -198,15 +197,24 @@
             var formEdit = document.querySelector('#editProductModal');
             formEdit.classList.remove('show');
         }
-    </script>
+    </script>--%>
 
     <script>
         //Xóa sản phẩm
         function btnXoa(obj, id, e) {
             e.preventDefault();
-            console.log(obj);
+            var idElement = obj.id;
+            var arr = idElement.split("_");
+            var action = arr[0];
+            var id_Product = arr[1];
+            
+            var data = {
+                action: action,
+                id: id_Product
+            }
+            console.log(idElement);
             if (confirm("Bạn có chắc muốn xóa?")) {
-                const url = "AdminProductList.aspx?id=" + id + "";
+                const url = "AdminProductList.aspx?id=" + id + "&act=" + action;
 
                 const xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
