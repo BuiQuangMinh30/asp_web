@@ -26,7 +26,7 @@
                             <td><%# Eval("sTenKhachHang") %></td>
                             <td><%# Eval("sEmail") %></td>
                              <td><%# Eval("sPhone") %></td>
-                            <td><%# Eval("sPhuongThucThanhToan") %></td>
+                            <td><%# (Eval("sPhuongThucThanhToan")=="0") ? "Thanh toán khi nhận hàng": "Thanh toán chuyển khoản" %></td>
                             
                             <td><%# Eval("sDiaChiGiao") %></td>
                              <td><%# Eval("dNgayDat", "{0:dd/MM/yyyy}") %></td>

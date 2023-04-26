@@ -185,6 +185,8 @@ namespace Website
         {
             using (SqlCommand cmd = new SqlCommand())
             {
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "sp_getAll_Order";
                 using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
                 {

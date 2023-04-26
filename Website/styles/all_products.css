@@ -54,7 +54,14 @@
 .filter__item:hover::after{
     transform: scaleX(1);
 }
-
+.sapxep {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end
+}
+.sapxep > p {
+    padding-right: 12px;
+}
 .all-products_heading{
     margin-bottom: 16px;
 }

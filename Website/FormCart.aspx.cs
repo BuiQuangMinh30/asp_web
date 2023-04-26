@@ -70,7 +70,7 @@ namespace Website
                                 else
                                 {
                                     //Dùng dictionary để lưu
-                                    CartItem cartItem = new CartItem { iSanPhamId = product.idSanPham, iSoluong = soLuong, fDonGia = product.fDonGia };
+                                    CartItem cartItem = new CartItem { iSanPhamId = product.idSanPham, iSoluong = soLuong, fDonGia = product.fDonGia, sTenSanPham = product.sTenSanPham, sAnh = product.sAnh };
                                     cartItems.Add(product.idSanPham, cartItem);
                                     i++;
                                 }
@@ -144,6 +144,7 @@ namespace Website
             string sEmail = Request.Form.Get("email");
             string sPhone = Request.Form.Get("phone");
             string address = Request.Form.Get("address");
+            string paymentMethod = Request.Form.Get("payment");
             var orderDate = DateTime.UtcNow;
 
             //Lấy ra từng cặp key-value  trong dictionary
@@ -161,7 +162,7 @@ namespace Website
                     cmd.Parameters.AddWithValue("@iKhachHangId", idUser);
                     cmd.Parameters.AddWithValue("@sTenKhachHang", sTenkhachhang.ToString());
                     cmd.Parameters.AddWithValue("@sEmail", sEmail.ToString());
-                    cmd.Parameters.AddWithValue("@sPhuongThucThanhToan", 1);
+                    cmd.Parameters.AddWithValue("@sPhuongThucThanhToan", paymentMethod);
                     cmd.Parameters.AddWithValue("@sPhone", sPhone.ToString());
                     cmd.Parameters.AddWithValue("@sDiaChiGiao", address.ToString());
                     cmd.Parameters.AddWithValue("@dNgayDat", orderDate);
@@ -175,14 +176,12 @@ namespace Website
                     //Lặp qua các key value trong dictionary
                     foreach (KeyValuePair<int, CartItem> cartItem in (Dictionary<int, CartItem>)Session["CartItems"])
                     {
-                        var orderItemCommand = new SqlCommand("INSERT INTO tblChiTietDonHang ( iDonHangId,iSanPhamId,sTenSanPham,sAnh, iSoluong, fDonGia) VALUES (@iDonHangId, @iSanPhamId,@sTenSanPham,@sAnh, @iSoluong, @fDonGia)", conn);
+                        var orderItemCommand = new SqlCommand("INSERT INTO tblChiTietDonHang ( iDonHangId,iSanPhamId, iSoluong, fDonGia) VALUES (@iDonHangId, @iSanPhamId, @iSoluong, @fDonGia)", conn);
 
                         orderItemCommand.Parameters.AddWithValue("@iDonHangId", orderId);
                         orderItemCommand.Parameters.AddWithValue("@iSanPhamId", cartItem.Value.iSanPhamId);
                         orderItemCommand.Parameters.AddWithValue("@iSoluong", cartItem.Value.iSoluong);
                         orderItemCommand.Parameters.AddWithValue("@fDonGia", cartItem.Value.fDonGia);
-                        orderItemCommand.Parameters.AddWithValue("@sTenSanPham", cartItem.Value.sTenSanPham);
-                        orderItemCommand.Parameters.AddWithValue("@sAnh", cartItem.Value.sAnh);
 
                         rs = orderItemCommand.ExecuteNonQuery();
                     }

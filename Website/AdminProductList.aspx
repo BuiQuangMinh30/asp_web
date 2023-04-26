@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="admin-content-right">
         <div class="admin-content-right-cartegory_list">
-            <h1>Danh sách danh mục sản phẩm</h1>
+            <h1>Danh sách sản phẩm</h1>
             <table>
                 <tr>
                     <th>ID</th>

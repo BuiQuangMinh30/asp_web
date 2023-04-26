@@ -13,18 +13,30 @@ namespace Website
     public partial class AdminEditProduct : System.Web.UI.Page
     {
         string cnn = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
-        private int selectedIdDanhMuc;
+        Utility utility = new Utility();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                Utility utility = new Utility();
-                DataTable tb = utility.getAll_DanhMuc();
-                ListView1.DataSource = tb;
-                ListView1.DataBind();
+                dropDownListDanhMuc();
+                getThongTinSanPham();
             }
         }
 
+        protected void dropDownListDanhMuc()
+        {
+            // Gán dữ liệu cho select danh mục
+            DataTable tb = utility.getAll_DanhMuc();
+            ListView1.DataSource = tb;
+            ListView1.DataBind();
+        }
+        protected void getThongTinSanPham()
+        {
+            string id = Request.QueryString["id"];
+            DataTable tb = utility.get_ChiTiet_SanPham(id);
+            ListView2.DataSource = tb;
+            ListView2.DataBind();
+        }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             //Request Form thì không được thêm runnat

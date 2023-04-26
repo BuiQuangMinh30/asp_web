@@ -31,14 +31,14 @@
                                 <li><a href="signIn.aspx">Đăng Nhập</a></li>
                                 <span>|</span>
                                 <!-- If logged in change signIn to username and signUp to Log Out  -->
-                                <li><a href="signUp.aspx">Đăng Xuất</a></li>
+                                <li><a href="signUp.aspx">Đăng Ký</a></li>
                             </ul>
 
                             <ul class="header__user-menu-mobile" runat="server" id="login_status_mobile">
                                 <!-- If not logged in -->
                                 <li><a href="signIn.aspx">Đăng Nhập</a></li>
                                 <span>|</span>
-                                <li><a href="signUp.aspx">Đăng Xuất</a></li>
+                                <li><a href="signUp.aspx">Đăng Ký</a></li>
                                 <!-- If logged in change signIn to username, signUp to icon, delete span -->
                                 <!-- Display in server side aspx -->
                                 <!-- <li class="signOut-mobile"><a href="signOut.aspx"><img src="./Images/Icons/LogOut.svg" alt=""></a></li> -->

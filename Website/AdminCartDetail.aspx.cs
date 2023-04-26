@@ -53,7 +53,6 @@ namespace Website
                 
                 ListViewCart.DataSource = cartList;
                 ListViewCart.DataBind();
-
             }
         }
     }

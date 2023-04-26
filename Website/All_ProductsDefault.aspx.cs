@@ -83,7 +83,7 @@ namespace Website
                 string Number_1 = Request.QueryString.Get("searchGia_1");
                 string Number_2 = Request.QueryString.Get("searchGia_2");
                 DataTable dt = GetFilteredMoney(Number_1, Number_2); // Hàm lấy danh sách sản phẩm từ cơ sở dữ liệu
-                string jsonString = ConvertDataTableToJson(dt);  // Hàm chuyển đổi DataTable sang đối tượng JSON
+                string jsonString = ConvertDataTableToJson(dt);     // Hàm chuyển đổi DataTable sang đối tượng JSON
                 Response.Clear();
                 Response.ContentType = "application/json; charset=utf-8";
                 Response.Write(jsonString);

@@ -31,9 +31,9 @@
 
                 <div>
                     <label for="type">Hình thức thanh toán</label>
-                    <select name="country" id="country">
-                        <option value="">Thanh toán khi nhận hàng</option>
-                        <option value="IN">Thanh toán chuyển khoản</option>
+                    <select name="payment" id="payment">
+                        <option value="0">Thanh toán khi nhận hàng</option>
+                        <option value="1">Thanh toán chuyển khoản</option>
                     </select>
                 </div>
                   <asp:Button CssClass="btn_submit" ID="btnAdd_Product" runat="server" Text="Thanh toán" OnClick="btnAdd_Product_Click" />
