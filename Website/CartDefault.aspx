@@ -18,9 +18,9 @@
                                 <p class="cart__product-name">
                                     <%# Eval("sTenSanPham") %>
                                 </p>
-                                <%-- <p class="cart__product-price" id="dongia">
+                                 <p class="cart__product-price" id="dongia">
                                     <%# Eval("fDonGia") %>
-                                </p>--%>
+                                </p>
                                 <select id="mySelect" onchange="updatePrice(this)" data-name=" <%# Eval("sTenSanPham") %>" name="quantity_<%# Eval("idSanPham")%>_<%# Container.DataItemIndex %>" data-price="<%# Eval("fDonGia") %>">
                                     <option value="0">Chọn số lượng</option>
                                     <option value="1">1</option>
@@ -45,6 +45,7 @@
         </div>
         <div class="cart--right">
             <div id="isLogin" style="display: none" runat="server">-1</div>
+            <input id="productsssss" value="0">0</input>
             <h2 class="cart__title--right">Đơn hàng</h2>
             <div class="cart__products-total-price">
                 <p>Tổng tiền <span runat="server" id="total_products">0</span> sản phẩm</p>
@@ -91,7 +92,7 @@
             deliveryElement.innerText = delivery_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
             products_PriceElement.innerText = total_product_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
             order_Total_PriceElement.innerText = total_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-            
+        
 
         })();
 
@@ -99,21 +100,19 @@
 
             //Lấy phần tử cha của phần tử select chứa phần tử price
             var productWrapper = select.closest(".cart__product-wrapper");
-
+            var productsssss = document.querySelector("#productsssss");
             // Lấy phần tử price bên trong phần tử cha
             var priceElement = productWrapper.querySelector(".cart__product-price");
 
             //Lấy số lượng chọn
             var selectedQuantity = select.value;
 
-
-            console.log('select', select, selectedQuantity)
             // Lấy đơn giá mỗi mặt hàng từ thuộc tính data-price
             var pricePerItem = parseFloat(select.dataset.price);
 
             // Tính giá mới
             var newPrice = pricePerItem * selectedQuantity;
-
+            document.querySelector("#productsssss").value = newPrice;
             //Cập nhập giá mới
             priceElement.innerText = newPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 
@@ -177,10 +176,12 @@
         //Lấy ra các thẻ select
         var selectElements = document.querySelectorAll("select[name^='quantity_']");
         var isLogin = document.getElementById("<%= isLogin.ClientID %>").textContent;
-
+       
         //Sự kiện click thì gửi số lượng các mặt hàng sang cho trang thanh toán
         document.querySelector('button').onclick = function (e) {
-
+            var productsssss = document.getElementById("productsssss").value;
+            console.log('pr', productsssss)
+            console.log('products_PriceElement123', productsssss)
             // Duyệt qua từng select để kiểm tra xem người dùng đã chọn giá trị hay chưa
             for (var i = 0; i < selectElements.length; i++) {
                 var select = selectElements[i];

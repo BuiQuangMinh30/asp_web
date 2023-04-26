@@ -279,6 +279,19 @@ begin
 	insert tblSanPham(sTenSanPham,iDanhMucId, fDonGia, sMoTa, sAnh)
 	values (@sTenSanPham,@iDanhMucId,@fDonGia,@sMota,@sAnh)
 end
+
+GO
+create proc sp_add_DanhMuc
+(
+	@sTenDanhMuc nvarchar(255),
+	@sMota nvarchar(255)
+	
+)
+as
+begin
+	insert tblDanhMuc(sTenDanhMuc,sMota)
+	values (@sTenDanhMuc,@sMota)
+end
 ---proc_deleteProduct----
 GO
 create proc sp_deleteProduct
@@ -384,3 +397,17 @@ end
 exec sp_getAll_Cart
 
 SELECT * FROM tblSanPham WHERE fDonGia >=  500000 and fDonGia <= 2000000;
+
+
+GO
+Create PROCEDURE sp_search_Price_Product
+    @fDonGia_1 NVARCHAR(50) = NULL,
+    @fDonGia_2 NVARCHAR(50) = NULL
+AS
+BEGIN
+    SELECT *
+    FROM tblSanPham
+    WHERE fDonGia >= @fDonGia_1 and fDonGia <= @fDonGia_2
+END
+
+exec sp_search_Price_Product @fDonGia_1=400000, @fDonGia_2= 600000

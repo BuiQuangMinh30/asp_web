@@ -38,14 +38,6 @@
             <%--<button type="button" runat="server" id="Button1" onclick="filterMoney(this, event)">Tìm</button>
                 <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" />--%>
         </div>
-        <div class="sapxep">
-                <p>Sắp xếp theo:</p>
-                <select onchange="sortData(this)">
-                    <option value="">----Chọn----</option>
-                    <option value="sTenSanPham">Tên sản phẩm</option>
-                    <option value="fDonGia">Giá sản phẩm</option>
-                </select>
-        </div>
         <div class="all-products">
             <div class="all-products_heading">
                 <h2 class="all-products_brand-name" runat="server" id="all_products_brand_name"></h2>
@@ -57,7 +49,7 @@
                             <a href="Product_InformationDefault.aspx?id=<%# Eval("iSanPhamId") %>">
                                 <img class="products__image" src="<%# Eval("sAnh") %>" alt="">
                             </a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="products__content">
+                            <div class="products__content">
                                 <h4 class="products__name"><%# Eval("sTenSanPham") %></h4>
                                 <%--<div class="products__colors">
                                         <div class="products__color--white"></div>
@@ -76,10 +68,8 @@
     </div>
 
     <script>
-        function sortData(select) {
-            console.log(select, select.value);
-        }
-        function filterMoney(obj, e) {
+        function filterName(obj, e) {
+            //console.log(e);
             e.preventDefault();
             var txtSearch1 = document.getElementById("Number1").value;
             var txtSearch2 = document.getElementById("Number3").value;

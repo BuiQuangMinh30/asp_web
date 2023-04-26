@@ -235,6 +235,7 @@
     <Compile Include="IndexDefault.aspx.designer.cs">
       <DependentUpon>IndexDefault.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListViewItemComparer .cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Product_InformationDefault.aspx.cs">
       <DependentUpon>Product_InformationDefault.aspx</DependentUpon>

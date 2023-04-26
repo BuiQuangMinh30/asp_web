@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections;
+
 
 namespace Website
 {
@@ -44,6 +46,8 @@ namespace Website
                 total++;
             return total.ToString();
         }
+       
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             string idDanhMuc = Request.QueryString.Get("idDanhMuc");
@@ -90,6 +94,14 @@ namespace Website
                 Response.End();
             }
 
+            if(Number1 == null || Number2 == null)
+            {
+                Utility utility = new Utility();
+                DataTable dt = utility.getAll_SanPham();
+                ListViewAllProducts.DataSource = dt;
+                ListViewAllProducts.DataBind();
+            }
+
         }
         public DataTable GetFilteredData(string searchText)
         {
@@ -116,14 +128,16 @@ namespace Website
         }
         public DataTable GetFilteredMoney(string f1, string f2)
         {
-            string connString = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(connString))
+            using (SqlConnection conn = new SqlConnection(con))
             {
-                string query = "SELECT * FROM tblSanPham WHERE fDonGia >= @f1 AND fDonGia <= @f2";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                //string query = "SELECT * FROM tblSanPham WHERE sTenSanPham LIKE '%' + @searchText + '%'";
+                using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.Parameters.AddWithValue("@f1", f1);
-                    cmd.Parameters.AddWithValue("@f2", f2);
+                    cmd.Connection = conn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "sp_search_Price_Product";
+                    cmd.Parameters.AddWithValue("@fDonGia_1", f1);
+                    cmd.Parameters.AddWithValue("@fDonGia_2", f2);
                     using (SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd))
                     {
                         using (DataTable dt = new DataTable())
@@ -160,6 +174,32 @@ namespace Website
 
         }
 
-        
+        //private void LoadWines()
+        //{
+        //    var query = "SELECT * FROM tblSanPham";
+        //    //if (ListViewAllProducts.SelectedValue != "all")
+        //    //{
+        //    //    query = query + " WHERE Country =  '" + ListViewAllProducts.SelectedValue + "'";
+        //    //}
+        //    if (ddlSorting.SelectedValue != "default")
+        //    {
+        //        query = query + " ORDER BY " + ddlSorting.SelectedValue;
+        //    }
+
+        //    SqlConnection conn = new SqlConnection(con);
+        //    SqlCommand cmd = new SqlCommand(query, conn);
+        //    conn.Open();
+        //    var reader = cmd.ExecuteReader();
+        //    ListViewAllProducts.DataSource = reader;
+        //    ListViewAllProducts.DataBind();
+        //    reader.Close();
+        //    conn.Close();
+        //}
+
+        //protected void ddlSorting_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    LoadWines();
+        //}
+
     }
 }
