@@ -37,6 +37,11 @@
 
             <%--<button type="button" runat="server" id="Button1" onclick="filterMoney(this, event)">Tìm</button>
                 <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" />--%>
+            <%--<asp:DropDownList ID="ddlSorting"  runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlSorting_SelectedIndexChanged">
+            <asp:ListItem Value="default">Default</asp:ListItem>
+            <asp:ListItem Value="fDonGia ASC">Price ASC</asp:ListItem>
+            <asp:ListItem Value="fDonGia DESC">Price DESC</asp:ListItem>
+        </asp:DropDownList>--%>
         </div>
         <div class="all-products">
             <div class="all-products_heading">
